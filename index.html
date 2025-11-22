@@ -38,6 +38,32 @@ footer{border-top:1px solid var(--line);padding:24px 0;color:var(--muted);font-s
 ul{margin:8px 0 16px 20px}
 li{margin:6px 0}
 @media (max-width:600px){
+  /* --- Custom Enhancements by William --- */
+
+/* 1) 邮箱颜色变成灰色、更低调 */
+.email {
+  color: #666 !important;
+  font-size: 16px;
+  margin-bottom: 8px;
+  display: inline-block;
+}
+
+/* 2) 统一中英文割线样式 */
+.section {
+  border-top: 1px solid var(--line);
+  margin-top: 32px;
+  padding-top: 16px;
+}
+
+/* 3) 调整副标题之间的空白，让整体更整齐 */
+.section h2 {
+  margin-top: 0;
+}
+
+.section h3 {
+  margin-top: 12px;
+}
+
   h1{font-size:28px}
   .brand{font-size:20px}
 }
@@ -112,7 +138,9 @@ li{margin:6px 0}
 
   <!-- 邮箱提前到顾问前 -->
   <p class="email">
-    <a href="mailto:mrtang@yyxy.org">mrtang@yyxy.org</a>
+    <a href="mailto:<p class="email"><p class="email">mrtang@yyxy.org</p>
+</p>
+">mrtang@yyxy.org</a>
   </p>
 
   <h2>顾问</h2>
@@ -133,6 +161,7 @@ li{margin:6px 0}
   </div>
 </body>
 </html>
+
 
 
 
