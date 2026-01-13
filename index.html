@@ -1,197 +1,422 @@
-
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>咿呀学语 — 全球0–3岁语言起源联合研究计划</title>
-<meta name="description" content="《咿呀学语》：统一的科研实验平台，探索语言在婴儿大脑中如何诞生（0–3岁）。">
-<style>
-hr.divider{
-  border: none;
-  border-top: 1px solid var(--line);
-  margin: 18px 0;
-}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>咿呀学语 — 0–3 岁语言起始研究与实践探索（Phase-1）</title>
+  <meta name="description" content="咿呀学语：关注 0–3 岁婴幼儿语言如何开始形成的长期研究与实践探索。Phase-1 以理论视角、研究问题与家庭情境实践为核心。" />
 
-/* Light Gold Scientific Premium theme */
-:root{
-  --gold:#BE9646;
-  --text:#1a1a1a;
-  --muted:#555;
-  --bg:#fffdf8;
-  --card:#ffffff;
-  --line:#eee0c7;
-}
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "PingFang SC","Microsoft YaHei UI","Microsoft YaHei",sans-serif; color:var(--text); background:var(--bg);}
-a{color:var(--gold);text-decoration:none}
-a:hover{text-decoration:underline}
-.container{max-width:980px;margin:0 auto;padding:24px}
-.header{display:flex;justify-content:space-between;align-items:center;padding:22px 0;border-bottom:1px solid var(--line)}
-.brand{font-weight:700;letter-spacing:0.5px;color:var(--gold);font-size:22px}
-.nav a{margin-left:16px;font-size:15px}
-.hero{padding:48px 0 24px}
-h1{font-size:34px;line-height:1.2;margin:0 0 12px;color:var(--gold)}
-h2{font-size:22px;margin:28px 0 8px;color:var(--gold)}
-p{font-size:16px;line-height:1.7;color:var(--text);margin:6px 0 10px}
-.lead{font-size:18px;color:var(--muted)}
-.section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;margin:16px 0}
-.cta{display:inline-block;background:var(--gold);color:white;padding:10px 16px;border-radius:8px;margin-right:10px}
-footer{border-top:1px solid var(--line);padding:24px 0;color:var(--muted);font-size:14px;margin-top:24px}
-.badge{display:inline-block;border:1px solid var(--gold);color:var(--gold);padding:4px 8px;border-radius:999px;font-size:12px;margin-top:4px}
-.small{font-size:14px;color:var(--muted)}
-ul{margin:8px 0 16px 20px}
-li{margin:6px 0}
-@media (max-width:600px){
-  /* --- Custom Enhancements by William --- */
+  <style>
+    /* =========================
+       Light Gold Scientific Premium (Stable)
+       ========================= */
+    :root{
+      --gold:#BE9646;
+      --text:#1a1a1a;
+      --muted:#555;
+      --bg:#fffdf8;
+      --card:#ffffff;
+      --line:#eee0c7;
+    }
 
-/* 1) 邮箱颜色变成灰色、更低调 */
-.email {
-  color: #666 !important;
-  font-size: 16px;
-  margin-bottom: 8px;
-  display: inline-block;
-}
+    *{ box-sizing:border-box; }
 
-/* 2) 统一中英文割线样式 */
-.section {
-  border-top: 1px solid var(--line);
-  margin-top: 32px;
-  padding-top: 16px;
-}
+    html, body{
+      margin:0;
+      padding:0;
+      font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+        Arial, "Noto Sans", "PingFang SC","Microsoft YaHei UI","Microsoft YaHei", sans-serif;
+      color:var(--text);
+      background:var(--bg);
+    }
 
-/* 3) 调整副标题之间的空白，让整体更整齐 */
-.section h2 {
-  margin-top: 0;
-}
+    /* Safety guards: prevent any accidental multi-column/layout splitting */
+    html, body, .container{
+      column-count:1 !important;
+      column-width:auto !important;
+      columns:auto !important;
+      column-gap:normal !important;
+      column-rule:none !important;
+    }
+    .container{ display:block !important; }
 
-.section h3 {
-  margin-top: 12px;
-}
+    a{ color:var(--gold); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
 
-  h1{font-size:28px}
-  .brand{font-size:20px}
-}
-/* email grey + low profile */
-.email a{
-  color: var(--muted);
-  font-size: 15px;
-}
-/* divider before Lead Investigator / 项目负责人 */
-.section.divider{
-  margin-top: 28px;
-  padding-top: 22px;
-  border-top: 1px solid var(--line);
-}
+    .container{
+      max-width:980px;
+      margin:0 auto;
+      padding:24px;
+    }
 
-/* email style */
-.email a{
-  color: var(--muted);
-  font-size: 15px;
-}
- 
-</style>
+    .header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      padding:22px 0;
+      border-bottom:1px solid var(--line);
+      flex-wrap:wrap;
+    }
+
+    .brand{
+      font-weight:700;
+      letter-spacing:.5px;
+      color:var(--gold);
+      font-size:22px;
+      white-space:nowrap;
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .nav a{ font-size:15px; }
+
+    .badge{
+      display:inline-block;
+      border:1px solid var(--gold);
+      color:var(--gold);
+      padding:4px 10px;
+      border-radius:999px;
+      font-size:12px;
+      margin-top:2px;
+      white-space:nowrap;
+    }
+
+    .hero{ padding:44px 0 10px; }
+
+    h1{
+      font-size:32px;
+      line-height:1.25;
+      margin:0 0 12px;
+      color:var(--gold);
+    }
+    h2{
+      font-size:22px;
+      margin:0 0 10px;
+      color:var(--gold);
+    }
+    h3{
+      margin:14px 0 8px;
+      font-size:16px;
+      color:var(--text);
+    }
+    p{
+      font-size:16px;
+      line-height:1.75;
+      color:var(--text);
+      margin:8px 0;
+    }
+
+    .lead{
+      font-size:18px;
+      color:var(--muted);
+      margin-top:10px;
+    }
+
+    .muted{ color:var(--muted); }
+
+    .section{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:10px;
+      padding:18px;
+      margin:16px 0;
+      width:100% !important;
+      max-width:100% !important;
+      break-inside:auto !important;
+    }
+
+    ul{ margin:10px 0 12px 20px; }
+    li{ margin:6px 0; }
+
+    .btn{
+      display:inline-block;
+      background:var(--gold);
+      color:#fff;
+      padding:10px 16px;
+      border-radius:8px;
+      margin:10px 10px 0 0;
+      white-space:nowrap;
+    }
+    .btn:hover{ text-decoration:none; opacity:.92; }
+
+    .note{
+      font-size:14px;
+      color:var(--muted);
+      background:#fff8ea;
+      border:1px solid var(--line);
+      border-radius:10px;
+      padding:12px 14px;
+      margin-top:12px;
+    }
+
+    hr.divider{
+      border:none;
+      border-top:1px solid var(--line);
+      margin:18px 0;
+    }
+
+    .small{ font-size:14px; color:var(--muted); }
+    .email a{ color:var(--muted); font-size:15px; }
+
+    .links{
+      margin-top:10px;
+      padding-top:10px;
+      border-top:1px solid var(--line);
+    }
+    .links a{ margin-right:12px; }
+
+    footer{
+      border-top:1px solid var(--line);
+      padding:24px 0;
+      color:var(--muted);
+      font-size:14px;
+      margin-top:24px;
+    }
+
+    @media (max-width:600px){
+      h1{ font-size:26px; }
+      .brand{ font-size:20px; }
+      .container{ padding:18px; }
+      .hero{ padding:34px 0 8px; }
+      .btn{ padding:10px 14px; }
+    }
+  </style>
 </head>
+
 <body>
   <div class="container">
-    <div class="header">
-      <div class="brand">咿呀学语</div>
+
+    <!-- Header -->
+    <div class="header" id="home">
+      <div class="brand">咿呀学语（yyxy.org）</div>
       <div class="nav">
-        <a href="#about">关于</a>
-        <a href="#collab">合作方式</a>
-        <a href="mailto:mrtang@yyxy.org">联系</a>
-        <a class="badge" href="http://www.eya.net" rel="noopener">EN / English</a>
+        <a href="#about">是什么 / 不是什么</a>
+        <a href="#theory">声韵母诱发律</a>
+        <a href="#research">我们在研究什么</a>
+        <a href="#practice">语言启发实践</a>
+        <a href="#collab">研究与合作</a>
+        <a class="badge" href="https://www.eya.net" rel="noopener">EN / English</a>
       </div>
     </div>
 
-    <section class="hero" id="about">
-      <h1>全球0–3岁语言起源联合研究计划</h1>
-      <p class="lead">面向全球一流实验室的一页科研说明与合作邀请。</p>
-      <div style="margin-top:14px;">
-        <a class="cta" href="mailto:mrtang@yyxy.org?subject=%E5%92%BF%E5%91%80%E5%AD%A6%E8%AF%AD%20%E5%90%88%E4%BD%9C%E9%97%AE%E8%AF%A2">邮件联系研究发起人</a>
-        <a class="cta" href="#collab">查看合作方式</a>
+    <!-- Hero -->
+    <section class="hero">
+      <h1>咿呀学语：关注 0–3 岁语言如何开始形成的研究与实践探索（Phase-1）</h1>
+      <p class="lead">
+        语言并不是从“会说话”的那一刻才开始。在词义出现之前，婴幼儿已在反复尝试、组合并逐步稳定早期发音结构。
+      </p>
+      <p class="muted">
+        本站 Phase-1 用于呈现现阶段的理论视角、研究问题与家庭情境实践路径。部分内容将随研究进展逐步更新。
+      </p>
+
+      <div>
+        <a class="btn" href="#about">先了解定位</a>
+        <a class="btn" href="#theory">进入理论核心</a>
+        <a class="btn" href="#collab">查看合作方式</a>
+      </div>
+
+      <div class="note">
+        <strong>Phase-1 说明：</strong>
+        本站不构成教学承诺或干预方案；其目的在于促进对婴幼儿语言起始问题的理解与讨论，并为后续研究与合作提供清晰入口。
       </div>
     </section>
 
-    <section class="section">
-      <h2>核心科学问题</h2>
-      <p>语言在婴儿大脑中如何在“理解词义之前”被诱发、组合与形成？</p>
+    <!-- About -->
+    <section class="section" id="about">
+      <h2>咿呀学语是什么 / 不是什么</h2>
+
+      <h3>咿呀学语是</h3>
+      <ul>
+        <li>一项关注 <strong>0–3 岁语言起始阶段</strong> 的长期研究与实践探索。</li>
+        <li>对婴幼儿早期发音与结构形成过程的系统观察与理解。</li>
+        <li>连接研究理论、家庭场景与语言启发方式的开放性框架。</li>
+      </ul>
+
+      <h3>咿呀学语不是</h3>
+      <ul>
+        <li>不是早教培训机构、课程体系或教学产品。</li>
+        <li>不是“教孩子更快说话”的速成方法。</li>
+        <li>也不是简单的内容平台或儿歌产品。</li>
+      </ul>
+
+      <p class="small">
+        为什么要特别说明“不是”？因为在中文语境中，语言启蒙常被误解为训练、输入或灌输；
+        而咿呀学语更关注：语言如何在婴幼儿自身发展与亲子互动中逐步“长出来”。
+      </p>
+
+      <div class="links">
+        <a href="#theory">→ 理论：声韵母诱发律</a>
+        <a href="#practice">→ 实践：语言启发实践</a>
+      </div>
     </section>
 
-    <section class="section">
-      <h2>理论基础</h2>
-      <p>本计划基于“声韵母诱发律”，源自 2008 年论文《婴儿的潜在发音能力》，并获发明专利《一种识别婴幼儿潜在发音字的方法及装置》支撑。</p>
-      <p>不同于在语言发展之后分析大语料，我们研究的是语音网络的<strong>诞生</strong>。</p>
+    <!-- Theory -->
+    <section class="section" id="theory">
+      <h2>声韵母诱发律</h2>
+      <p>
+        传统语言发展研究往往从词汇或语法成果入手；但在词义出现之前，婴幼儿已在大量尝试看似“无意义”的声音。
+        这些声音并非杂乱，而是语言结构形成的最初阶段。
+      </p>
+      <p>
+        <strong>声韵母诱发律</strong>关注的是：婴幼儿并非先“学会词语”再掌握发音，
+        而是在反复的发声—反馈—再发声过程中，逐步诱发、筛选并稳定发音结构，为后续语言系统搭建“骨架”。
+      </p>
+
+      <h3>“诱发”意味着什么？</h3>
+      <ul>
+        <li>不是训练或强制输入，而是生理成熟、互动回应与语言环境共同作用下的自然筛选与稳定。</li>
+        <li>关注“在什么条件下，哪些发音结构更容易出现并稳定下来”。</li>
+      </ul>
+
+      <h3>学术来源与说明（克制呈现）</h3>
+      <ul>
+        <li>论文：《婴儿的潜在发音能力》（《中国校外教育》，2008 年第 8 期）</li>
+        <li>发明专利：《一种识别婴幼儿潜在发音字的方法及装置》（ZL 2017103010494.4）</li>
+      </ul>
+
+      <div class="links">
+        <strong class="small">延伸阅读：</strong>
+        <a href="#research">我们在研究什么</a>
+        <a href="#practice">语言启发实践</a>
+      </div>
     </section>
 
-    <section class="section">
-      <h2>研究平台</h2>
-      <p>未来小程序《咿呀学语》将作为统一实验平台，在标准化协议下支持 0–3 岁婴幼儿的跨语言、跨文化、跨实验室规模化验证。</p>
+    <!-- Research -->
+    <section class="section" id="research">
+      <h2>我们在研究什么</h2>
+      <p>
+        咿呀学语关注的不是“孩子现在会不会说话”，而是语言如何一步步走向“可说”的状态：
+        从无意识发声，到有节律重复，再到逐渐稳定的发音结构。
+      </p>
+
+      <h3>Phase-1 核心问题</h3>
+      <ul>
+        <li><strong>发音结构的出现：</strong>最早出现的声母/韵母及其组合如何从偶然尝试变为可重复出现。</li>
+        <li><strong>稳定与转变：</strong>哪些结构更易被保留？阶段性特征如何呈现？过渡期发生了什么变化？</li>
+        <li><strong>互动与反馈：</strong>亲子回应与环境节律如何影响发音尝试与结构稳定。</li>
+      </ul>
+
+      <p class="small">
+        本研究并不以结果指标为唯一导向，而更重视过程的展开与可比较的描述。
+        相关理论背景可参见「声韵母诱发律」，实践路径可参见「语言启发实践」。
+      </p>
+
+      <div class="links">
+        <a href="#theory">→ 声韵母诱发律</a>
+        <a href="#practice">→ 语言启发实践</a>
+      </div>
     </section>
 
+    <!-- Practice -->
+    <section class="section" id="practice">
+      <h2>语言启发实践</h2>
+      <p>
+        咿呀学语所说的“语言启发实践”，并不是训练方案或教学流程，
+        更接近于：在家庭真实情境中，以低负担、非干预的方式帮助我们看见语言起始过程的发生。
+      </p>
+
+      <h3>Phase-1 基本原则</h3>
+      <ul>
+        <li><strong>以自然发声为起点：</strong>关注自发出现的发音，而非设定目标音或任务。</li>
+        <li><strong>低负担、非干预：</strong>发生在日常生活中，不改变家庭节奏。</li>
+        <li><strong>重视回应，而非纠正：</strong>亲子互动中的回应被视为关键环境因素。</li>
+        <li><strong>可观察、可记录：</strong>允许变化被长期记录与回顾，而非一次性评估。</li>
+      </ul>
+
+      <p class="small">
+        这些实践的可信性并不来自“展示成功案例”，而来自其可被讨论与检验的性质：
+        不依赖个别技巧、不回避差异与不确定性，并服务于对研究问题的持续观察与反思。
+      </p>
+
+      <div class="links">
+        <strong class="small">相关页面：</strong>
+        <a href="#theory">声韵母诱发律</a>
+        <a href="#research">我们在研究什么</a>
+        <a href="#collab">研究与合作</a>
+      </div>
+    </section>
+
+    <!-- Collaboration -->
     <section class="section" id="collab">
-      <h2>Phase‑1 合作方式</h2>
+      <h2>研究与合作（Phase-1）</h2>
+      <p>
+        咿呀学语希望共同界定一个可观察、可讨论、可逐步清晰的研究空间。
+        合作并不意味着统一任务或统一平台，更不等同于产品化推进。
+      </p>
+
+      <h3>合作的基本边界</h3>
       <ul>
-        <li>合作实验室自定研究假设与变量。</li>
-        <li>我们提供统一平台、标准化测量协议与数据建模支持。</li>
-        <li>第一阶段无需资金投入。</li>
-        <li>论文共同署名；数据在 IRB 与协议下合规共享。</li>
+        <li>研究设计、数据收集、伦理审批与数据处理均由合作方自行决定。</li>
+        <li>咿呀学语提供的是理论视角与描述框架；不强制协议，不要求采用统一工具。</li>
+        <li>实践在此的角色是“让理论落地可观察”，而非教学承诺。</li>
       </ul>
+
+      <h3>欢迎的合作类型（示例）</h3>
+      <ul>
+        <li>早期语言发展相关研究与跨学科讨论</li>
+        <li>家庭情境的观察记录与方法探索</li>
+        <li>教育与公益领域的探索性合作</li>
+      </ul>
+
+      <div class="links">
+        <strong class="small">理解合作的三块基础：</strong>
+        <a href="#theory">理论</a>
+        <a href="#research">研究问题</a>
+        <a href="#practice">实践路径</a>
+      </div>
     </section>
 
-    <section class="section">
-      <h2>目标产出与科学愿景</h2>
-      <ul>
-        <li>婴幼儿语音网络形成模型。</li>
-        <li>可跨语言验证的早期语言语料库。</li>
-        <li>让语言起源首次进入<strong>可实验测量</strong>的科学时代。</li>
-      </ul>
+    <!-- Progress / Placeholder -->
+    <section class="section" id="progress">
+      <h2>项目进展与记录</h2>
+      <p class="muted">
+        本栏目用于发布阶段性进展、页面更新记录与合作动态。
+        Phase-1 期间将逐步补充（例如：术语表、观察维度示例、记录模板的非强制参考版本等）。
+      </p>
+      <p class="small">
+        说明：本站内容将随研究进展持续迭代。我们更重视过程的展开，而不是急于给出结论。
+      </p>
     </section>
 
-  <hr class="divider">
+    <hr class="divider" />
 
-<section class="section divider">
+    <!-- Team / Contact -->
+    <section class="section" id="contact">
+      <h2>项目负责人</h2>
+      <h3>唐卫东（William Tang）</h3>
+      <p><strong>创始人 &amp; 主要研究发起人</strong></p>
+      <p class="muted">
+        “声韵母诱发律”提出者；“咿呀学语”0–3 岁语言起始研究与实践探索发起人。
+      </p>
+      <p class="email"><a href="mailto:mrtang@yyxy.org">mrtang@yyxy.org</a></p>
 
-  <h2>项目负责人</h2>
-  <h3>唐卫东（William Tang）</h3>
-  <p>
-    <strong>创始人 &amp; 主要研究发起人</strong><br>
-    “声韵母诱发律”原创提出者，《婴儿的潜在发音能力》（2008）作者，“咿呀学语”研究计划主要发起人。
-  </p>
+      <h2 style="margin-top:22px;">顾问</h2>
+      <h3>Jim Tang</h3>
+      <p><strong>战略与技术顾问</strong></p>
+      <p class="small">首次联系请附上机构/实验室名称与 PI（负责人）信息。</p>
 
-  <!-- 邮箱提前到顾问前 -->
-  <p class="email">
-  <a href="mailto:mrtang@yyxy.org">mrtang@yyxy.org</a>
-</p>
+      <div class="note">
+        <strong>关于本网站（Phase-1 说明）：</strong><br/>
+        yyxy.org 当前内容用于呈现“咿呀学语”在现阶段的研究背景、理论视角与实践探索方向。<br/>
+        部分内容仍处于持续整理与推进过程中，将随着研究进展逐步更新与完善。<br/>
+        本网站所述内容不构成教学承诺或干预方案，其目的在于促进对婴幼儿语言起始问题的理解与讨论。
+      </div>
 
-  <h2>顾问</h2>
-  <h3>Jim Tang</h3>
-  <p><strong>战略与技术顾问</strong></p>
-
-  <p class="role-title"><strong>职责</strong></p>
-  <p>为“咿呀学语”研究计划提供战略与技术方向上的支持。</p>
-
-  <!-- 精简：只提示首次联系即可 -->
-  <p class="small note">首次联系请附上实验室名称与 PI（负责人）信息。</p>
-</section>
-
+      <div class="links">
+        <a href="#home">↑ 返回顶部</a>
+      </div>
+    </section>
 
     <footer>
-      咿呀学语 — 全球0–3岁语言起源联合研究计划 • <a href="http://www.eya.net" rel="noopener">English site</a> • © 2026
+      咿呀学语（yyxy.org）— 0–3 岁语言起始研究与实践探索（Phase-1） •
+      <a href="https://www.eya.net" rel="noopener">English site</a> • © 2026
     </footer>
   </div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
