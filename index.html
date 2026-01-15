@@ -1,464 +1,531 @@
+```html
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>咿呀学语（Phase-1）｜0–3岁语言起始机制的研究与实践框架</title>
-<meta name="description" content="咿呀学语（yyxy.org Phase-1）：关注0–3岁语言起始机制的研究与实践框架，呈现理论基础（声韵母诱发律）、核心研究问题、家庭情境实践路径、术语与观察维度、合作与团队信息。">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="咿呀学语（Phase-1）｜0–3岁语言起始机制的研究与实践框架" />
+  <title>咿呀学语（Phase-1）｜0–3岁语言起始机制的研究与实践框架</title>
 
-<style>
-/* ===== Light Gold Scientific Premium (CN) ===== */
-:root{
-  --gold:#BE9646;
-  --text:#1a1a1a;
-  --muted:#555;
-  --bg:#fffdf8;
-  --card:#ffffff;
-  --line:#eee0c7;
-  --shadow: 0 8px 24px rgba(0,0,0,.06);
-}
+  <style>
+    /* =========================
+       Light Gold Scientific Premium theme
+    ========================= */
+    :root{
+      --gold:#BE9646;
+      --text:#1a1a1a;
+      --muted:#555;
+      --bg:#fffdf8;
+      --card:#ffffff;
+      --line:#eee0c7;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,
+        "Noto Sans","PingFang SC","Microsoft YaHei UI","Microsoft YaHei",sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.7;
+    }
+    a{color:var(--gold);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:980px;margin:0 auto;padding:24px}
+    .header{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:16px;
+      padding:18px 0;
+      border-bottom:1px solid var(--line);
+    }
+    .brand{
+      font-weight:800;
+      letter-spacing:0.4px;
+      color:var(--gold);
+      font-size:22px;
+      margin:0;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      white-space:nowrap;
+    }
+    .brand .dot{font-size:18px;opacity:.9}
+    .nav{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      gap:10px 14px;
+      padding-top:2px;
+    }
+    .nav a{
+      font-size:15px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid transparent;
+    }
+    .nav a:hover{
+      text-decoration:none;
+      border-color:var(--line);
+      background:#fff;
+    }
+    .badge{
+      display:inline-block;
+      border:1px solid var(--gold);
+      color:var(--gold);
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:13px;
+      white-space:nowrap;
+    }
+    .hero{padding:34px 0 18px}
+    h1{
+      font-size:34px;
+      line-height:1.18;
+      margin:0 0 12px;
+      color:var(--gold);
+      font-weight:900;
+    }
+    .lead{
+      font-size:18px;
+      color:var(--muted);
+      margin:10px 0 0;
+    }
+    p{margin:10px 0}
+    .section{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:18px 18px;
+      margin:16px 0;
+    }
+    .section h2{
+      font-size:22px;
+      margin:0 0 10px;
+      color:var(--gold);
+      font-weight:900;
+    }
+    .section h3{
+      font-size:17px;
+      margin:14px 0 6px;
+      color:var(--text);
+      font-weight:800;
+    }
+    .small{font-size:14px;color:var(--muted)}
+    ul{margin:8px 0 10px 20px}
+    li{margin:6px 0}
+    hr.divider{
+      border:none;
+      border-top:1px solid var(--line);
+      margin:18px 0;
+    }
 
-*{box-sizing:border-box}
-html,body{
-  margin:0;padding:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","PingFang SC","Microsoft YaHei UI","Microsoft YaHei",sans-serif;
-  color:var(--text);
-  background:var(--bg);
-  /* emergency single-column hard lock */
-  column-count: 1 !important;
-  column-width: auto !important;
-  columns: auto !important;
-  column-gap: normal !important;
-  column-rule: none !important;
-}
+    /* Buttons */
+    .cta{
+      display:inline-block;
+      background:var(--gold);
+      color:#fff;
+      padding:10px 16px;
+      border-radius:10px;
+      margin-right:10px;
+      font-weight:700;
+      border:1px solid rgba(0,0,0,0);
+    }
+    .cta:hover{opacity:.92;text-decoration:none}
 
-a{color:var(--gold);text-decoration:none}
-a:hover{text-decoration:underline}
+    /* Email style */
+    .email a{color:var(--muted);font-size:15px}
+    .email{margin-top:6px}
 
-.container{max-width:980px;margin:0 auto;padding:24px}
-.header{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:22px 0;border-bottom:1px solid var(--line);
-  gap:16px;
-}
-.brand{font-weight:800;letter-spacing:.5px;color:var(--gold);font-size:22px;white-space:nowrap}
-.nav{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px 14px}
-.nav a{font-size:14px;white-space:nowrap}
-.badge{
-  display:inline-block;border:1px solid var(--gold);
-  color:var(--gold);padding:4px 10px;border-radius:999px;font-size:12px
-}
-.hero{padding:46px 0 22px}
-h1{font-size:34px;line-height:1.25;margin:0 0 12px;color:var(--gold);font-weight:850}
-.lead{font-size:18px;color:var(--muted);line-height:1.8;margin:6px 0 10px}
-p{font-size:16px;line-height:1.8;color:var(--text);margin:10px 0}
-.small{font-size:14px;color:var(--muted);line-height:1.8}
-.section{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:12px;
-  padding:18px 18px;
-  margin:16px 0;
-  box-shadow: var(--shadow);
-  break-inside:auto !important;
-}
-.section h2{
-  font-size:22px;margin:6px 0 10px;color:var(--gold);font-weight:850
-}
-.section h3{
-  font-size:16px;margin:16px 0 8px;color:var(--text);font-weight:800
-}
-ul{margin:10px 0 14px 20px}
-li{margin:8px 0;line-height:1.8}
-hr.divider{border:none;border-top:1px solid var(--line);margin:18px 0}
-.kicker{
-  display:inline-block;
-  font-size:12px;
-  letter-spacing:.6px;
-  color:var(--gold);
-  border:1px solid var(--line);
-  background:#fffaf0;
-  padding:4px 10px;
-  border-radius:999px;
-  margin-bottom:10px;
-}
-.btn{
-  display:inline-block;background:var(--gold);color:#fff;
-  padding:10px 16px;border-radius:10px;margin-right:10px;
-  font-size:14px;font-weight:700;
-}
-.btn:hover{opacity:.92;text-decoration:none}
-.grid2{
-  display:grid;grid-template-columns:1fr 1fr;gap:12px;
-}
-.note{
-  background:#fffaf0;border:1px dashed var(--line);
-  padding:12px 14px;border-radius:12px;
-}
-.term{
-  border:1px solid var(--line);
-  border-radius:12px;
-  padding:12px 14px;
-  background:#ffffff;
-}
-.term b{color:var(--text)}
-.email a{color:var(--muted);font-size:15px}
-footer{
-  border-top:1px solid var(--line);
-  padding:22px 0;
-  color:var(--muted);
-  font-size:14px;
-  margin-top:22px
-}
-.toc{
-  display:flex;flex-wrap:wrap;gap:10px 12px;margin-top:10px
-}
-.toc a{
-  border:1px solid var(--line);
-  background:#fff;
-  padding:8px 10px;border-radius:10px;
-  font-size:13px;color:var(--text)
-}
-.toc a:hover{border-color:var(--gold);text-decoration:none}
-.anchor-spacer{scroll-margin-top:88px}
+    /* ===== Term Table (Phase-1) ===== */
+    .table-wrap{
+      overflow-x:auto;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:var(--card);
+    }
+    .term-table{
+      width:100%;
+      border-collapse:collapse;
+      min-width:820px;
+    }
+    .term-table th{
+      text-align:left;
+      padding:12px 12px;
+      border-bottom:1px solid var(--line);
+      background:#faf7f2;
+      color:var(--text);
+      font-weight:800;
+    }
+    .term-table td{
+      vertical-align:top;
+      padding:12px 12px;
+      border-bottom:1px solid var(--line);
+    }
+    .term-table tr:last-child td{border-bottom:none}
+    .term-table ul{margin:6px 0 0 18px}
+    .term-table li{margin:6px 0}
 
-@media (max-width:820px){
-  h1{font-size:28px}
-  .grid2{grid-template-columns:1fr}
-  .header{align-items:flex-start}
-}
-</style>
+    /* Anchor offset for fixed-ish header feeling */
+    section{scroll-margin-top:18px}
+    html{scroll-behavior:smooth}
+
+    /* Mobile */
+    @media (max-width:600px){
+      .container{padding:18px}
+      h1{font-size:28px}
+      .brand{font-size:20px}
+      .nav{justify-content:flex-start}
+      .nav a{font-size:14px;padding:6px 10px}
+      .hero{padding:26px 0 12px}
+      .cta{margin:8px 8px 0 0; padding:10px 14px; white-space:nowrap}
+    }
+  </style>
 </head>
 
 <body>
-<div class="container">
+  <div class="container" id="top">
+    <!-- Header -->
+    <header class="header">
+      <div>
+        <div class="brand"><span class="dot">🌐</span>咿呀学语（Phase-1）</div>
+        <div class="small">0–3岁语言起始机制的研究与实践框架</div>
+      </div>
 
-  <div class="header">
-    <div class="brand">咿呀学语（Phase-1）</div>
-    <div class="nav">
-      <a href="#sec1">框架界定</a>
-      <a href="#sec2">理论基础</a>
-      <a href="#sec3">核心研究焦点</a>
-      <a href="#sec4">实践路径</a>
-      <a href="#sec5">术语与观察维度</a>
-      <a href="#sec6">合作</a>
-      <a href="#sec7">团队</a>
-      <a class="badge" href="https://www.eya.net" rel="noopener">English / EN</a>
-    </div>
+      <nav class="nav" aria-label="页面导航">
+        <a href="#framing">框架界定</a>
+        <a href="#theory">理论基础</a>
+        <a href="#focus">核心研究焦点</a>
+        <a href="#practice">实践路径</a>
+        <a href="#terms">术语与观察维度</a>
+        <a href="#coop">合作</a>
+        <a href="#team">团队</a>
+        <a class="badge" href="https://www.eya.net" rel="noopener">English / EN</a>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <h1>语言的起始，远早于“开口说话”。</h1>
+      <p class="lead">
+        在稳定词义与可辨识词汇出现之前，婴幼儿已通过大量自发发声尝试、组合与选择性稳定，
+        逐步构建其最早的语音结构原型与节律模式。
+      </p>
+      <p>
+        本网站用于呈现咿呀学语在 Phase-1 阶段的理论视角、核心研究议题，以及基于家庭自然情境的低负担实践路径。
+        所有内容将伴随研究进程持续更新与深化。
+      </p>
+
+      <p style="margin-top:14px;">
+        <a class="cta" href="#framing">从“框架界定”开始</a>
+        <a class="cta" href="#practice">查看“实践路径”</a>
+        <a class="cta" href="#coop">研究合作方式</a>
+      </p>
+    </section>
+
+    <!-- 1) Framing -->
+    <section class="section" id="framing">
+      <h2>框架界定</h2>
+
+      <h3>咿呀学语是：</h3>
+      <ul>
+        <li>一项专注于0–3岁个体语言能力如何从无到有“涌现”的长期研究与生态化实践探索，核心关切在于“前词汇阶段”语音结构的自组织过程。</li>
+        <li>一个系统化描述与比较的研究框架：围绕婴幼儿早期语音产出的类型、组合模式与发展轨迹，构建可供科学讨论与跨案例对照的描述体系。</li>
+        <li>一个连接基础理论、家庭生态与研究参与路径的开放框架：强调在真实互动情境中进行观察与记录，以支持跨家庭、跨文化、跨学科的知识对话与累积。</li>
+      </ul>
+
+      <h3>咿呀学语不是：</h3>
+      <ul>
+        <li>不是早教培训课程、商业化产品体系或干预矫正方案。</li>
+        <li>不是以“加速语言出现”为目标的绩效训练。</li>
+        <li>不是儿歌或娱乐内容聚合平台（如涉及相关内容，仅作为研究载体，而非项目目标）。</li>
+      </ul>
+
+      <h3>为何必须明确“不是”</h3>
+      <p>
+        在常见语境中，“语言启蒙”易被简化为外部输入与机械训练。本框架的核心立场在于：
+        语言能力是婴幼儿自身的神经认知发育与高质量社会性互动共同作用下“生长”出来的复杂产物；
+        其起始机制重在发现与支持，而非单向“教会”。
+      </p>
+    </section>
+
+    <!-- 2) Theory -->
+    <section class="section" id="theory">
+      <h2>理论基础：声韵母诱发律与潜在发音能力</h2>
+
+      <p>
+        传统语言发展研究常以已显性化的词汇、语法作为观察起点。本框架锚定一个更基础的问题：
+        在语义理解充分显性化之前，婴幼儿大量“前意义”的自发发声，是否以及如何体现出语音系统的结构化自组织进程？
+      </p>
+
+      <h3>核心概念：声韵母诱发律</h3>
+      <p>
+        基于对婴儿自然发音轨迹的精细记录与分析，本框架提出“声韵母诱发律”作为描述这一进程的核心概念：
+        当婴幼儿能够稳定发出包含特定声母或韵母的字词时，其生理—认知系统便已具备将已掌握的声母/韵母单元进行迁移与重组、
+        从而生成更多潜在组合的能力。
+      </p>
+
+      <h3>关键机制：潜在发音能力与“潜在发音字”</h3>
+      <p>为说明“诱发”如何发生，本框架引入两个工作概念：</p>
+      <ul>
+        <li><strong>潜在发音能力</strong>（potential vocal ability）：指在已掌握若干声母/韵母单元后，个体对新组合形式在发声层面的“可达性”与可生成空间。</li>
+        <li><strong>潜在发音字</strong>（potential vocal character）：指由已掌握的声母/韵母单元重组而成、在发声层面“具备可生成条件”，但尚未成为稳定输出的组合单位。</li>
+      </ul>
+
+      <p>
+        <strong>例（说明性）：</strong>
+        当婴儿分别稳定掌握包含声母 [b] 的“爸” [ba] 与包含韵母 [ao] 的“要” [yao] 后，
+        便可能潜在具备将 [b] + [ao] 重组生成“抱” [bao] 的发声条件。
+        在这一意义上，早期发音不是孤立事件，而更像“搭积木”：已掌握单元不断迁移、重组，使潜在发音空间系统性扩展。
+      </p>
+
+      <h3>诱发与筛选：互动反馈的作用</h3>
+      <p>
+        “潜在”并不等于“立即出现为稳定输出”。从潜在能力到实际产出，往往需要经历“发声—反馈—再发声调整”的循环。
+        养育者及时、恰当的互动反馈（如情感性回应、模仿、扩展）在其中可能发挥诱发与筛选作用：
+        它并非“训练”，而是为自组织过程提供可感知的环境信号，使某些组合更可能被重复、被保留并逐渐稳定。
+      </p>
+
+      <h3>理论定位（重要边界）</h3>
+      <p>
+        本框架强调该理论的描述性与启发性角色：它旨在提供一个观察与理解早期语音自组织过程的透镜，
+        而非设定普适标准，更不用于个体发展评价、诊断或教学承诺。
+      </p>
+    </section>
+
+    <!-- 3) Focus -->
+    <section class="section" id="focus">
+      <h2>核心研究焦点（Phase-1）</h2>
+
+      <p>
+        本阶段研究的核心并非判定“孩子是否已会说话”，而是探索“可言说状态”如何从无意识的发声活动中逐步演进：
+        从随机发声，到有节律的重复，再到形成可识别、可复现的声韵组合模式。
+      </p>
+
+      <h3>Phase-1 核心研究问题</h3>
+      <ul>
+        <li><strong>语音结构的涌现：</strong>最早的声母、韵母及其组合模式，如何从偶然尝试发展为可重复的稳定模式？在不同个体与语言环境中，是否存在可比较的涌现路径或共同维度？</li>
+        <li><strong>模式的稳定与转换：</strong>哪些语音结构更易被个体选择并固化？阶段过渡期在行为、发音节律与组合复杂度上有哪些可观察的变化？</li>
+        <li><strong>互动与环境的影响：</strong>养育者的回应策略（如模仿、扩展）及家庭语言环境的韵律特征，如何影响婴幼儿对特定发音尝试的注意、选择与稳定化进程？</li>
+      </ul>
+
+      <p class="small">
+        注：本研究采用过程导向的描述性范式，不追求单一结果性指标；核心产出是可跨情境比较的描述语言与观察维度。
+      </p>
+    </section>
+
+    <!-- 4) Practice -->
+    <section class="section" id="practice">
+      <h2>实践路径：语言启发实践（非干预、低负担）</h2>
+
+      <p>
+        咿呀学语倡导的“语言启发实践”并非一套训练课程。它本质上是：在家庭日常生活流中，
+        通过低负担、非干预的方式，帮助养育者与研究者<strong>看见、记录并理解</strong>语言从无到有过程中那些细微却关键的可观察线索。
+      </p>
+
+      <h3>Phase-1 实践原则</h3>
+      <ul>
+        <li><strong>以自然发声为原点：</strong>关注婴幼儿内驱自发的发音行为，不设定外部强加的发音目标。</li>
+        <li><strong>生态化、无干扰：</strong>实践融入日常照料与互动，不改变原有家庭节奏，不为“记录”而刻意安排情境。</li>
+        <li><strong>回应优先于纠正：</strong>将及时、共情、富有语言营养的回应视为关键环境支持，避免“纠错训练”导向。</li>
+        <li><strong>长期、连续记录：</strong>强调发展轨迹与变化模式，而非单次评估的“漂亮样本”。</li>
+      </ul>
+
+      <p class="small">
+        本实践路径的价值不依赖个别“成功案例”，而在于其可讨论、可检验、可对照：不神话技巧，坦然面对个体差异与不确定性，并服务于核心研究问题。
+      </p>
+    </section>
+
+    <!-- 5) Terms -->
+    <section class="section" id="terms">
+      <h2>术语与观察维度（Phase-1）</h2>
+
+      <p>
+        本节用于对 Phase-1 阶段的<strong>核心术语</strong>及其对应的<strong>可观察维度</strong>做简明对照说明。
+        这些术语并非评估指标或发展标准，而是为跨家庭、跨案例的<strong>描述性记录与讨论</strong>提供共享语言。
+      </p>
+
+      <p class="small">
+        说明：以下术语仅用于观察与记录语言起始过程中的现象，不用于个体能力判断、发展评价、诊断或教学承诺。
+      </p>
+
+      <div class="table-wrap" role="region" aria-label="术语与观察维度对照表" tabindex="0">
+        <table class="term-table">
+          <thead>
+            <tr>
+              <th style="width:18%;">核心术语</th>
+              <th style="width:34%;">术语说明（理论层）</th>
+              <th>对应观察维度（实践层）</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>自发发声</strong></td>
+              <td>婴幼儿在无外部指令、无模仿要求的情况下主动产生的发声行为。</td>
+              <td>
+                <ul>
+                  <li>是否由儿童主动发起（非指令/非要求）</li>
+                  <li>出现情境（喂养、游戏、独处、亲子互动等）</li>
+                  <li>是否伴随交流意图或明显情绪状态（愉快/抗拒/好奇等）</li>
+                </ul>
+              </td>
+            </tr>
+
+            <tr>
+              <td><strong>声母 / 韵母单元</strong></td>
+              <td>在前词汇阶段逐渐出现并可被区分的发音构成单元与其可复现性。</td>
+              <td>
+                <ul>
+                  <li>出现的声母/韵母类型（可粗标记，不必“标准拼音化”）</li>
+                  <li>重复出现的稳定性（同日/跨日）</li>
+                  <li>是否在不同组合中复现（同一声母或韵母迁移到新组合）</li>
+                </ul>
+              </td>
+            </tr>
+
+            <tr>
+              <td><strong>声韵母诱发律</strong></td>
+              <td>当个体能够稳定掌握某些声母或韵母后，其系统具备对这些单元进行迁移与重组的潜在能力。</td>
+              <td>
+                <ul>
+                  <li>新组合是否基于已出现单元（“旧单元→新组合”）</li>
+                  <li>新组合出现前是否存在准备性尝试（不稳定但反复）</li>
+                  <li>从“尝试”到“复现”是否呈现渐进趋势</li>
+                </ul>
+              </td>
+            </tr>
+
+            <tr>
+              <td><strong>潜在发音能力</strong><br><span class="small">potential vocal ability</span></td>
+              <td>在已掌握若干声母/韵母单元后，个体对新组合形式在发声层面的“可达性”与可生成空间。</td>
+              <td>
+                <ul>
+                  <li>组合尝试的多样性是否上升（同一时期出现更多不同组合）</li>
+                  <li>“可达但不稳”的发声是否增多（短时反复但未定型）</li>
+                  <li>是否出现“由旧到新”的组合迁移痕迹</li>
+                </ul>
+              </td>
+            </tr>
+
+            <tr>
+              <td><strong>潜在发音字</strong><br><span class="small">potential vocal character</span></td>
+              <td>由已掌握的声母/韵母单元重组而成，在发声层面具备生成条件但尚未成为稳定输出的组合单位。</td>
+              <td>
+                <ul>
+                  <li>出现但尚未持续（偶发→间歇性复现）</li>
+                  <li>不同情境下是否复现（跨场景更可能走向稳定）</li>
+                  <li>是否逐渐减少波动、趋向一致形式</li>
+                </ul>
+              </td>
+            </tr>
+
+            <tr>
+              <td><strong>互动反馈</strong></td>
+              <td>养育者对婴幼儿发声作出的情感性、回应性或扩展性反应（非纠错训练）。</td>
+              <td>
+                <ul>
+                  <li>回应是否及时（当下/延迟）</li>
+                  <li>回应类型：情感回应 / 模仿 / 扩展（加词、加语调、加意义）</li>
+                  <li>回应后该发声是否更可能再次出现或被延长</li>
+                </ul>
+              </td>
+            </tr>
+
+            <tr>
+              <td><strong>稳定化趋势</strong></td>
+              <td>某一发声或组合由偶发走向重复、由不稳定走向相对固定的过程（过程指标，不是结果评价）。</td>
+              <td>
+                <ul>
+                  <li>重复频率的变化（更常见、更连续）</li>
+                  <li>跨日/跨情境的保留情况</li>
+                  <li>形式波动是否下降（更接近“同一个”模式）</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="small" style="margin-top:14px;">
+        使用边界：本表为 Phase-1 的开放参考，不构成强制记录清单。不同家庭/研究者可按条件选用维度，用于过程描述与比较讨论。
+      </p>
+    </section>
+
+    <!-- 6) Cooperation -->
+    <section class="section" id="coop">
+      <h2>合作（Phase-1）：去中心化的共同研究空间</h2>
+
+      <p>
+        咿呀学语旨在与各方研究者及实践者共同塑造一个可观察、可对话、可渐进深化的学术空间。
+        合作不意味着执行统一指令或使用指定工具，也非产品化开发。
+      </p>
+
+      <h3>合作的基本前提</h3>
+      <ul>
+        <li><strong>合作方自主性：</strong>研究设计、数据采集、伦理审查与结论得出，均由合作方依据自身学术规范独立负责。</li>
+        <li><strong>框架共享而非工具绑定：</strong>本框架提供理论视角与共享的描述维度，不强制使用特定协议或平台。</li>
+        <li><strong>清晰的实践边界：</strong>实践是“使理论可见”的途径，不构成教学承诺或临床干预方案。</li>
+      </ul>
+
+      <h3>欢迎的合作类型（示例）</h3>
+      <ul>
+        <li>早期语言发展相关的学术研究及跨学科对话。</li>
+        <li>基于家庭自然情境的观察方法学创新与记录实践探索。</li>
+        <li>教育创新或公益领域内，以非干预、过程记录为原则的探索性项目。</li>
+      </ul>
+
+      <p class="small">
+        理解合作的三大基石：理论 · 研究问题 · 实践路径
+      </p>
+    </section>
+
+    <!-- 7) Team -->
+    <section class="section" id="team">
+      <h2>团队</h2>
+
+      <h3>负责人</h3>
+      <p><strong>唐卫东（William Tang）</strong><br/>
+        创始人 & 主要研究发起人<br/>
+        “声韵母诱发律”提出者；“咿呀学语”0–3岁语言起始机制研究与实践框架发起人
+      </p>
+      <p class="email">📧 <a href="mailto:mrtang@yyxy.org">mrtang@yyxy.org</a></p>
+
+      <hr class="divider" />
+
+      <h3>顾问</h3>
+      <p><strong>Jim Tang</strong><br/>
+        战略与技术顾问<br/>
+        <span class="small">首次联系建议附：机构/实验室名称 + 项目负责人（PI）信息</span>
+      </p>
+
+      <hr class="divider" />
+
+      <h3>关于本网站（Phase-1说明）</h3>
+      <p class="small">
+        yyxy.org 当前版本旨在系统呈现“咿呀学语”研究框架在 Phase-1 的整体构想、理论核心与实践方向。
+        部分内容仍在持续梳理与深化中，并将伴随研究推进定期更新。
+        本网站所有内容旨在促进对婴幼儿语言起始机制的科学理解与学术交流，不构成任何形式的教学承诺或临床干预方案。
+      </p>
+
+      <p style="margin-top:14px;">
+        <a class="cta" href="#top">回到顶部</a>
+        <a class="cta" href="#coop">查看合作</a>
+      </p>
+    </section>
+
+    <footer class="small" style="border-top:1px solid var(--line);padding:18px 0;margin-top:10px;">
+      © <span id="y"></span> yyxy.org · 咿呀学语（Phase-1） · 本页为研究与实践探索信息呈现
+    </footer>
   </div>
 
-  <section class="hero" id="top">
-    <div class="kicker">yyxy.org · Phase-1</div>
-    <h1>咿呀学语：0–3岁语言起始机制的研究与实践框架（Phase-1）</h1>
-
-    <p class="lead">
-      语言的起始远早于“开口说话”这一显性时刻。在稳定的词义与可辨识的词汇出现之前，婴幼儿已通过海量的自发发声尝试、组合与选择性稳定，
-      逐步构建其最早的语音结构原型与节律模式。
-    </p>
-    <p class="lead">
-      <strong>yyxy.org（Phase-1）</strong>旨在系统呈现本框架当前阶段的理论视角、核心研究议题以及基于家庭自然情境的低负担实践路径。
-      所有内容将伴随研究进程持续更新与深化。
-    </p>
-
-    <div style="margin-top:14px;">
-      <a class="btn" href="#sec1">进入正文</a>
-      <a class="btn" href="#sec5">术语与观察维度</a>
-      <a class="btn" href="#sec6">合作与联系</a>
-    </div>
-
-    <div class="toc" aria-label="目录">
-      <a href="#sec1">一、框架界定</a>
-      <a href="#sec2">二、理论基础</a>
-      <a href="#sec3">三、核心研究焦点</a>
-      <a href="#sec4">四、实践路径</a>
-      <a href="#sec5">五、术语与观察维度</a>
-      <a href="#sec6">六、研究合作</a>
-      <a href="#sec7">七、项目团队</a>
-      <a href="#sec8">八、关于本网站</a>
-    </div>
-  </section>
-
-  <!-- 1 -->
-  <section class="section anchor-spacer" id="sec1">
-    <h2>一、框架界定</h2>
-
-    <h3>咿呀学语是：</h3>
-    <ul>
-      <li>一项专注于0–3岁个体语言能力如何从无到有“涌现”的长期研究与生态化实践探索，其核心关切在于“前词汇阶段”语音结构的自组织过程。</li>
-      <li>一个系统化描述与比较的研究框架：围绕婴幼儿早期语音产出的类型、组合模式与发展轨迹，构建一个可供科学讨论与跨案例对照的描述体系。</li>
-      <li>一个连接基础理论、家庭生态与研究参与路径的开放框架：强调在真实互动情境中进行观察与记录，以支持跨家庭、跨文化、跨学科的知识对话与累积。</li>
-    </ul>
-
-    <h3>咿呀学语不是：</h3>
-    <ul>
-      <li>早教培训课程、商业化产品体系或干预矫正方案。</li>
-      <li>以“加速语言出现”为目标的绩效训练。</li>
-      <li>儿歌或娱乐内容聚合平台（若涉及相关内容，仅作为研究载体，而非项目目标）。</li>
-    </ul>
-
-    <h3>为何必须明确“不是”</h3>
-    <p>
-      在常见语境中，“语言启蒙”易被简化为外部输入与机械训练。本框架的核心立场在于：
-      语言能力是婴幼儿自身的神经认知发育与高质量社会性互动共同作用下“生长”出来的复杂产物，
-      其起始机制重在发现与支持，而非单向“教会”。
-    </p>
-
-    <div class="note small">
-      导航提示：可以直接跳转到
-      <a href="#sec2">二、理论基础</a> 或 <a href="#sec4">四、实践路径</a>。
-    </div>
-  </section>
-
-  <!-- 2 -->
-<section class="section anchor-spacer" id="sec2">
-  <h2>二、理论基础：声韵母诱发律与潜在发音能力</h2>
-
-  <p>
-    传统语言发展研究常以已显性化的词汇、语法作为观察起点。
-    本框架锚定一个更基础的问题：
-    在语义理解充分显性化之前，婴幼儿大量“前意义”的自发发声，
-    是否以及如何体现出语音系统的结构化自组织进程？
-  </p>
-
-  <h3>核心概念：声韵母诱发律</h3>
-
-  <p>
-    基于对婴儿自然发音轨迹的精细记录与分析，
-    本框架提出“声韵母诱发律”作为描述这一进程的核心概念：
-  </p>
-
-  <p>
-    当婴幼儿能够稳定发出包含特定声母或韵母的字词时，
-    其生理—认知系统便已具备将已掌握的声母/韵母单元进行迁移与重组，
-    从而生成更多潜在组合的能力。
-  </p>
-
-  <h3>关键机制：潜在发音能力与“潜在发音字”</h3>
-
-  <p>
-    为说明“诱发”如何发生，本框架引入两个工作概念：
-  </p>
-
-  <ul>
-    <li>
-      <strong>潜在发音能力（potential vocal ability）：</strong>
-      指在已掌握若干声母/韵母单元后，
-      个体对新组合形式在发声层面的“可达性”与可生成空间。
-    </li>
-    <li>
-      <strong>潜在发音字（potential vocal character）：</strong>
-      指由已掌握的声母/韵母单元重组而成，
-      在发声层面“具备可生成条件”，
-      但尚未成为稳定输出的组合单位。
-    </li>
-  </ul>
-
-  <p>
-    <strong>例（说明性）：</strong>
-    当婴儿分别稳定掌握包含声母 [b] 的“爸” [ba]
-    与包含韵母 [ao] 的“要” [yao] 后，
-    便可能潜在具备将 [b] + [ao] 重组生成“抱” [bao]
-    的发声条件。
-  </p>
-
-  <p>
-    在这一意义上，早期发音不是孤立事件，
-    而更像“搭积木”：
-    已掌握的单元不断迁移、重组，
-    使潜在发音空间得以系统性扩展。
-  </p>
-
-  <h3>诱发与筛选：互动反馈的作用</h3>
-
-  <p>
-    “潜在”并不等于“立即出现为稳定输出”。
-    从潜在能力到实际产出，
-    往往需要经历“发声—反馈—再发声调整”的循环。
-  </p>
-
-  <p>
-    养育者及时、恰当的互动反馈
-    （如情感性回应、模仿、扩展）
-    在其中可能发挥诱发与筛选作用：
-  </p>
-
-  <p>
-    它并非“训练”，
-    而是为语音自组织过程提供可感知的环境信号，
-    使某些组合更可能被重复、被保留，
-    并逐渐稳定。
-  </p>
-
-  <h3>理论定位（重要边界）</h3>
-
-  <p>
-    本框架强调该理论的<strong>描述性</strong>与<strong>启发性</strong>角色：
-    它旨在提供一个观察与理解早期语音自组织过程的透镜，
-    而非设定普适标准，
-    更不用于个体发展评价、诊断或任何形式的教学承诺。
-  </p>
-</section>
-
-
-  <!-- 3 -->
-  <section class="section anchor-spacer" id="sec3">
-    <h2>三、核心研究焦点（Phase-1）</h2>
-
-    <p>
-      本阶段研究的核心并非判定“孩子是否已会说话”，而是探索“可言说状态”如何从无意识的发声活动中逐步演进：
-      从随机发声，到有节律的重复，再到形成可识别、可复现的声韵组合模式。
-    </p>
-
-    <h3>Phase-1 核心研究问题</h3>
-    <ul>
-      <li><strong>语音结构的涌现：</strong>最早的声母、韵母及其组合模式，如何从偶然尝试发展为可重复的稳定模式？在不同个体与语言环境中，是否存在可比较的涌现路径或共同维度？</li>
-      <li><strong>模式的稳定与转换：</strong>哪些语音结构更易被个体选择并固化？发展的阶段性特征如何呈现？阶段过渡期在行为、发音节律和组合复杂度上有哪些可观察的变化？</li>
-      <li><strong>互动与环境的影响：</strong>养育者的回应策略（如模仿、扩展）及家庭语言环境的韵律特征，如何影响婴幼儿对特定发音尝试的注意、选择与稳定化进程？</li>
-    </ul>
-
-    <p>
-      本研究采用<strong>过程导向的描述性范式</strong>：不追求单一的结果性指标，而是致力于对语言起始这一动态过程进行精细刻画，
-      并构建跨情境可比较的描述语言。
-    </p>
-  </section>
-
-  <!-- 4 -->
-  <section class="section anchor-spacer" id="sec4">
-    <h2>四、实践路径：语言启发实践（非干预、低负担）</h2>
-
-    <p>
-      咿呀学语倡导的“语言启发实践”，绝非一套预设的训练课程。它本质上是：在家庭日常生活流中，通过低负担、非干预的方式，
-      帮助养育者与研究者<strong>看见、记录并理解</strong>语言从无到有过程中那些细微却关键的可观察线索。
-    </p>
-
-    <h3>Phase-1 实践原则</h3>
-    <ul>
-      <li><strong>以自然发声为原点：</strong>关注婴幼儿内驱自发的发音行为，不设定外部强加的发音目标。</li>
-      <li><strong>低负担与非干预性：</strong>实践完全融入日常照料与互动，不增加家庭额外负担，不打断儿童自然发展节奏。</li>
-      <li><strong>重视回应，而非纠正：</strong>将养育者及时、共情、富有语言营养的回应视为核心环境支持，摒弃“纠错”导向。</li>
-      <li><strong>过程可观察、可记录：</strong>强调通过简便方式对发音行为进行长期连续记录，关注发展轨迹与变化模式，而非单点能力评估。</li>
-    </ul>
-
-    <p>
-      本实践路径的可靠性与价值，不依赖于个别“成功案例”，而在于其<strong>可讨论、可检验、可对照</strong>的特性：
-      它不神话任何技巧，坦然面对个体差异与不确定性，并始终服务于上述核心研究问题的观察与反思。
-    </p>
-  </section>
-
-  <!-- 5 -->
-  <section class="section anchor-spacer" id="sec5">
-    <h2>五、术语与观察维度（Phase-1 精简版）</h2>
-    <p class="small">
-      说明：本栏用于帮助读者快速理解框架内的关键概念与“可观察、可记录、可比较”的描述维度。完整版将随研究进展逐步扩展与规范化。
-    </p>
-
-    <div class="grid2">
-      <div class="term">
-        <h3>核心术语（精简）</h3>
-        <ul>
-          <li><b>前词汇阶段：</b>稳定词义与可辨识词汇出现之前，以自发发声与早期语音结构形成为主的阶段。</li>
-          <li><b>自发发声：</b>由儿童主动发起的发声尝试（非指令性模仿），是Phase-1的主要观察对象。</li>
-          <li><b>声韵母诱发律：</b>已掌握的声母/韵母可迁移重组，形成新的“潜在发音字”；互动反馈可诱发其转化为实际输出。</li>
-          <li><b>潜在发音能力：</b>由已掌握单元重组带来的客观能力空间，随发展递增。</li>
-          <li><b>语音结构（原型）：</b>从偶然尝试逐步稳定为可复现的声韵组合与节律模式。</li>
-        </ul>
-      </div>
-
-      <div class="term">
-        <h3>观察维度（精简）</h3>
-        <ul>
-          <li><b>单位：</b>声母/韵母出现与组合（CV、VC、CVC等近似结构）。</li>
-          <li><b>重复性：</b>同一组合在日/周尺度上的出现频次与连续性。</li>
-          <li><b>稳定性：</b>发音相对一致（口型/节律/近似音值）并可被复现。</li>
-          <li><b>复杂度：</b>从单元到组合、从单音节到多音节的变化趋势。</li>
-          <li><b>情境：</b>发生场景（喂食/游戏/入睡等）与当时互动结构。</li>
-          <li><b>回应类型：</b>模仿、扩展、情感反馈、停顿等待等。</li>
-          <li><b>变化事件：</b>“突然增多/突然转向/消失再现”等阶段性转折。</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="note small" style="margin-top:12px;">
-      后续逐步补充：①术语表（可引用定义）②记录模板（非强制）③最小可比的“记录单元”说明（跨家庭对齐）。
-    </div>
-  </section>
-
-  <!-- 6 -->
-  <section class="section anchor-spacer" id="sec6">
-    <h2>六、研究合作（Phase-1）：去中心化的共同研究空间</h2>
-
-    <p>
-      咿呀学语旨在与各方研究者及实践者共同塑造一个可观察、可对话、可渐进深化的学术空间。
-      合作不意味着执行统一指令或使用指定工具，也非产品化开发。
-    </p>
-
-    <h3>合作的基本前提</h3>
-    <ul>
-      <li><strong>合作方自主性：</strong>研究设计、数据采集、伦理审查与结论得出，均由合作方依据自身学术规范独立负责。</li>
-      <li><strong>框架共享而非工具绑定：</strong>本框架提供理论视角与共享的描述维度，不强制使用特定协议或平台。</li>
-      <li><strong>清晰的实践边界：</strong>实践是“使理论可见”的途径，不构成教学承诺或临床干预方案。</li>
-    </ul>
-
-    <h3>欢迎的合作类型（示例）</h3>
-    <ul>
-      <li>早期语言发展相关的学术研究及跨学科对话。</li>
-      <li>基于家庭自然情境的观察方法学创新与记录实践探索。</li>
-      <li>教育创新或公益领域内，以非干预、过程记录为原则的探索性项目。</li>
-    </ul>
-
-    <p><strong>理解合作的三大基石：</strong>理论 · 研究问题 · 实践路径</p>
-
-    <hr class="divider">
-    <p class="small">
-      合作联系请写邮件至：<span class="email"><a href="mailto:mrtang@yyxy.org">mrtang@yyxy.org</a></span>（建议附：机构/实验室名称 + 项目负责人（PI）信息）。
-    </p>
-  </section>
-
-  <!-- 7 -->
-  <section class="section anchor-spacer" id="sec7">
-    <h2>七、项目团队</h2>
-
-    <h3>负责人</h3>
-    <p>
-      <strong>唐卫东（William Tang）</strong><br>
-      创始人 &amp; 主要研究发起人<br>
-      “声韵母诱发律”提出者；“咿呀学语”0–3岁语言起始机制研究与实践框架发起人<br>
-      📧 <span class="email"><a href="mailto:mrtang@yyxy.org">mrtang@yyxy.org</a></span>
-    </p>
-
-    <h3>顾问</h3>
-    <p>
-      <strong>Jim Tang</strong><br>
-      战略与技术顾问<br>
-      <span class="small">首次联系请提供：机构/实验室名称及项目负责人（PI）信息。</span>
-    </p>
-  </section>
-
-  <!-- 8 -->
-  <section class="section anchor-spacer" id="sec8">
-    <h2>八、关于本网站（Phase-1说明）</h2>
-    <p>
-      yyxy.org 当前版本旨在系统呈现“咿呀学语”研究框架在 Phase-1 的整体构想、理论核心与实践方向。
-      部分内容仍在持续梳理与深化中，并将伴随研究推进定期更新。
-    </p>
-    <p>
-      本网站所有内容旨在促进对婴幼儿语言起始机制的科学理解与学术交流，不构成任何形式的教学承诺或临床干预方案。
-    </p>
-
-    <div class="note small">
-      版本提示：Phase-1 内容将按研究进程迭代扩充（术语表、观察维度、记录模板、阶段性分析与更新日志等）。
-    </div>
-  </section>
-
-  <footer>
-    咿呀学语（yyxy.org）— 0–3岁语言起始机制研究与实践框架（Phase-1） •
-    <a href="#top">回到顶部</a> • © 2026
-  </footer>
-
-</div>
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
+```
 
+**你要做的粘贴位置（最省事）**
+在 GitHub 的 `index.html` 编辑页里：**全选（Ctrl+A）→ 粘贴替换 → Commit changes**。
 
-
-
+如果你把现有页面截图给我（顶部导航那一行即可），我也能帮你确认：每个导航锚点在你站上点击后都能准确跳转。
