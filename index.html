@@ -294,6 +294,35 @@
     justify-content: center !important;
   }
 }
+    /* ===== FINAL: Mobile Fold Menu Override (put at END of <style>) ===== */
+
+/* 电脑端：正常显示导航，隐藏“菜单”按钮 */
+.nav { display: flex; }
+.nav-toggle { display: none; }
+
+/* 手机端：显示按钮，导航默认隐藏，点开才显示 */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: inline-block !important;
+    padding: 8px 14px;
+    font-size: 14px;
+    border: 1px solid rgba(0,0,0,0.25);
+    border-radius: 10px;
+    background: rgba(255,255,255,0.65);
+    margin: 10px 0 10px 0;
+  }
+
+  .nav { 
+    display: none !important; 
+    flex-wrap: wrap !important;
+    gap: 8px 10px !important;
+  }
+
+  .nav.is-open { 
+    display: flex !important; 
+  }
+}
+
   </style>
 
   
@@ -657,10 +686,22 @@
     });
   });
 </script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var btn = document.querySelector('.nav-toggle');
+    var nav = document.getElementById('site-nav');
+    if (!btn || !nav) return;
+
+    btn.addEventListener('click', function () {
+      nav.classList.toggle('is-open');
+    });
+  });
+</script>
 
 </body>
 </html>
 ```
+
 
 
 
