@@ -192,6 +192,42 @@
     flex-direction: column !important;
     align-items: flex-start !important;
     gap: 10px !important;
+    /* ===== Mobile Fold Menu ===== */
+.nav-toggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+
+  .nav-toggle {
+    display: inline-block;
+    padding: 8px 14px;
+    font-size: 14px;
+    border: 1px solid rgba(0,0,0,0.25);
+    border-radius: 10px;
+    background: rgba(255,255,255,0.65);
+    margin-bottom: 10px;
+  }
+
+  .nav {
+    display: none !important;
+    flex-wrap: wrap;
+    gap: 8px 10px;
+  }
+
+  .nav.is-open {
+    display: flex !important;
+  }
+
+  .nav a {
+    padding: 6px 10px;
+    border: 1px solid rgba(0,0,0,0.18);
+    border-radius: 999px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+}
+
   }
 
   /* --- 导航横向排列，不再占右侧 --- */
@@ -272,16 +308,25 @@
         <div class="small">0–3岁语言起始机制的研究与实践框架</div>
       </div>
 
-      <nav class="nav" aria-label="页面导航">
-        <a href="#framing">框架界定</a>
-        <a href="#theory">理论基础</a>
-        <a href="#focus">核心研究焦点</a>
-        <a href="#practice">实践路径</a>
-        <a href="#terms">术语与观察维度</a>
-        <a href="#coop">合作</a>
-        <a href="#team">团队</a>
-        <a class="badge" href="https://www.eya.net" rel="noopener">English / EN</a>
-      </nav>
+  <!-- ===== Mobile Fold Menu (SAFE BLOCK) ===== -->
+<div class="nav-wrap">
+  <button class="nav-toggle" type="button">
+    菜单 ☰
+  </button>
+
+  <nav class="nav" id="site-nav">
+    <a href="#framework">框架界定</a>
+    <a href="#theory">理论基础</a>
+    <a href="#focus">核心研究焦点</a>
+    <a href="#path">实践路径</a>
+    <a href="#terms">术语与观察维度</a>
+    <a href="#collab">友情合作</a>
+    <a href="#team">核心团队</a>
+    <a href="#en">English / EN</a>
+  </nav>
+</div>
+<!-- ===== /Mobile Fold Menu ===== -->
+
     </header>
 
     <!-- Hero -->
@@ -601,9 +646,22 @@
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
   </script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var btn = document.querySelector('.nav-toggle');
+    var nav = document.getElementById('site-nav');
+    if (!btn || !nav) return;
+
+    btn.addEventListener('click', function () {
+      nav.classList.toggle('is-open');
+    });
+  });
+</script>
+
 </body>
 </html>
 ```
+
 
 
 
