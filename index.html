@@ -180,7 +180,62 @@
       .hero{padding:26px 0 12px}
       .cta{margin:8px 8px 0 0; padding:10px 14px; white-space:nowrap}
     }
+    /* ===== Mobile Fix: Phase-1 ===== */
+@media (max-width: 768px) {
+
+  /* 1. 页面整体禁止横向溢出 */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* 2. 主容器改为单列 */
+  .container,
+  .main,
+  .content-wrapper {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 16px !important;
+  }
+
+  /* 3. 隐藏右侧目录导航（手机不显示） */
+  .toc,
+  .side-nav,
+  .right-nav,
+  .directory,
+  .outline {
+    display: none !important;
+  }
+
+  /* 4. 标题字号适配手机 */
+  h1 {
+    font-size: 1.6rem !important;
+    line-height: 1.3;
+  }
+
+  h2 {
+    font-size: 1.3rem !important;
+  }
+
+  h3 {
+    font-size: 1.1rem !important;
+  }
+
+  /* 5. 正文宽度修正 */
+  p, li {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  /* 6. 导航按钮居中 */
+  nav,
+  .top-nav {
+    justify-content: center !important;
+  }
+}
   </style>
+
+  
 </head>
 
 <body>
@@ -524,6 +579,7 @@
 </body>
 </html>
 ```
+
 
 
 
