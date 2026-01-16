@@ -186,6 +186,31 @@
   /* 1. 页面整体禁止横向溢出 */
   body {
     overflow-x: hidden;
+  /* --- Mobile: 头部改为上下布局 --- */
+  .header {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+  }
+
+  /* --- 导航横向排列，不再占右侧 --- */
+  .nav {
+    width: 100% !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+    gap: 8px 10px !important;
+  }
+
+  .nav a {
+    display: inline-block !important;
+    padding: 6px 10px !important;
+    font-size: 14px !important;
+    white-space: nowrap !important;
+  }
+
+    
   }
 
   /* 2. 主容器改为单列 */
@@ -579,6 +604,7 @@
 </body>
 </html>
 ```
+
 
 
 
