@@ -307,6 +307,65 @@
 }
     /* ===== FINAL: Mobile Fold Menu Override (put at END of <style>) ===== */
 
+    /* ===== Reading Path Button & Panel (FINAL ADD-ON) ===== */
+
+/* 第四按钮（与现有按钮一致，略微克制） */
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+.btn-secondary:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* 阅读路径面板 */
+#reading-path-panel {
+  margin-top: 2rem;
+}
+
+#reading-path-panel .soft-card {
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 12px;
+  padding: 1.5rem;
+  background: #fff;
+}
+
+/* 内部层级 */
+.reading-path {
+  margin-top: 1.2rem;
+}
+
+.reading-path h4 {
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+
+.reading-path ul {
+  padding-left: 1.2rem;
+}
+
+.reading-path li {
+  margin: 0.3rem 0;
+}
+
+/* 提示文字 */
+.note-muted {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.8rem;
+}
+
+/* 手机端适配 */
+@media (max-width: 768px) {
+  #reading-path-panel .soft-card {
+    padding: 1.2rem;
+  }
+}
+
+
 /* 电脑端：正常显示导航，隐藏“菜单”按钮 */
 .nav { display: flex; }
 .nav-toggle { display: none; }
@@ -866,6 +925,7 @@
 
 </body>
 </html>
+
 
 
 
