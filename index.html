@@ -1,271 +1,58 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="咿呀学语（Phase-1）｜0–3岁语言起始机制的研究与实践框架" />
-  <title>咿呀学语（Phase-1）｜0–3岁语言起始机制的研究与实践框架</title>
+完全能做，而且你的这个想法很“专家型”：让访问者一打开就抓住“首屏结论”，再用第二屏像“目录/索引”一样把全站内容收拢起来——短、稳、可展开、可收起，非常适合你这种“研究框架官网”。
 
-  <style>
-    :root{
-      --gold:#BE9646;
-      --text:#1a1a1a;
-      --muted:#555;
-      --bg:#fffdf8;
-      --card:#ffffff;
-      --line:#eee0c7;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",
-      Arial,"PingFang SC","Microsoft YaHei",sans-serif;
-      color:var(--text);
-      background:var(--bg);
-      line-height:1.7;
-    }
-    a{color:var(--gold);text-decoration:none}
-    a:hover{text-decoration:underline}
+我建议：不需要推倒重做，在你现有 index.html 基础上做一次“结构重排 + 折叠目录化”即可。这样最稳：
 
-    .container{max-width:980px;margin:0 auto;padding:24px}
+现有排版、配色、锚点、内容都保留
 
-    /* Header */
-    .header{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-start;
-      gap:16px;
-      padding:18px 0;
-      border-bottom:1px solid var(--line);
-    }
-    .brand{
-      font-weight:900;
-      color:var(--gold);
-      font-size:22px;
-      display:flex;
-      gap:8px;
-      align-items:center;
-      white-space:nowrap;
-    }
-    .small{font-size:14px;color:var(--muted)}
+只是把“第二屏”改成目录式折叠，并把原正文内容“装进折叠抽屉”
 
-    /* Nav */
-    .nav{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px 14px;
-    }
-    .nav a{
-      font-size:15px;
-      padding:6px 12px;
-      border-radius:999px;
-      border:1px solid transparent;
-    }
-    .nav a:hover{
-      background:#fff;
-      border-color:var(--line);
-      text-decoration:none;
-    }
+下面我给你一个可落地、一次就能改对的方案（包含：放哪里、改什么、加什么代码）。
 
-    /* Mobile nav */
-    .nav-toggle{display:none}
+你要实现的效果（最终结构）
+屏幕 1（首屏）
 
-    /* Hero */
-    .hero{padding:34px 0 20px}
-    h1{
-      font-size:34px;
-      line-height:1.2;
-      margin:0 0 12px;
-      color:var(--gold);
-      font-weight:900;
-    }
-    .lead{font-size:18px;color:var(--muted)}
+仍然是你现在的首屏（标题 + 说明文字）
 
-    /* Buttons */
-    .cta{
-      display:inline-block;
-      background:var(--gold);
-      color:#fff;
-      padding:10px 16px;
-      border-radius:10px;
-      margin:8px 10px 0 0;
-      font-weight:700;
-    }
-    .cta:hover{opacity:.92;text-decoration:none}
+底部固定放 4 个金色按钮：
 
-    /* Section */
-    .section{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:12px;
-      padding:18px;
-      margin:18px 0;
-    }
-    .section h2{
-      font-size:22px;
-      color:var(--gold);
-      font-weight:900;
-      margin:0 0 10px;
-    }
-    .section h3{
-      font-size:17px;
-      font-weight:800;
-      margin:14px 0 6px;
-    }
+从“框架界定”开始
 
-    /* Reading guide */
-    details{margin-top:10px}
-    summary{
-      cursor:pointer;
-      font-weight:700;
-      color:var(--gold);
-    }
-    .note-muted{font-size:14px;color:#666}
+查看“实践路径”
 
-    /* Footer */
-    footer{
-      border-top:1px solid var(--line);
-      padding:18px 0;
-      margin-top:20px;
-    }
+探讨合作模式
 
-    /* Mobile */
-    @media (max-width:768px){
-      .container{padding:18px}
-      h1{font-size:28px}
-      .header{flex-direction:column}
-      .nav{display:none}
-      .nav.is-open{display:flex}
-      .nav-toggle{
-        display:inline-block;
-        padding:8px 14px;
-        border:1px solid #ccc;
-        border-radius:10px;
-        background:#fff;
-        font-size:14px;
-      }
-    }
-  </style>
-</head>
+研究者/来访者 · 阅读路径
 
-<body>
-<div class="container" id="top">
+点击第 4 个按钮，滚到屏幕 2 的“建议阅读路径折叠块”。
 
-<header class="header">
-  <div>
-    <div class="brand">🌐 咿呀学语（Phase-1）</div>
-    <div class="small">0–3岁语言起始机制的研究与实践框架</div>
-  </div>
+屏幕 2（目录屏）
 
-  <button class="nav-toggle"
-    onclick="document.getElementById('site-nav').classList.toggle('is-open')">
-    菜单 ☰
-  </button>
+顶部第一行就是：
 
-  <nav class="nav" id="site-nav">
-    <a href="#framing">框架界定</a>
-    <a href="#theory">理论基础</a>
-    <a href="#focus">研究焦点</a>
-    <a href="#path">实践路径</a>
-    <a href="#terms">术语维度</a>
-    <a href="#coop">友情合作</a>
-    <a href="#team">核心团队</a>
-    <a href="https://www.eya.net" target="_blank" rel="noopener">English / EN</a>
-  </nav>
-</header>
+▶︎ 建议阅读路径（研究者 / 来访者）（可展开/收起）
 
-<section class="hero">
-  <h1>语言的起始，远早于“开口说话”。</h1>
-  <p class="lead">
-    在稳定词义与可辨识词汇出现之前，婴幼儿已通过大量自发发声尝试，
-    逐步构建其最早的语音结构原型。
-  </p>
-  <p>
-    本网站呈现咿呀学语在 Phase-1 阶段的理论视角、研究焦点与低负担实践路径。
-  </p>
+下面是 8 个“目录折叠项”，每一项都是：
 
-  <p>
-    <a class="cta" href="#framing">从“框架界定”开始</a>
-    <a class="cta" href="#path">查看“实践路径”</a>
-    <a class="cta" href="#coop">探讨合作模式</a>
-    <a class="cta" href="#reading-guide">阅读路径</a>
-  </p>
-</section>
+只显示标题（像目录）
 
-<section class="section" id="reading-guide">
-  <details>
-    <summary>建议阅读路径（研究者 / 来访者）</summary>
-    <p class="note-muted">
-      内容不变，仅推荐阅读顺序，便于不同研究目的的理解。
-    </p>
-    <ul>
-      <li>快速了解：引言 → 框架界定 → 理论边界</li>
-      <li>理论理解：理论基础 → 研究焦点</li>
-      <li>深度参考：术语维度 → 实践路径 → 合作说明</li>
-    </ul>
-  </details>
-</section>
+点开后展开正文内容
 
-<section class="section" id="framing">
-  <h2>框架界定</h2>
-  <p>
-    咿呀学语是一项关注 0–3 岁语言能力如何从无到有“涌现”的
-    描述性研究与生态化实践框架。
-  </p>
-</section>
+正文底部有“收起”按钮，一键折回目录
 
-<section class="section" id="theory">
-  <h2>理论基础</h2>
-  <p>
-    本研究关注语义出现之前，语音结构如何自组织形成。
-  </p>
-</section>
+8 项标题为（按你说的）：
 
-<section class="section" id="focus">
-  <h2>研究焦点（Phase-1）</h2>
-  <ul>
-    <li>语音结构的涌现</li>
-    <li>稳定与转换机制</li>
-    <li>互动反馈的环境作用</li>
-  </ul>
-</section>
+框架界定
 
-<section class="section" id="path">
-  <h2>实践路径</h2>
-  <p>
-    基于家庭自然情境的低负担、非干预观察与记录。
-  </p>
-</section>
+理论基础
 
-<section class="section" id="terms">
-  <h2>术语维度</h2>
-  <p>
-    提供用于描述语言起始过程的共享术语与观察维度。
-  </p>
-</section>
+研究焦点
 
-<section class="section" id="coop">
-  <h2>友情合作</h2>
-  <p>
-    去中心化、非工具绑定的共同研究空间。
-  </p>
-</section>
+实践路径
 
-<section class="section" id="team">
-  <h2>核心团队</h2>
-  <p><strong>唐卫东（William Tang）</strong><br/>项目发起人</p>
-</section>
+术语维度
 
-<footer class="small">
-  © <span id="y"></span> yyxy.org · 咿呀学语（Phase-1）
-</footer>
+友情合作（或“合作方式”）
 
-</div>
+核心团队
 
-<script>
-  document.getElementById('y').textContent = new Date().getFullYear();
-</script>
-
-</body>
-</html>
+English / EN（展开后只有一个外链按钮）
