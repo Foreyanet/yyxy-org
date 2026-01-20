@@ -928,4 +928,45 @@
         document.querySelectorAll('#directory details.fold-item').forEach(function(d){
           if (d !== target) d.removeAttribute('open');
         });
+            // open the target fold
+    target.setAttribute('open', 'open');
+
+    // scroll into view smoothly (optional, nice UX)
+    target.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  }
+
+  // bind hero buttons (data-open="fold-id")
+  document.querySelectorAll('[data-open]').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      var id = btn.getAttribute('data-open');
+      openFoldById(id);
+    });
+  });
+
+  // bind header nav anchors that point to folds
+  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      var hash = link.getAttribute('href').slice(1);
+      var target = document.getElementById(hash);
+      if (target && target.tagName.toLowerCase() === 'details') {
+        e.preventDefault();
+        openFoldById(hash);
+        history.pushState(null, '', '#' + hash);
+      }
+    });
+  });
+
+  // auto-open fold if URL has hash on load
+  window.addEventListener('load', function () {
+    if (location.hash) {
+      var id = location.hash.slice(1);
+      openFoldById(id);
+    }
+  });
+</script>
+
 
