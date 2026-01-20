@@ -1,58 +1,931 @@
-完全能做，而且你的这个想法很“专家型”：让访问者一打开就抓住“首屏结论”，再用第二屏像“目录/索引”一样把全站内容收拢起来——短、稳、可展开、可收起，非常适合你这种“研究框架官网”。
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="咿呀学语（Phase-1）｜0–3岁语言起始机制的研究与实践框架" />
+  <title>咿呀学语（Phase-1）｜0–3岁语言起始机制的研究与实践框架</title>
 
-我建议：不需要推倒重做，在你现有 index.html 基础上做一次“结构重排 + 折叠目录化”即可。这样最稳：
+  <style>
+    /* =========================
+       Light Gold Scientific Premium theme (Stable)
+    ========================= */
+    :root{
+      --gold:#BE9646;
+      --text:#1a1a1a;
+      --muted:#555;
+      --bg:#fffdf8;
+      --card:#ffffff;
+      --line:#eee0c7;
+      --soft:#faf7f2;
+    }
 
-现有排版、配色、锚点、内容都保留
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,
+        "Noto Sans","PingFang SC","Microsoft YaHei UI","Microsoft YaHei",sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.7;
+      overflow-x:hidden;
+    }
 
-只是把“第二屏”改成目录式折叠，并把原正文内容“装进折叠抽屉”
+    a{color:var(--gold);text-decoration:none}
+    a:hover{text-decoration:underline}
 
-下面我给你一个可落地、一次就能改对的方案（包含：放哪里、改什么、加什么代码）。
+    .container{max-width:980px;margin:0 auto;padding:24px}
+    section{scroll-margin-top:16px}
 
-你要实现的效果（最终结构）
-屏幕 1（首屏）
+    /* =========================
+       Header / Nav (desktop + mobile fold)
+    ========================= */
+    .header{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:16px;
+      padding:18px 0;
+      border-bottom:1px solid var(--line);
+    }
+    .brand{
+      font-weight:900;
+      letter-spacing:0.4px;
+      color:var(--gold);
+      font-size:22px;
+      margin:0;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      white-space:nowrap;
+    }
+    .brand .dot{font-size:18px;opacity:.95}
+    .small{font-size:14px;color:var(--muted)}
+    .nav-wrap{display:flex;flex-direction:column;align-items:flex-end;gap:10px;min-width:280px}
+    .nav{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      gap:10px 12px;
+    }
+    .nav a{
+      font-size:14px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid transparent;
+      color:var(--text);
+    }
+    .nav a:hover{
+      text-decoration:none;
+      background:#fff;
+      border-color:var(--line);
+    }
 
-仍然是你现在的首屏（标题 + 说明文字）
+    .nav-toggle{
+      display:none;
+      padding:8px 14px;
+      font-size:14px;
+      border:1px solid rgba(0,0,0,0.18);
+      border-radius:10px;
+      background:rgba(255,255,255,0.75);
+      color:var(--text);
+      cursor:pointer;
+    }
 
-底部固定放 4 个金色按钮：
+    /* =========================
+       Hero (Screen 1)
+    ========================= */
+    .hero{padding:34px 0 18px}
+    h1{
+      font-size:34px;
+      line-height:1.18;
+      margin:0 0 12px;
+      color:var(--gold);
+      font-weight:900;
+    }
+    .lead{
+      font-size:18px;
+      color:var(--muted);
+      margin:10px 0 0;
+    }
+    p{margin:10px 0}
 
-从“框架界定”开始
+    /* Buttons */
+    .cta{
+      display:inline-block;
+      background:var(--gold);
+      color:#fff;
+      padding:10px 16px;
+      border-radius:10px;
+      margin:8px 10px 0 0;
+      font-weight:800;
+      border:1px solid rgba(0,0,0,0);
+      white-space:nowrap;
+    }
+    .cta:hover{opacity:.92;text-decoration:none}
 
-查看“实践路径”
+    /* =========================
+       Screen 2: Directory / Fold Catalogue
+    ========================= */
+    .section{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:18px;
+      margin:16px 0;
+    }
+    .section h2{
+      font-size:22px;
+      margin:0 0 10px;
+      color:var(--gold);
+      font-weight:900;
+    }
+    .section h3{
+      font-size:17px;
+      margin:14px 0 6px;
+      color:var(--text);
+      font-weight:900;
+    }
+    ul{margin:8px 0 10px 20px}
+    li{margin:6px 0}
 
-探讨合作模式
+    .directory-screen{
+      padding:0;
+      overflow:hidden;
+    }
+    .directory-head{
+      padding:16px 18px;
+      border-bottom:1px solid var(--line);
+      background:var(--soft);
+    }
+    .directory-head .hint{
+      margin:6px 0 0;
+      color:var(--muted);
+      font-size:14px;
+    }
 
-研究者/来访者 · 阅读路径
+    details.fold-item{
+      border-bottom:1px solid var(--line);
+      background:var(--card);
+    }
+    details.fold-item:last-child{border-bottom:none}
 
-点击第 4 个按钮，滚到屏幕 2 的“建议阅读路径折叠块”。
+    details.fold-item > summary{
+      list-style:none;
+      cursor:pointer;
+      padding:14px 18px;
+      font-weight:900;
+      color:var(--text);
+      position:relative;
+      user-select:none;
+    }
+    details.fold-item > summary::-webkit-details-marker{display:none}
+    details.fold-item > summary:after{
+      content:"▸";
+      position:absolute;
+      right:16px;
+      top:14px;
+      color:var(--gold);
+      font-weight:900;
+    }
+    details.fold-item[open] > summary{
+      background:#fff;
+    }
+    details.fold-item[open] > summary:after{content:"▾"}
 
-屏幕 2（目录屏）
+    .fold-body{
+      padding:16px 18px 18px;
+      border-top:1px solid var(--line);
+      background:#fff;
+    }
 
-顶部第一行就是：
+    .fold-actions{
+      margin-top:14px;
+      display:flex;
+      justify-content:flex-end;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .fold-close{
+      appearance:none;
+      border:1px solid var(--line);
+      background:#fff;
+      color:var(--gold);
+      padding:8px 12px;
+      border-radius:10px;
+      font-weight:900;
+      cursor:pointer;
+    }
+    .fold-close:hover{opacity:.9}
 
-▶︎ 建议阅读路径（研究者 / 来访者）（可展开/收起）
+    /* Inline links style for "三大基石" */
+    .coop-foundation a{
+      color:inherit;
+      text-decoration:underline;
+      text-decoration-thickness:1px;
+      text-underline-offset:3px;
+    }
+    .coop-foundation a:hover{opacity:.85}
 
-下面是 8 个“目录折叠项”，每一项都是：
+    /* Email */
+    .email{margin-top:6px}
+    .email a{color:var(--muted);font-size:15px}
 
-只显示标题（像目录）
+    /* Divider */
+    hr.divider{
+      border:none;
+      border-top:1px solid var(--line);
+      margin:18px 0;
+    }
 
-点开后展开正文内容
+    /* =========================
+       Term Table (Phase-1) — keep your full table
+    ========================= */
+    .table-wrap{
+      overflow-x:auto;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:var(--card);
+    }
+    .term-table{
+      width:100%;
+      border-collapse:collapse;
+      min-width:820px;
+    }
+    .term-table th{
+      text-align:left;
+      padding:12px 12px;
+      border-bottom:1px solid var(--line);
+      background:var(--soft);
+      color:var(--text);
+      font-weight:900;
+    }
+    .term-table td{
+      vertical-align:top;
+      padding:12px 12px;
+      border-bottom:1px solid var(--line);
+    }
+    .term-table tr:last-child td{border-bottom:none}
+    .term-table ul{margin:6px 0 0 18px}
+    .term-table li{margin:6px 0}
 
-正文底部有“收起”按钮，一键折回目录
+    /* =========================
+       Inner fold (theoretical consensus background)
+    ========================= */
+    details.inner-fold{
+      margin-top:12px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      overflow:hidden;
+      background:#fff;
+    }
+    details.inner-fold > summary{
+      list-style:none;
+      cursor:pointer;
+      padding:12px 14px;
+      font-weight:900;
+      color:var(--text);
+      position:relative;
+      background:var(--soft);
+    }
+    details.inner-fold > summary::-webkit-details-marker{display:none}
+    details.inner-fold > summary:after{
+      content:"▸";
+      position:absolute;
+      right:12px;
+      top:12px;
+      color:var(--gold);
+      font-weight:900;
+    }
+    details.inner-fold[open] > summary:after{content:"▾"}
+    .inner-body{
+      padding:14px;
+      border-top:1px solid var(--line);
+    }
+    .assumption-note{
+      margin-top:12px;
+      padding:12px;
+      border:1px dashed var(--line);
+      border-radius:12px;
+      background:#fffdf8;
+      color:var(--muted);
+      font-size:14px;
+    }
 
-8 项标题为（按你说的）：
+    /* Footer */
+    footer{
+      border-top:1px solid var(--line);
+      padding:18px 0;
+      margin-top:10px;
+      color:var(--muted);
+      font-size:14px;
+    }
 
-框架界定
+    /* =========================
+       Mobile
+    ========================= */
+    @media (max-width:768px){
+      .container{padding:18px}
+      h1{font-size:28px}
+      .header{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+      .nav-wrap{align-items:flex-start;min-width:auto;width:100%}
+      .nav-toggle{display:inline-block}
+      .nav{display:none;width:100%}
+      .nav.is-open{
+        display:grid;
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:10px 12px;
+      }
+      .nav a{
+        width:100%;
+        text-align:center;
+        border:1px solid rgba(0,0,0,0.14);
+        background:#fff;
+      }
+      .cta{padding:10px 14px;margin:8px 8px 0 0}
+      .directory-head{padding:14px 14px}
+      details.fold-item > summary{padding:14px 14px}
+      .fold-body{padding:14px 14px 16px}
+    }
+  </style>
+</head>
 
-理论基础
+<body>
+  <div class="container" id="top">
 
-研究焦点
+    <!-- =========================
+         Header
+    ========================= -->
+    <header class="header">
+      <div>
+        <div class="brand"><span class="dot">🌐</span>咿呀学语（Phase-1）</div>
+        <div class="small">0–3岁语言起始机制的研究与实践框架</div>
+      </div>
 
-实践路径
+      <div class="nav-wrap">
+        <button class="nav-toggle" type="button" id="navToggle">菜单 ☰</button>
 
-术语维度
+        <!-- 头部导航：保持“目录化”逻辑（点击即滚到屏幕2并展开对应抽屉） -->
+        <nav class="nav" id="siteNav" aria-label="Site navigation">
+          <a href="#directory" data-open="fold-framing">框架界定</a>
+          <a href="#directory" data-open="fold-theory">理论基础</a>
+          <a href="#directory" data-open="fold-focus">研究焦点</a>
+          <a href="#directory" data-open="fold-path">实践路径</a>
+          <a href="#directory" data-open="fold-terms">术语维度</a>
+          <a href="#directory" data-open="fold-coop">友情合作</a>
+          <a href="#directory" data-open="fold-team">核心团队</a>
+          <a href="#directory" data-open="fold-en">English / EN</a>
+        </nav>
+      </div>
+    </header>
 
-友情合作（或“合作方式”）
+    <!-- =========================
+         Screen 1: Hero
+    ========================= -->
+    <section class="hero" id="screen1">
+      <h1>语言的起始，远早于“开口说话”。</h1>
 
-核心团队
+      <p class="lead">
+        在稳定词义与可辨识词汇出现之前，婴幼儿已通过大量自发发声尝试、组合与选择性稳定，
+        逐步构建其最早的语音结构原型与节律模式。
+      </p>
 
-English / EN（展开后只有一个外链按钮）
+      <p>
+        本网站用于呈现咿呀学语在 Phase-1 阶段的理论视角、核心研究议题，以及基于家庭自然情境的低负担实践路径。
+        所有内容将伴随研究进程持续更新与深化。
+      </p>
+
+      <!-- 4 gold buttons (fixed order you requested) -->
+      <p style="margin-top:14px;">
+        <a class="cta" href="#directory" data-open="fold-framing">从“框架界定”开始</a>
+        <a class="cta" href="#directory" data-open="fold-path">查看“实践路径”</a>
+        <a class="cta" href="#directory" data-open="fold-coop">探讨合作模式</a>
+        <a class="cta" href="#directory" data-open="fold-reading">研究者 / 来访者 · 阅读路径</a>
+      </p>
+    </section>
+
+    <!-- =========================
+         Screen 2: Directory (All content preserved, just folded)
+    ========================= -->
+    <section class="section directory-screen" id="directory" aria-label="Directory screen">
+      <div class="directory-head">
+        <div style="font-weight:900;color:var(--gold);">目录 / Index（Phase-1）</div>
+        <div class="hint">点开任一条目即可阅读正文；每段末尾可一键“收起”。</div>
+      </div>
+
+      <!-- 0) Reading guide (first row of screen 2) -->
+      <details class="fold-item" id="fold-reading">
+        <summary>建议阅读路径（研究者 / 来访者）</summary>
+        <div class="fold-body">
+          <p class="small" style="margin-top:0;">
+            为方便不同研究目的的读者理解 Phase-1 内容，以下提供若干建议阅读路径。内容本身不变，仅推荐阅读顺序不同。
+          </p>
+
+          <h3 style="margin-top:10px;">🟢 快速了解（约 3 分钟）</h3>
+          <ul>
+            <li>首页引言：语言的起始，远早于“开口说话”</li>
+            <li>框架界定（研究对象与边界）</li>
+            <li>理论定位（重要边界）</li>
+          </ul>
+
+          <h3>🟡 理论理解（约 10 分钟）</h3>
+          <ul>
+            <li>理论基础：声韵母诱发律与潜在发音能力</li>
+            <li>潜在发音能力 / 潜在发音字（例证段）</li>
+            <li>研究焦点（Phase-1）</li>
+          </ul>
+
+          <h3>🔵 深度参考（约 30 分钟）</h3>
+          <ul>
+            <li>理论共识背景（折叠模块）</li>
+            <li>术语与观察维度（对照表）</li>
+            <li>实践路径（非干预、家庭自然情境）</li>
+            <li>合作方式与研究边界</li>
+          </ul>
+
+          <p class="small" style="margin-bottom:0;">
+            注：理论共识背景用于说明学术语境，不构成统一立场、发展标准或教学承诺。
+          </p>
+
+          <div class="fold-actions">
+            <button type="button" class="fold-close" data-close>收起 ▲</button>
+          </div>
+        </div>
+      </details>
+
+      <!-- 1) Framing -->
+      <details class="fold-item" id="fold-framing">
+        <summary>框架界定</summary>
+        <div class="fold-body">
+          <h2>框架界定</h2>
+
+          <h3>咿呀学语是：</h3>
+          <ul>
+            <li>一项专注于0–3岁个体语言能力如何从无到有“涌现”的长期研究与生态化实践探索，核心关切在于“前词汇阶段”语音结构的自组织过程。</li>
+            <li>一个系统化描述与比较的研究框架：围绕婴幼儿早期语音产出的类型、组合模式与发展轨迹，构建可供科学讨论与跨案例对照的描述体系。</li>
+            <li>一个连接基础理论、家庭生态与研究参与路径的开放框架：强调在真实互动情境中进行观察与记录，以支持跨家庭、跨文化、跨学科的知识对话与累积。</li>
+          </ul>
+
+          <h3>咿呀学语不是：</h3>
+          <ul>
+            <li>不是早教培训课程、商业化产品体系或干预矫正方案。</li>
+            <li>不是以“加速语言出现”为目标的绩效训练。</li>
+            <li>不是儿歌或娱乐内容聚合平台（如涉及相关内容，仅作为研究载体，而非项目目标）。</li>
+          </ul>
+
+          <h3>为何必须明确“不是”</h3>
+          <p>
+            在常见语境中，“语言启蒙”易被简化为外部输入与机械训练。本框架的核心立场在于：
+            语言能力是婴幼儿自身的神经认知发育与高质量社会性互动共同作用下“生长”出来的复杂产物；
+            其起始机制重在发现与支持，而非单向“教会”。
+          </p>
+
+          <div class="fold-actions">
+            <button type="button" class="fold-close" data-close>收起 ▲</button>
+          </div>
+        </div>
+      </details>
+
+      <!-- 2) Theory -->
+      <details class="fold-item" id="fold-theory">
+        <summary>理论基础</summary>
+        <div class="fold-body">
+          <h2>理论基础：声韵母诱发律与潜在发音能力</h2>
+
+          <p>
+            传统语言发展研究常以已显性化的词汇、语法作为观察起点。本框架锚定一个更基础的问题：
+            在语义理解充分显性化之前，婴幼儿大量“前意义”的自发发声，是否以及如何体现出语音系统的结构化自组织进程？
+          </p>
+
+          <h3>核心概念：声韵母诱发律</h3>
+          <p>
+            基于对婴儿自然发音轨迹的精细记录与分析，本框架提出“声韵母诱发律”作为描述这一进程的核心概念：
+            当婴幼儿能够稳定发出包含特定声母或韵母的字词时，其生理—认知系统便已具备将已掌握的声母/韵母单元进行迁移与重组、
+            从而生成更多潜在组合的能力。
+          </p>
+
+          <h3>关键机制：潜在发音能力与“潜在发音字”</h3>
+          <p>为说明“诱发”如何发生，本框架引入两个工作概念：</p>
+          <ul>
+            <li>
+              <strong>潜在发音能力（potential vocal ability）</strong>：指在已掌握若干声母/韵母单元后，
+              个体对新组合形式在发声层面的“可达性”与可生成空间。
+            </li>
+            <li>
+              <strong>潜在发音字（potential vocal character）</strong>：指由已掌握的声母/韵母单元重组而成，
+              在发声层面“具备可生成条件”，但尚未成为稳定输出的组合单位。
+            </li>
+          </ul>
+
+          <p>
+            <strong>例（说明性）：</strong>
+            当婴儿分别稳定掌握包含声母 <code>[b]</code> 的“爸” <code>[ba]</code> 与包含韵母 <code>[ao]</code> 的“要” <code>[yao]</code> 后，
+            便可能潜在具备将 <code>[b]</code> + <code>[ao]</code> 重组生成“抱” <code>[bao]</code> 的发声条件。
+          </p>
+
+          <p>
+            在这一意义上，早期发音不是孤立事件，而更像“搭积木”：已掌握单元不断迁移、重组，使潜在发音空间系统性扩展。
+          </p>
+
+          <h3>诱发与筛选：互动反馈的作用</h3>
+          <p>
+            “潜在”并不等于“立即出现为稳定输出”。从潜在能力到实际产出，往往需要经历“发声—反馈—再发声调整”的循环。
+            养育者及时、恰当的互动反馈（如情感性回应、模仿、扩展）在其中可能发挥诱发与筛选作用：
+            它并非“训练”，而是为自组织过程提供可感知的环境信号，使某些组合更可能被重复、被保留并逐渐稳定。
+          </p>
+
+          <h3>理论定位（重要边界）</h3>
+          <p>
+            本框架强调该理论的描述性与启发性角色：它旨在提供一个观察与理解早期语音自组织过程的透镜，
+            而非设定普适标准，更不用于个体发展评价、诊断或教学承诺。
+          </p>
+
+          <!-- Inner fold: theoretical consensus background -->
+          <details class="inner-fold">
+            <summary>理论共识背景（Background Assumptions）</summary>
+            <div class="inner-body">
+              <p>
+                以下表述概括了发展语言学与儿童语音发展研究中，被广泛接受并反复验证的若干基础共识。
+                本项目的理论建构与实践路径，均建立在这些描述性前提之上。
+              </p>
+
+              <ol>
+                <li>
+                  <strong>语言先于语义</strong><br>
+                  儿童的语言发展并非始于词义的理解，而是始于对可发声结构的逐步掌握。
+                  语言系统的形成首先体现为发声能力与结构的组织，而非意义的表达。
+                </li>
+                <li>
+                  <strong>前词汇阶段的发声具有结构性</strong><br>
+                  婴幼儿在前词汇阶段产生的大量发声，并非随机噪音，而呈现出可观察的结构性与选择性，
+                  反映出其发声系统正在经历组织与筛选过程。
+                </li>
+                <li>
+                  <strong>发音发展体现为组合性过程</strong><br>
+                  早期发声的发展，并非对完整词项的简单模仿，而是儿童逐步掌握并重组有限语音单位
+                  （如声母、韵母）的过程。
+                </li>
+                <li>
+                  <strong>潜在能力先于稳定输出</strong><br>
+                  儿童往往在能够稳定产出某些语音形式之前，已在其发声系统中具备生成这些形式的潜在能力；
+                  可观察到的输出通常是这一潜在能力逐步实现的结果。
+                </li>
+                <li>
+                  <strong>语音结构先于语义附着</strong><br>
+                  语音结构的形成通常先于稳定语义的附着，并为后续词汇与语法的发展提供必要的形式基础，
+                  是语言系统进一步展开的前提条件。
+                </li>
+                <li>
+                  <strong>语言发展体现为选择与稳定</strong><br>
+                  语言发展的关键不在于新形式的不断产生，而在于对已产生形式的选择、保留与稳定；
+                  这一过程具有明显的阶段性与渐进性。
+                </li>
+                <li>
+                  <strong>互动反馈具有环境性而非教学性作用</strong><br>
+                  成人语言输入的作用，并非直接“教会”儿童发音，而是通过互动反馈改变哪些发声形式
+                  更可能被注意、重复并逐渐稳定下来。
+                </li>
+                <li>
+                  <strong>描述性而非规范性立场</strong><br>
+                  发展语言学的核心任务在于描述语言如何形成，而非规定儿童应当如何发展。
+                  相关理论不应被用作个体发展评价、诊断或教学承诺的依据。
+                </li>
+              </ol>
+
+              <div class="assumption-note">
+                <strong>说明（重要）</strong><br>
+                本背景说明仅用于明确理论语境与研究立场，不构成任何形式的“发展标准”、干预方案或教学建议。
+              </div>
+            </div>
+          </details>
+
+          <div class="fold-actions">
+            <button type="button" class="fold-close" data-close>收起 ▲</button>
+          </div>
+        </div>
+      </details>
+
+      <!-- 3) Focus -->
+      <details class="fold-item" id="fold-focus">
+        <summary>研究焦点</summary>
+        <div class="fold-body">
+          <h2>研究焦点（Phase-1）</h2>
+
+          <p>
+            本阶段研究的核心并非判定“孩子是否已会说话”，而是探索“可言说状态”如何从无意识的发声活动中逐步演进：
+            从随机发声，到有节律的重复，再到形成可识别、可复现的声韵组合模式。
+          </p>
+
+          <h3>Phase-1 核心研究焦点</h3>
+          <ul>
+            <li><strong>语音结构的涌现：</strong>最早的声母、韵母及其组合模式，如何从偶然尝试发展为可重复的稳定模式？在不同个体与语言环境中，是否存在可比较的涌现路径或共同维度？</li>
+            <li><strong>模式的稳定与转换：</strong>哪些语音结构更易被个体选择并固化？阶段过渡期在行为、发音节律与组合复杂度上有哪些可观察的变化？</li>
+            <li><strong>互动与环境的影响：</strong>养育者的回应策略（如模仿、扩展）及家庭语言环境的韵律特征，如何影响婴幼儿对特定发音尝试的注意、选择与稳定化进程？</li>
+          </ul>
+
+          <p class="small">
+            注：本研究采用过程导向的描述性范式，不追求单一结果性指标；核心产出是可跨情境比较的描述语言与观察维度。
+          </p>
+
+          <div class="fold-actions">
+            <button type="button" class="fold-close" data-close>收起 ▲</button>
+          </div>
+        </div>
+      </details>
+
+      <!-- 4) Practice -->
+      <details class="fold-item" id="fold-path">
+        <summary>实践路径</summary>
+        <div class="fold-body">
+          <h2>实践路径：语言启发实践（非干预、低负担）</h2>
+
+          <p>
+            咿呀学语倡导的“语言启发实践”并非一套训练课程。它本质上是：在家庭日常生活流中，
+            通过低负担、非干预的方式，帮助养育者与研究者<strong>看见、记录并理解</strong>语言从无到有过程中那些细微却关键的可观察线索。
+          </p>
+
+          <h3>Phase-1 实践原则</h3>
+          <ul>
+            <li><strong>以自然发声为原点：</strong>关注婴幼儿内驱自发的发音行为，不设定外部强加的发音目标。</li>
+            <li><strong>生态化、无干扰：</strong>实践融入日常照料与互动，不改变原有家庭节奏，不为“记录”而刻意安排情境。</li>
+            <li><strong>回应优先于纠正：</strong>将及时、共情、富有语言营养的回应视为关键环境支持，避免“纠错训练”导向。</li>
+            <li><strong>长期、连续记录：</strong>强调发展轨迹与变化模式，而非单次评估的“漂亮样本”。</li>
+          </ul>
+
+          <p class="small">
+            本实践路径的价值不依赖个别“成功案例”，而在于其可讨论、可检验、可对照：不神话技巧，坦然面对个体差异与不确定性，并服务于核心研究焦点。
+          </p>
+
+          <div class="fold-actions">
+            <button type="button" class="fold-close" data-close>收起 ▲</button>
+          </div>
+        </div>
+      </details>
+
+      <!-- 5) Terms -->
+      <details class="fold-item" id="fold-terms">
+        <summary>术语维度</summary>
+        <div class="fold-body">
+          <h2>术语与观察维度（Phase-1）</h2>
+
+          <p>
+            本节用于对 Phase-1 阶段的<strong>核心术语</strong>及其对应的<strong>可观察维度</strong>做简明对照说明。
+            这些术语并非评估指标或发展标准，而是为跨家庭、跨案例的<strong>描述性记录与讨论</strong>提供共享语言。
+          </p>
+
+          <p class="small">
+            说明：以下术语仅用于观察与记录语言起始过程中的现象，不用于个体能力判断、发展评价、诊断或教学承诺。
+          </p>
+
+          <div class="table-wrap" role="region" aria-label="术语与观察维度对照表" tabindex="0">
+            <table class="term-table">
+              <thead>
+                <tr>
+                  <th style="width:18%;">核心术语</th>
+                  <th style="width:34%;">术语说明（理论层）</th>
+                  <th>对应观察维度（实践层）</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>自发发声</strong></td>
+                  <td>婴幼儿在无外部指令、无模仿要求的情况下主动产生的发声行为。</td>
+                  <td>
+                    <ul>
+                      <li>是否由儿童主动发起（非指令/非要求）</li>
+                      <li>出现情境（喂养、游戏、独处、亲子互动等）</li>
+                      <li>是否伴随交流意图或明显情绪状态（愉快/抗拒/好奇等）</li>
+                    </ul>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><strong>声母 / 韵母单元</strong></td>
+                  <td>在前词汇阶段逐渐出现并可被区分的发音构成单元与其可复现性。</td>
+                  <td>
+                    <ul>
+                      <li>出现的声母/韵母类型（可粗标记，不必“标准拼音化”）</li>
+                      <li>重复出现的稳定性（同日/跨日）</li>
+                      <li>是否在不同组合中复现（同一声母或韵母迁移到新组合）</li>
+                    </ul>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><strong>声韵母诱发律</strong></td>
+                  <td>当个体能够稳定掌握某些声母或韵母后，其系统具备对这些单元进行迁移与重组的潜在能力。</td>
+                  <td>
+                    <ul>
+                      <li>新组合是否基于已出现单元（“旧单元→新组合”）</li>
+                      <li>新组合出现前是否存在准备性尝试（不稳定但反复）</li>
+                      <li>从“尝试”到“复现”是否呈现渐进趋势</li>
+                    </ul>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><strong>潜在发音能力</strong><br><span class="small">potential vocal ability</span></td>
+                  <td>在已掌握若干声母/韵母单元后，个体对新组合形式在发声层面的“可达性”与可生成空间。</td>
+                  <td>
+                    <ul>
+                      <li>组合尝试的多样性是否上升（同一时期出现更多不同组合）</li>
+                      <li>“可达但不稳”的发声是否增多（短时反复但未定型）</li>
+                      <li>是否出现“由旧到新”的组合迁移痕迹</li>
+                    </ul>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><strong>潜在发音字</strong><br><span class="small">potential vocal character</span></td>
+                  <td>由已掌握的声母/韵母单元重组而成，在发声层面具备生成条件但尚未成为稳定输出的组合单位。</td>
+                  <td>
+                    <ul>
+                      <li>出现但尚未持续（偶发→间歇性复现）</li>
+                      <li>不同情境下是否复现（跨场景更可能走向稳定）</li>
+                      <li>是否逐渐减少波动、趋向一致形式</li>
+                    </ul>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><strong>互动反馈</strong></td>
+                  <td>养育者对婴幼儿发声作出的情感性、回应性或扩展性反应（非纠错训练）。</td>
+                  <td>
+                    <ul>
+                      <li>回应是否及时（当下/延迟）</li>
+                      <li>回应类型：情感回应 / 模仿 / 扩展（加词、加语调、加意义）</li>
+                      <li>回应后该发声是否更可能再次出现或被延长</li>
+                    </ul>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><strong>稳定化趋势</strong></td>
+                  <td>某一发声或组合由偶发走向重复、由不稳定走向相对固定的过程（过程指标，不是结果评价）。</td>
+                  <td>
+                    <ul>
+                      <li>重复频率的变化（更常见、更连续）</li>
+                      <li>跨日/跨情境的保留情况</li>
+                      <li>形式波动是否下降（更接近“同一个”模式）</li>
+                    </ul>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="small" style="margin-top:14px;">
+            使用边界：本表为 Phase-1 的开放参考，不构成强制记录清单。不同家庭/研究者可按条件选用维度，用于过程描述与比较讨论。
+          </p>
+
+          <div class="fold-actions">
+            <button type="button" class="fold-close" data-close>收起 ▲</button>
+          </div>
+        </div>
+      </details>
+
+      <!-- 6) Cooperation -->
+      <details class="fold-item" id="fold-coop">
+        <summary>友情合作</summary>
+        <div class="fold-body">
+          <h2>合作（Phase-1）：去中心化的共同研究空间</h2>
+
+          <p>
+            咿呀学语旨在与各方研究者及实践者共同塑造一个可观察、可对话、可渐进深化的学术空间。
+            合作不意味着执行统一指令或使用指定工具，也非产品化开发。
+          </p>
+
+          <h3>合作的基本前提</h3>
+          <ul>
+            <li><strong>合作方自主性：</strong>研究设计、数据采集、伦理审查与结论得出，均由合作方依据自身学术规范独立负责。</li>
+            <li><strong>框架共享而非工具绑定：</strong>本框架提供理论视角与共享的描述维度，不强制使用特定协议或平台。</li>
+            <li><strong>清晰的实践边界：</strong>实践是“使理论可见”的途径，不构成教学承诺或临床干预方案。</li>
+          </ul>
+
+          <h3>欢迎的合作类型（示例）</h3>
+          <ul>
+            <li>早期语言发展相关的学术研究及跨学科对话。</li>
+            <li>基于家庭自然情境的观察方法学创新与记录实践探索。</li>
+            <li>教育创新或公益领域内，以非干预、过程记录为原则的探索性项目。</li>
+          </ul>
+
+          <p class="coop-foundation">
+            理解合作的三大基石：
+            <a href="#directory" data-open="fold-theory">理论</a> ·
+            <a href="#directory" data-open="fold-focus">研究焦点</a> ·
+            <a href="#directory" data-open="fold-path">实践路径</a>
+          </p>
+
+          <div class="fold-actions">
+            <button type="button" class="fold-close" data-close>收起 ▲</button>
+          </div>
+        </div>
+      </details>
+
+      <!-- 7) Team -->
+      <details class="fold-item" id="fold-team">
+        <summary>核心团队</summary>
+        <div class="fold-body">
+          <h2>核心团队</h2>
+
+          <h3>负责人</h3>
+          <p>
+            <strong>唐卫东（William Tang）</strong><br/>
+            创始人 &amp; 主要研究发起人<br/>
+            “声韵母诱发律”提出者；“咿呀学语”0–3岁语言起始机制研究与实践框架发起人
+          </p>
+          <p class="email">📧 <a href="mailto:mrtang@yyxy.org">mrtang@yyxy.org</a></p>
+
+          <hr class="divider" />
+
+          <h3>顾问</h3>
+          <p>
+            <strong>Jim Tang</strong><br/>
+            战略与技术顾问<br/>
+            <span class="small">首次联系建议附：机构/实验室名称 + 项目负责人（PI）信息</span>
+          </p>
+
+          <hr class="divider" />
+
+          <h3>关于本网站（Phase-1说明）</h3>
+          <p class="small">
+            yyxy.org 当前版本旨在系统呈现“咿呀学语”研究框架在 Phase-1 的整体构想、理论核心与实践方向。
+            部分内容仍在持续梳理与深化中，并将伴随研究推进定期更新。
+            本网站所有内容旨在促进对婴幼儿语言起始机制的科学理解与学术交流，不构成任何形式的教学承诺或临床干预方案。
+          </p>
+
+          <p style="margin-top:14px;">
+            <a class="cta" href="#top">回到顶部</a>
+            <a class="cta" href="#directory" data-open="fold-coop">查看合作</a>
+          </p>
+
+          <div class="fold-actions">
+            <button type="button" class="fold-close" data-close>收起 ▲</button>
+          </div>
+        </div>
+      </details>
+
+      <!-- 8) English -->
+      <details class="fold-item" id="fold-en">
+        <summary>English / EN</summary>
+        <div class="fold-body">
+          <p class="small" style="margin-top:0;">国际英文站（研究门户）：</p>
+          <p style="margin-top:10px;">
+            <a class="cta" href="https://www.eya.net" target="_blank" rel="noopener" title="English site (international research portal)">
+              打开 eya.net
+            </a>
+          </p>
+          <div class="fold-actions">
+            <button type="button" class="fold-close" data-close>收起 ▲</button>
+          </div>
+        </div>
+      </details>
+
+    </section>
+
+    <footer>
+      © <span id="y"></span> yyxy.org · 咿呀学语（Phase-1） · 本页为研究与实践探索信息呈现
+    </footer>
+
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // year
+      var y = document.getElementById('y');
+      if (y) y.textContent = new Date().getFullYear();
+
+      // mobile nav toggle
+      var navToggle = document.getElementById('navToggle');
+      var siteNav = document.getElementById('siteNav');
+      if (navToggle && siteNav) {
+        navToggle.addEventListener('click', function () {
+          siteNav.classList.toggle('is-open');
+        });
+      }
+
+      // close buttons for folds
+      document.querySelectorAll('[data-close]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var d = btn.closest('details');
+          if (d) d.removeAttribute('open');
+          d.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+
+      // open a fold by id (used by hero buttons + header nav)
+      function openFoldById(id){
+        if (!id) return;
+        var target = document.getElementById(id);
+        if (!target || target.tagName.toLowerCase() !== 'details') return;
+
+        // (optional) close siblings to keep "directory feel" clean
+        // comment out next 3 lines if you prefer multiple folds open at once
+        document.querySelectorAll('#directory details.fold-item').forEach(function(d){
+          if (d !== target) d.removeAttribute('open');
+        });
+
