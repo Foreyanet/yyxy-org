@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="zh-CN">
 <head>
@@ -6,11 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="咿呀学语（Phase-1）｜0–3岁语言起始机制的研究与实践框架" />
   <title>咿呀学语（Phase-1）｜0–3岁语言起始机制的研究与实践框架</title>
-<!-- build: 2026-01-18 15:30 -->
+
   <style>
-    /* =========================
-       Light Gold Scientific Premium theme
-    ========================= */
     :root{
       --gold:#BE9646;
       --text:#1a1a1a;
@@ -21,16 +17,20 @@
     }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0}
+    html{scroll-behavior:smooth}
     body{
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,
-        "Noto Sans","PingFang SC","Microsoft YaHei UI","Microsoft YaHei",sans-serif;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",
+      Arial,"PingFang SC","Microsoft YaHei",sans-serif;
       color:var(--text);
       background:var(--bg);
       line-height:1.7;
     }
     a{color:var(--gold);text-decoration:none}
     a:hover{text-decoration:underline}
+
     .container{max-width:980px;margin:0 auto;padding:24px}
+
+    /* Header */
     .header{
       display:flex;
       justify-content:space-between;
@@ -40,85 +40,47 @@
       border-bottom:1px solid var(--line);
     }
     .brand{
-      font-weight:800;
-      letter-spacing:0.4px;
+      font-weight:900;
       color:var(--gold);
       font-size:22px;
-      margin:0;
       display:flex;
-      align-items:center;
       gap:8px;
+      align-items:center;
       white-space:nowrap;
     }
-    .brand .dot{font-size:18px;opacity:.9}
+    .small{font-size:14px;color:var(--muted)}
+
+    /* Nav */
     .nav{
       display:flex;
       flex-wrap:wrap;
-      justify-content:flex-end;
       gap:10px 14px;
-      padding-top:2px;
     }
     .nav a{
       font-size:15px;
-      padding:6px 10px;
+      padding:6px 12px;
       border-radius:999px;
       border:1px solid transparent;
     }
     .nav a:hover{
-      text-decoration:none;
-      border-color:var(--line);
       background:#fff;
+      border-color:var(--line);
+      text-decoration:none;
     }
-    .badge{
-      display:inline-block;
-      border:1px solid var(--gold);
-      color:var(--gold);
-      padding:6px 10px;
-      border-radius:999px;
-      font-size:13px;
-      white-space:nowrap;
-    }
-    .hero{padding:34px 0 18px}
+
+    /* Mobile nav */
+    .nav-toggle{display:none}
+
+    /* Hero */
+    .hero{padding:34px 0 20px}
     h1{
       font-size:34px;
-      line-height:1.18;
+      line-height:1.2;
       margin:0 0 12px;
       color:var(--gold);
       font-weight:900;
     }
-    .lead{
-      font-size:18px;
-      color:var(--muted);
-      margin:10px 0 0;
-    }
-    p{margin:10px 0}
-    .section{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:12px;
-      padding:18px 18px;
-      margin:16px 0;
-    }
-    .section h2{
-      font-size:22px;
-      margin:0 0 10px;
-      color:var(--gold);
-      font-weight:900;
-    }
-    .section h3{
-      font-size:17px;
-      margin:14px 0 6px;
-      color:var(--text);
-      font-weight:800;
-    }
-    .small{font-size:14px;color:var(--muted)}
-    ul{margin:8px 0 10px 20px}
-    li{margin:6px 0}
-    hr.divider{
-      border:none;
-      border-top:1px solid var(--line);
-      margin:18px 0;
-    }
+    .lead{font-size:18px;color:var(--muted)}
 
     /* Buttons */
     .cta{
@@ -127,305 +89,79 @@
       color:#fff;
       padding:10px 16px;
       border-radius:10px;
-      margin-right:10px;
+      margin:8px 10px 0 0;
       font-weight:700;
-      border:1px solid rgba(0,0,0,0);
     }
     .cta:hover{opacity:.92;text-decoration:none}
 
-    /* Email style */
-    .email a{color:var(--muted);font-size:15px}
-    .email{margin-top:6px}
-
-    /* ===== Term Table (Phase-1) ===== */
-    .table-wrap{
-      overflow-x:auto;
+    /* Section */
+    .section{
+      background:var(--card);
       border:1px solid var(--line);
       border-radius:12px;
-      background:var(--card);
+      padding:18px;
+      margin:18px 0;
     }
-    .term-table{
-      width:100%;
-      border-collapse:collapse;
-      min-width:820px;
+    .section h2{
+      font-size:22px;
+      color:var(--gold);
+      font-weight:900;
+      margin:0 0 10px;
     }
-    .term-table th{
-      text-align:left;
-      padding:12px 12px;
-      border-bottom:1px solid var(--line);
-      background:#faf7f2;
-      color:var(--text);
+    .section h3{
+      font-size:17px;
       font-weight:800;
+      margin:14px 0 6px;
     }
-    .term-table td{
-      vertical-align:top;
-      padding:12px 12px;
-      border-bottom:1px solid var(--line);
-    }
-    .term-table tr:last-child td{border-bottom:none}
-    .term-table ul{margin:6px 0 0 18px}
-    .term-table li{margin:6px 0}
 
-    /* Anchor offset for fixed-ish header feeling */
-    section{scroll-margin-top:18px}
-    html{scroll-behavior:smooth}
+    /* Reading guide */
+    details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      font-weight:700;
+      color:var(--gold);
+    }
+    .note-muted{font-size:14px;color:#666}
+
+    /* Footer */
+    footer{
+      border-top:1px solid var(--line);
+      padding:18px 0;
+      margin-top:20px;
+    }
 
     /* Mobile */
-    @media (max-width:600px){
+    @media (max-width:768px){
       .container{padding:18px}
       h1{font-size:28px}
-      .brand{font-size:20px}
-      .nav{justify-content:center!important;}
-      .nav a{font-size:14px;padding:6px 10px}
-      .hero{padding:26px 0 12px}
-      .cta{margin:8px 8px 0 0; padding:10px 14px; white-space:nowrap}
+      .header{flex-direction:column}
+      .nav{display:none}
+      .nav.is-open{display:flex}
+      .nav-toggle{
+        display:inline-block;
+        padding:8px 14px;
+        border:1px solid #ccc;
+        border-radius:10px;
+        background:#fff;
+        font-size:14px;
+      }
     }
-    /* ===== Mobile Fix: Phase-1 ===== */
-@media (max-width: 768px) {
-
-  /* 1. 页面整体禁止横向溢出 */
-  body {
-    overflow-x: hidden;
-  /* --- Mobile: 头部改为上下布局 --- */
-  .header {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 10px !important;
-    /* ===== Mobile Fold Menu ===== */
-.nav-toggle {
-  display: none;
-}
-
-@media (max-width: 768px) {
-
-  .nav-toggle {
-    display: inline-block;
-    padding: 8px 14px;
-    font-size: 14px;
-    border: 1px solid rgba(0,0,0,0.25);
-    border-radius: 10px;
-    background: rgba(255,255,255,0.65);
-    margin-bottom: 10px;
-  }
-@media (max-width: 768px) {
-  .nav { display: none !important; }
-  .nav.is-open { display: flex !important; }
-  .nav-toggle { display: inline-block !important; }
-}
-
-  .nav {
-    display: none !important;
-    flex-wrap: wrap;
-    gap: 8px 10px;
-  }
-
-  .nav.is-open {
-  display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px 12px;
-  width: 100%;
-}
-
-
-  .nav a {
-    padding: 6px 10px;
-    border: 1px solid rgba(0,0,0,0.18);
-    border-radius: 999px;
-    font-size: 14px;
-    white-space: nowrap;
-     width: 100%;
-  text-align: center;
-  }
-}
-
-  }
-
-  /* --- 导航横向排列，不再占右侧 --- */
-  .nav {
-    width: 100% !important;
-    display: flex !important;
-    flex-wrap: wrap !important;
-    justify-content: flex-start !important;
-    gap: 6px 8px !important;
-  }
-
-  .nav a {
-    display: inline-block !important;
-    padding: 6px 10px !important;
-    font-size: 14px !important;
-    white-space: nowrap !important;
-  }
-
-    
-  }
-
-  /* 2. 主容器改为单列 */
-  .container,
-  .main,
-  .content-wrapper {
-    display: block !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 16px !important;
-  }
-
-  /* 3. 隐藏右侧目录导航（手机不显示） */
-  .toc,
-  .side-nav,
-  .right-nav,
-  .directory,
-  .outline {
-    display: none !important;
-  }
-
-  /* 4. 标题字号适配手机 */
-  h1 {
-    font-size: 1.6rem !important;
-    line-height: 1.3;
-  }
-
-  h2 {
-    font-size: 1.3rem !important;
-  }
-
-  h3 {
-    font-size: 1.1rem !important;
-  }
-
-  /* 5. 正文宽度修正 */
-  p, li {
-    font-size: 1rem;
-    line-height: 1.7;
-  }
-
-  /* 6. 导航按钮居中 */
-  nav,
-  .top-nav {
-    justify-content: center !important;
-  }
-}
-    /* ===== FINAL: Mobile Fold Menu Override (put at END of <style>) ===== */
-
-    /* ===== Reading Path Button & Panel (FINAL ADD-ON) ===== */
-
-/* 第四按钮（与现有按钮一致，略微克制） */
-.btn-secondary {
-  background: transparent;
-  border: 1px solid var(--accent);
-  color: var(--accent);
-}
-
-.btn-secondary:hover {
-  background: var(--accent);
-  color: #fff;
-}
-
-/* 阅读路径面板 */
-#reading-path-panel {
-  margin-top: 2rem;
-}
-
-#reading-path-panel .soft-card {
-  border: 1px solid rgba(0,0,0,0.08);
-  border-radius: 12px;
-  padding: 1.5rem;
-  background: #fff;
-}
-
-/* 内部层级 */
-.reading-path {
-  margin-top: 1.2rem;
-}
-
-.reading-path h4 {
-  margin-bottom: 0.4rem;
-  font-weight: 600;
-}
-
-.reading-path ul {
-  padding-left: 1.2rem;
-}
-
-.reading-path li {
-  margin: 0.3rem 0;
-}
-
-/* 提示文字 */
-.note-muted {
-  font-size: 0.9rem;
-  color: #666;
-  margin-top: 0.8rem;
-}
-
-/* 手机端适配 */
-@media (max-width: 768px) {
-  #reading-path-panel .soft-card {
-    padding: 1.2rem;
-  }
-}
-
-
-/* 电脑端：正常显示导航，隐藏“菜单”按钮 */
-.nav { display: flex; }
-.nav-toggle { display: none; }
-
-/* 手机端：显示按钮，导航默认隐藏，点开才显示 */
-@media (max-width: 768px) {
-  .nav-toggle {
-    display: inline-block !important;
-    padding: 8px 14px;
-    font-size: 14px;
-    border: 1px solid rgba(0,0,0,0.25);
-    border-radius: 10px;
-    background: rgba(255,255,255,0.65);
-    margin: 10px 0 10px 0;
-  }
-
-  .nav { 
-    display: none !important; 
-    flex-wrap: wrap !important;
-    gap: 8px 10px !important;
-  }
-
-  .nav.is-open { 
-    display: flex !important; 
-  }
-}
-/* --- Cooperative Foundations Inline Links --- */
-.coop-foundation a {
-  color: inherit;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-}
-
-.coop-foundation a:hover {
-  opacity: 0.85;
-}
-
-    
   </style>
-
-  
 </head>
 
 <body>
-  <div class="container" id="top">
-    <!-- Header -->
-    <header class="header">
-      <div>
-        <div class="brand"><span class="dot">🌐</span>咿呀学语（Phase-1）</div>
-        <div class="small">0–3岁语言起始机制的研究与实践框架</div>
-      </div>
+<div class="container" id="top">
 
-  <!-- ===== Mobile Fold Menu (SAFE BLOCK) ===== -->
-<div class="nav-wrap">
-<button class="nav-toggle" type="button"
-  onclick="document.getElementById('site-nav').classList.toggle('is-open')">
-  菜单 ☰
-</button>
+<header class="header">
+  <div>
+    <div class="brand">🌐 咿呀学语（Phase-1）</div>
+    <div class="small">0–3岁语言起始机制的研究与实践框架</div>
+  </div>
 
+  <button class="nav-toggle"
+    onclick="document.getElementById('site-nav').classList.toggle('is-open')">
+    菜单 ☰
+  </button>
 
   <nav class="nav" id="site-nav">
     <a href="#framing">框架界定</a>
@@ -435,532 +171,101 @@
     <a href="#terms">术语维度</a>
     <a href="#coop">友情合作</a>
     <a href="#team">核心团队</a>
-    
-    <a href="https://www.eya.net" target="_blank" rel="noopener" title="English site (international research portal)">
-  English / EN
-</a>
-
-    
+    <a href="https://www.eya.net" target="_blank" rel="noopener">English / EN</a>
   </nav>
-</div>
-<!-- ===== /Mobile Fold Menu ===== -->
+</header>
 
-    </header>
+<section class="hero">
+  <h1>语言的起始，远早于“开口说话”。</h1>
+  <p class="lead">
+    在稳定词义与可辨识词汇出现之前，婴幼儿已通过大量自发发声尝试，
+    逐步构建其最早的语音结构原型。
+  </p>
+  <p>
+    本网站呈现咿呀学语在 Phase-1 阶段的理论视角、研究焦点与低负担实践路径。
+  </p>
 
-    <!-- Hero -->
-    <section class="hero">
-      <h1>语言的起始，远早于“开口说话”。</h1>
-      <p class="lead">
-        在稳定词义与可辨识词汇出现之前，婴幼儿已通过大量自发发声尝试、组合与选择性稳定，
-        逐步构建其最早的语音结构原型与节律模式。
-      </p>
-      <p>
-        本网站用于呈现咿呀学语在 Phase-1 阶段的理论视角、核心研究议题，以及基于家庭自然情境的低负担实践路径。
-        所有内容将伴随研究进程持续更新与深化。
-      </p>
+  <p>
+    <a class="cta" href="#framing">从“框架界定”开始</a>
+    <a class="cta" href="#path">查看“实践路径”</a>
+    <a class="cta" href="#coop">探讨合作模式</a>
+    <a class="cta" href="#reading-guide">阅读路径</a>
+  </p>
+</section>
 
-      <p style="margin-top:14px;">
-        <a class="cta" href="#framing">从“框架界定”开始</a>
-        <a class="cta" href="#path">查看“实践路径”</a>
-        <a class="cta" href="#coop">探讨合作模式</a>
-         <a class="cta" href="#reading-guide">研究者 / 来访者 · 阅读路径</a>
-      </p>
-    </section>
-<!-- 阅读路径入口（建议放在首页三按钮区域之后） -->
 <section class="section" id="reading-guide">
-  <details class="fold-module reading-fold">
-   <summary>
-  <span class="fold-title">建议阅读路径（研究者 / 来访者）</span>
-</summary>
-
-    <div class="fold-content">
-      <p class="note-muted" style="margin-top:0;">
-        为方便不同研究目的的读者理解 Phase-1 内容，以下提供若干建议阅读路径。内容本身不变，仅推荐阅读顺序不同。
-      </p>
-
-      <div class="reading-path">
-        <h4>🟢 快速了解（约 3 分钟）</h4>
-        <ul>
-          <li>首页引言：语言的起始，远早于“开口说话”</li>
-          <li><a href="#framing">框架界定</a>（研究对象与边界）</li>
-          <li><a href="#theory">理论定位（重要边界）</a></li>
-        </ul>
-      </div>
-
-      <div class="reading-path">
-        <h4>🟡 理论理解（约 10 分钟）</h4>
-        <ul>
-          <li><a href="#theory">理论基础：声韵母诱发律与潜在发音能力</a></li>
-          <li>潜在发音能力 / 潜在发音字（例证段）</li>
-          <li><a href="#focus">核心研究焦点（Phase-1）</a></li>
-        </ul>
-      </div>
-
-      <div class="reading-path">
-        <h4>🔵 深度参考（约 30 分钟）</h4>
-        <ul>
-          <li><a href="#theoretical-consensus">理论共识背景（折叠模块）</a></li>
-          <li><a href="#terms">术语与观察维度（对照表）</a></li>
-          <li><a href="#practice">实践路径（非干预、家庭自然情境）</a></li>
-          <li><a href="#collaboration">合作方式与研究边界</a></li>
-        </ul>
-      </div>
-
-      <p class="note-muted" style="margin-bottom:0;">
-        注：理论共识背景用于说明学术语境，不构成统一立场、发展标准或教学承诺。
-      </p>
-    </div>
+  <details>
+    <summary>建议阅读路径（研究者 / 来访者）</summary>
+    <p class="note-muted">
+      内容不变，仅推荐阅读顺序，便于不同研究目的的理解。
+    </p>
+    <ul>
+      <li>快速了解：引言 → 框架界定 → 理论边界</li>
+      <li>理论理解：理论基础 → 研究焦点</li>
+      <li>深度参考：术语维度 → 实践路径 → 合作说明</li>
+    </ul>
   </details>
 </section>
 
-    
-    <!-- 1) Framing -->
-    <section class="section" id="framing">
-      <h2>框架界定</h2>
+<section class="section" id="framing">
+  <h2>框架界定</h2>
+  <p>
+    咿呀学语是一项关注 0–3 岁语言能力如何从无到有“涌现”的
+    描述性研究与生态化实践框架。
+  </p>
+</section>
 
-      <h3>咿呀学语是：</h3>
-      <ul>
-        <li>一项专注于0–3岁个体语言能力如何从无到有“涌现”的长期研究与生态化实践探索，核心关切在于“前词汇阶段”语音结构的自组织过程。</li>
-        <li>一个系统化描述与比较的研究框架：围绕婴幼儿早期语音产出的类型、组合模式与发展轨迹，构建可供科学讨论与跨案例对照的描述体系。</li>
-        <li>一个连接基础理论、家庭生态与研究参与路径的开放框架：强调在真实互动情境中进行观察与记录，以支持跨家庭、跨文化、跨学科的知识对话与累积。</li>
-      </ul>
-
-      <h3>咿呀学语不是：</h3>
-      <ul>
-        <li>不是早教培训课程、商业化产品体系或干预矫正方案。</li>
-        <li>不是以“加速语言出现”为目标的绩效训练。</li>
-        <li>不是儿歌或娱乐内容聚合平台（如涉及相关内容，仅作为研究载体，而非项目目标）。</li>
-      </ul>
-
-      <h3>为何必须明确“不是”</h3>
-      <p>
-        在常见语境中，“语言启蒙”易被简化为外部输入与机械训练。本框架的核心立场在于：
-        语言能力是婴幼儿自身的神经认知发育与高质量社会性互动共同作用下“生长”出来的复杂产物；
-        其起始机制重在发现与支持，而非单向“教会”。
-      </p>
-    </section>
-
-    <!-- 2) Theory -->
-  <!-- 2) Theory -->
 <section class="section" id="theory">
-  <h2>理论基础：声韵母诱发律与潜在发音能力</h2>
-
+  <h2>理论基础</h2>
   <p>
-    传统语言发展研究常以已显性化的词汇、语法作为观察起点。本框架锚定一个更基础的问题：
-    在语义理解充分显性化之前，婴幼儿大量“前意义”的自发发声，是否以及如何体现出语音系统的结构化自组织进程？
+    本研究关注语义出现之前，语音结构如何自组织形成。
   </p>
-
-  <h3>核心概念：声韵母诱发律</h3>
-  <p>
-    基于对婴儿自然发音轨迹的精细记录与分析，本框架提出“声韵母诱发律”作为描述这一进程的核心概念：
-    当婴幼儿能够稳定发出包含特定声母或韵母的字词时，其生理—认知系统便已具备将已掌握的声母/韵母单元进行迁移与重组、
-    从而生成更多潜在组合的能力。
-  </p>
-
-  <h3>关键机制：潜在发音能力与“潜在发音字”</h3>
-  <p>
-    为说明“诱发”如何发生，本框架引入两个工作概念：
-  </p>
-  <ul>
-    <li>
-      <strong>潜在发音能力（potential vocal ability）</strong>：指在已掌握若干声母/韵母单元后，
-      个体对新组合形式在发声层面的“可达性”与可生成空间。
-    </li>
-    <li>
-      <strong>潜在发音字（potential vocal character）</strong>：指由已掌握的声母/韵母单元重组而成，
-      在发声层面“具备可生成条件”，但尚未成为稳定输出的组合单位。
-    </li>
-  </ul>
-
-  <p>
-    <strong>例（说明性）：</strong>
-    当婴儿分别稳定掌握包含声母 <code>[b]</code> 的“爸” <code>[ba]</code> 与包含韵母 <code>[ao]</code> 的“要” <code>[yao]</code> 后，
-    便可能潜在具备将 <code>[b]</code> + <code>[ao]</code> 重组生成“抱” <code>[bao]</code> 的发声条件。
-  </p>
-
-  <p>
-    在这一意义上，早期发音不是孤立事件，而更像“搭积木”：已掌握单元不断迁移、重组，使潜在发音空间系统性扩展。
-  </p>
-
-  <h3>诱发与筛选：互动反馈的作用</h3>
-  <p>
-    “潜在”并不等于“立即出现为稳定输出”。从潜在能力到实际产出，往往需要经历“发声—反馈—再发声调整”的循环。
-    养育者及时、恰当的互动反馈（如情感性回应、模仿、扩展）在其中可能发挥诱发与筛选作用：
-    它并非“训练”，而是为自组织过程提供可感知的环境信号，使某些组合更可能被重复、被保留并逐渐稳定。
-  </p>
-
-  <h3>理论定位（重要边界）</h3>
-  <p>
-    本框架强调该理论的描述性与启发性角色：它旨在提供一个观察与理解早期语音自组织过程的透镜，
-    而非设定普适标准，更不用于个体发展评价、诊断或教学承诺。
-  </p>
-
- <!-- 理论共识背景（折叠模块） -->
-<section class="section" id="theoretical-consensus">
-  <details class="fold-module">
-    <summary>理论共识背景（Background Assumptions）</summary>
-
-    <div class="fold-content">
-      <p>
-        以下表述概括了发展语言学与儿童语音发展研究中，被广泛接受并反复验证的若干基础共识。
-        本项目的理论建构与实践路径，均建立在这些描述性前提之上。
-      </p>
-
-      <ol class="assumption-list">
-        <li>
-          <strong>语言先于语义</strong><br>
-          儿童的语言发展并非始于词义的理解，而是始于对可发声结构的逐步掌握。
-          语言系统的形成首先体现为发声能力与结构的组织，而非意义的表达。
-        </li>
-
-        <li>
-          <strong>前词汇阶段的发声具有结构性</strong><br>
-          婴幼儿在前词汇阶段产生的大量发声，并非随机噪音，而呈现出可观察的结构性与选择性，
-          反映出其发声系统正在经历组织与筛选过程。
-        </li>
-
-        <li>
-          <strong>发音发展体现为组合性过程</strong><br>
-          早期发声的发展，并非对完整词项的简单模仿，而是儿童逐步掌握并重组有限语音单位
-          （如声母、韵母）的过程。
-        </li>
-
-        <li>
-          <strong>潜在能力先于稳定输出</strong><br>
-          儿童往往在能够稳定产出某些语音形式之前，已在其发声系统中具备生成这些形式的潜在能力；
-          可观察到的输出通常是这一潜在能力逐步实现的结果。
-        </li>
-
-        <li>
-          <strong>语音结构先于语义附着</strong><br>
-          语音结构的形成通常先于稳定语义的附着，并为后续词汇与语法的发展提供必要的形式基础，
-          是语言系统进一步展开的前提条件。
-        </li>
-
-        <li>
-          <strong>语言发展体现为选择与稳定</strong><br>
-          语言发展的关键不在于新形式的不断产生，而在于对已产生形式的选择、保留与稳定；
-          这一过程具有明显的阶段性与渐进性。
-        </li>
-
-        <li>
-          <strong>互动反馈具有环境性而非教学性作用</strong><br>
-          成人语言输入的作用，并非直接“教会”儿童发音，而是通过互动反馈改变哪些发声形式
-          更可能被注意、重复并逐渐稳定下来。
-        </li>
-
-        <li>
-          <strong>描述性而非规范性立场</strong><br>
-          发展语言学的核心任务在于描述语言如何形成，而非规定儿童应当如何发展。
-          相关理论不应被用作个体发展评价、诊断或教学承诺的依据。
-        </li>
-      </ol>
-
-      <div class="assumption-note">
-        <strong>说明（重要）</strong><br>
-        本背景说明仅用于明确理论语境与研究立场，不构成任何形式的“发展标准”、干预方案或教学建议。
-      </div>
-    </div>
-  </details>
 </section>
 
+<section class="section" id="focus">
+  <h2>研究焦点（Phase-1）</h2>
+  <ul>
+    <li>语音结构的涌现</li>
+    <li>稳定与转换机制</li>
+    <li>互动反馈的环境作用</li>
+  </ul>
+</section>
 
-    <!-- 3) Focus -->
-    <section class="section" id="focus">
-      <h2>研究焦点（Phase-1）</h2>
+<section class="section" id="path">
+  <h2>实践路径</h2>
+  <p>
+    基于家庭自然情境的低负担、非干预观察与记录。
+  </p>
+</section>
 
-      <p>
-        本阶段研究的核心并非判定“孩子是否已会说话”，而是探索“可言说状态”如何从无意识的发声活动中逐步演进：
-        从随机发声，到有节律的重复，再到形成可识别、可复现的声韵组合模式。
-      </p>
+<section class="section" id="terms">
+  <h2>术语维度</h2>
+  <p>
+    提供用于描述语言起始过程的共享术语与观察维度。
+  </p>
+</section>
 
+<section class="section" id="coop">
+  <h2>友情合作</h2>
+  <p>
+    去中心化、非工具绑定的共同研究空间。
+  </p>
+</section>
 
-      
-      <h3>Phase-1 核心研究焦点</h3>
-      <ul>
-        <li><strong>语音结构的涌现：</strong>最早的声母、韵母及其组合模式，如何从偶然尝试发展为可重复的稳定模式？在不同个体与语言环境中，是否存在可比较的涌现路径或共同维度？</li>
-        <li><strong>模式的稳定与转换：</strong>哪些语音结构更易被个体选择并固化？阶段过渡期在行为、发音节律与组合复杂度上有哪些可观察的变化？</li>
-        <li><strong>互动与环境的影响：</strong>养育者的回应策略（如模仿、扩展）及家庭语言环境的韵律特征，如何影响婴幼儿对特定发音尝试的注意、选择与稳定化进程？</li>
-      </ul>
+<section class="section" id="team">
+  <h2>核心团队</h2>
+  <p><strong>唐卫东（William Tang）</strong><br/>项目发起人</p>
+</section>
 
-      <p class="small">
-        注：本研究采用过程导向的描述性范式，不追求单一结果性指标；核心产出是可跨情境比较的描述语言与观察维度。
-      </p>
-    </section>
+<footer class="small">
+  © <span id="y"></span> yyxy.org · 咿呀学语（Phase-1）
+</footer>
 
-    <!-- 4) Practice -->
-    <section class="section" id="path">
-      <h2>实践路径：语言启发实践（非干预、低负担）</h2>
+</div>
 
-      <p>
-        咿呀学语倡导的“语言启发实践”并非一套训练课程。它本质上是：在家庭日常生活流中，
-        通过低负担、非干预的方式，帮助养育者与研究者<strong>看见、记录并理解</strong>语言从无到有过程中那些细微却关键的可观察线索。
-      </p>
-
-      <h3>Phase-1 实践原则</h3>
-      <ul>
-        <li><strong>以自然发声为原点：</strong>关注婴幼儿内驱自发的发音行为，不设定外部强加的发音目标。</li>
-        <li><strong>生态化、无干扰：</strong>实践融入日常照料与互动，不改变原有家庭节奏，不为“记录”而刻意安排情境。</li>
-        <li><strong>回应优先于纠正：</strong>将及时、共情、富有语言营养的回应视为关键环境支持，避免“纠错训练”导向。</li>
-        <li><strong>长期、连续记录：</strong>强调发展轨迹与变化模式，而非单次评估的“漂亮样本”。</li>
-      </ul>
-
-      <p class="small">
-        本实践路径的价值不依赖个别“成功案例”，而在于其可讨论、可检验、可对照：不神话技巧，坦然面对个体差异与不确定性，并服务于核心研究焦点。
-      </p>
-    </section>
-
-    <!-- 5) Terms -->
-    <section class="section" id="terms">
-      <h2>术语与观察维度（Phase-1）</h2>
-
-      <p>
-        本节用于对 Phase-1 阶段的<strong>核心术语</strong>及其对应的<strong>可观察维度</strong>做简明对照说明。
-        这些术语并非评估指标或发展标准，而是为跨家庭、跨案例的<strong>描述性记录与讨论</strong>提供共享语言。
-      </p>
-
-      <p class="small">
-        说明：以下术语仅用于观察与记录语言起始过程中的现象，不用于个体能力判断、发展评价、诊断或教学承诺。
-      </p>
-
-      <div class="table-wrap" role="region" aria-label="术语与观察维度对照表" tabindex="0">
-        <table class="term-table">
-          <thead>
-            <tr>
-              <th style="width:18%;">核心术语</th>
-              <th style="width:34%;">术语说明（理论层）</th>
-              <th>对应观察维度（实践层）</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>自发发声</strong></td>
-              <td>婴幼儿在无外部指令、无模仿要求的情况下主动产生的发声行为。</td>
-              <td>
-                <ul>
-                  <li>是否由儿童主动发起（非指令/非要求）</li>
-                  <li>出现情境（喂养、游戏、独处、亲子互动等）</li>
-                  <li>是否伴随交流意图或明显情绪状态（愉快/抗拒/好奇等）</li>
-                </ul>
-              </td>
-            </tr>
-
-            <tr>
-              <td><strong>声母 / 韵母单元</strong></td>
-              <td>在前词汇阶段逐渐出现并可被区分的发音构成单元与其可复现性。</td>
-              <td>
-                <ul>
-                  <li>出现的声母/韵母类型（可粗标记，不必“标准拼音化”）</li>
-                  <li>重复出现的稳定性（同日/跨日）</li>
-                  <li>是否在不同组合中复现（同一声母或韵母迁移到新组合）</li>
-                </ul>
-              </td>
-            </tr>
-
-            <tr>
-              <td><strong>声韵母诱发律</strong></td>
-              <td>当个体能够稳定掌握某些声母或韵母后，其系统具备对这些单元进行迁移与重组的潜在能力。</td>
-              <td>
-                <ul>
-                  <li>新组合是否基于已出现单元（“旧单元→新组合”）</li>
-                  <li>新组合出现前是否存在准备性尝试（不稳定但反复）</li>
-                  <li>从“尝试”到“复现”是否呈现渐进趋势</li>
-                </ul>
-              </td>
-            </tr>
-
-            <tr>
-              <td><strong>潜在发音能力</strong><br><span class="small">potential vocal ability</span></td>
-              <td>在已掌握若干声母/韵母单元后，个体对新组合形式在发声层面的“可达性”与可生成空间。</td>
-              <td>
-                <ul>
-                  <li>组合尝试的多样性是否上升（同一时期出现更多不同组合）</li>
-                  <li>“可达但不稳”的发声是否增多（短时反复但未定型）</li>
-                  <li>是否出现“由旧到新”的组合迁移痕迹</li>
-                </ul>
-              </td>
-            </tr>
-
-            <tr>
-              <td><strong>潜在发音字</strong><br><span class="small">potential vocal character</span></td>
-              <td>由已掌握的声母/韵母单元重组而成，在发声层面具备生成条件但尚未成为稳定输出的组合单位。</td>
-              <td>
-                <ul>
-                  <li>出现但尚未持续（偶发→间歇性复现）</li>
-                  <li>不同情境下是否复现（跨场景更可能走向稳定）</li>
-                  <li>是否逐渐减少波动、趋向一致形式</li>
-                </ul>
-              </td>
-            </tr>
-
-            <tr>
-              <td><strong>互动反馈</strong></td>
-              <td>养育者对婴幼儿发声作出的情感性、回应性或扩展性反应（非纠错训练）。</td>
-              <td>
-                <ul>
-                  <li>回应是否及时（当下/延迟）</li>
-                  <li>回应类型：情感回应 / 模仿 / 扩展（加词、加语调、加意义）</li>
-                  <li>回应后该发声是否更可能再次出现或被延长</li>
-                </ul>
-              </td>
-            </tr>
-
-            <tr>
-              <td><strong>稳定化趋势</strong></td>
-              <td>某一发声或组合由偶发走向重复、由不稳定走向相对固定的过程（过程指标，不是结果评价）。</td>
-              <td>
-                <ul>
-                  <li>重复频率的变化（更常见、更连续）</li>
-                  <li>跨日/跨情境的保留情况</li>
-                  <li>形式波动是否下降（更接近“同一个”模式）</li>
-                </ul>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <p class="small" style="margin-top:14px;">
-        使用边界：本表为 Phase-1 的开放参考，不构成强制记录清单。不同家庭/研究者可按条件选用维度，用于过程描述与比较讨论。
-      </p>
-    </section>
-
-    <!-- 6) Cooperation -->
-    <section class="section" id="coop">
-      <h2>合作（Phase-1）：去中心化的共同研究空间</h2>
-
-      <p>
-        咿呀学语旨在与各方研究者及实践者共同塑造一个可观察、可对话、可渐进深化的学术空间。
-        合作不意味着执行统一指令或使用指定工具，也非产品化开发。
-      </p>
-
-      <h3>合作的基本前提</h3>
-      <ul>
-        <li><strong>合作方自主性：</strong>研究设计、数据采集、伦理审查与结论得出，均由合作方依据自身学术规范独立负责。</li>
-        <li><strong>框架共享而非工具绑定：</strong>本框架提供理论视角与共享的描述维度，不强制使用特定协议或平台。</li>
-        <li><strong>清晰的实践边界：</strong>实践是“使理论可见”的途径，不构成教学承诺或临床干预方案。</li>
-      </ul>
-
-      <h3>欢迎的合作类型（示例）</h3>
-      <ul>
-        <li>早期语言发展相关的学术研究及跨学科对话。</li>
-        <li>基于家庭自然情境的观察方法学创新与记录实践探索。</li>
-        <li>教育创新或公益领域内，以非干预、过程记录为原则的探索性项目。</li>
-      </ul>
-
-      <p class="small">
-        <p class="coop-foundation">
-  理解合作的三大基石：
-  <a href="#theory">理论</a> ·
-  <a href="#focus">研究焦点</a> ·
-  <a href="#path">实践路径</a>
-</p>
-
-      </p>
-    </section>
-
-    <!-- 7) Team -->
-    <section class="section" id="team">
-      <h2>核心团队</h2>
-
-      <h3>负责人</h3>
-      <p><strong>唐卫东（William Tang）</strong><br/>
-        创始人 & 主要研究发起人<br/>
-        “声韵母诱发律”提出者；“咿呀学语”0–3岁语言起始机制研究与实践框架发起人
-      </p>
-      <p class="email">📧 <a href="mailto:mrtang@yyxy.org">mrtang@yyxy.org</a></p>
-
-      <hr class="divider" />
-
-      <h3>顾问</h3>
-      <p><strong>Jim Tang</strong><br/>
-        战略与技术顾问<br/>
-        <span class="small">首次联系建议附：机构/实验室名称 + 项目负责人（PI）信息</span>
-      </p>
-
-      <hr class="divider" />
-
-      <h3>关于本网站（Phase-1说明）</h3>
-      <p class="small">
-        yyxy.org 当前版本旨在系统呈现“咿呀学语”研究框架在 Phase-1 的整体构想、理论核心与实践方向。
-        部分内容仍在持续梳理与深化中，并将伴随研究推进定期更新。
-        本网站所有内容旨在促进对婴幼儿语言起始机制的科学理解与学术交流，不构成任何形式的教学承诺或临床干预方案。
-      </p>
-      <p style="margin-top:14px;">
-        <a class="cta" href="#top">回到顶部</a>
-        <a class="cta" href="#coop">查看合作</a>
-      </p>
-    </section>
-
-    <footer class="small" style="border-top:1px solid var(--line);padding:18px 0;margin-top:10px;">
-      © <span id="y"></span> yyxy.org · 咿呀学语（Phase-1） · 本页为研究与实践探索信息呈现
-    </footer>
-  </div>
-
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
-  <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    var btn = document.querySelector('.nav-toggle');
-    var nav = document.getElementById('site-nav');
-    if (!btn || !nav) return;
-
-    btn.addEventListener('click', function () {
-      nav.classList.toggle('is-open');
-    });
-  });
-</script>
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    var btn = document.querySelector('.nav-toggle');
-    var nav = document.getElementById('site-nav');
-    if (!btn || !nav) return;
-
-    btn.addEventListener('click', function () {
-      nav.classList.toggle('is-open');
-    });
-  });
+  document.getElementById('y').textContent = new Date().getFullYear();
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
