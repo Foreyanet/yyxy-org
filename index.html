@@ -895,6 +895,14 @@
   </div>
 
 <script>
+
+// Make hover/URL show the fold id instead of #directory
+document.querySelectorAll('a[data-open]').forEach(function(a){
+  var id = a.getAttribute('data-open');
+  if (id) a.setAttribute('href', '#' + id);
+});
+
+  
   function openFoldById(id) {
     if (!id) return;
 
@@ -974,6 +982,7 @@
     }
   });
 </script>
+
 
 
 
