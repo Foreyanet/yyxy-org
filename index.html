@@ -981,7 +981,16 @@ document.querySelectorAll('a[data-open]').forEach(function(a){
       openFoldById(id);
     }
   });
+
+  // ✅ 5) open fold when user uses Back/Forward (hash changes)
+window.addEventListener('hashchange', function () {
+  var id = location.hash ? location.hash.slice(1) : '';
+  if (!id) return;
+  openFoldById(id);
+});
+
 </script>
+
 
 
 
