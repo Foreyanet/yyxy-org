@@ -893,66 +893,58 @@
 
   </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // year
-      var y = document.getElementById('y');
-      if (y) y.textContent = new Date().getFullYear();
+<script>
+  function openFoldById(id) {
+    if (!id) return;
 
-      // mobile nav toggle
-      var navToggle = document.getElementById('navToggle');
-      var siteNav = document.getElementById('siteNav');
-      if (navToggle && siteNav) {
-        navToggle.addEventListener('click', function () {
-          siteNav.classList.toggle('is-open');
-        });
-      }
+    var el = document.getElementById(id);
+    if (!el) return;
 
-      // close buttons for folds
-      document.querySelectorAll('[data-close]').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          var d = btn.closest('details');
-          if (d) d.removeAttribute('open');
-          d.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-      });
+    // if id is on inner element, climb to nearest <details>
+    var target = (el.tagName && el.tagName.toLowerCase() === 'details')
+      ? el
+      : (el.closest ? el.closest('details') : null);
 
-      // open a fold by id (used by hero buttons + header nav)
-      function openFoldById(id){
-        if (!id) return;
-        var target = document.getElementById(id);
-        if (!target || target.tagName.toLowerCase() !== 'details') return;
+    if (!target) return;
 
-        // (optional) close siblings to keep "directory feel" clean
-        // comment out next 3 lines if you prefer multiple folds open at once
-        document.querySelectorAll('#directory details.fold-item').forEach(function(d){
-          if (d !== target) d.removeAttribute('open');
-        });
-            // open the target fold
+    // close sibling folds inside #directory
+    document.querySelectorAll('#directory details.fold-item[open]').forEach(function (d) {
+      if (d !== target) d.removeAttribute('open');
+    });
+
+    // open target
     target.setAttribute('open', 'open');
 
-    // scroll into view smoothly (optional, nice UX)
-    target.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    });
+    // scroll into view
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  // bind hero buttons (data-open="fold-id")
+  // ✅ 1) bind any element with data-open (hero buttons / inline links)
   document.querySelectorAll('[data-open]').forEach(function (btn) {
     btn.addEventListener('click', function (e) {
       e.preventDefault();
       var id = btn.getAttribute('data-open');
       openFoldById(id);
+
+      // ✅ 让地址栏显示对应折叠（不再全是 #directory）
+      history.pushState(null, '', '#' + id);
     });
   });
 
-  // bind header nav anchors that point to folds
+  // ✅ 2) bind normal hash links: if hash points to a fold or inner element, open it
   document.querySelectorAll('a[href^="#"]').forEach(function (link) {
     link.addEventListener('click', function (e) {
       var hash = link.getAttribute('href').slice(1);
-      var target = document.getElementById(hash);
-      if (target && target.tagName.toLowerCase() === 'details') {
+      if (!hash) return;
+
+      var el = document.getElementById(hash);
+      if (!el) return;
+
+      var details = (el.tagName && el.tagName.toLowerCase() === 'details')
+        ? el
+        : (el.closest ? el.closest('details') : null);
+
+      if (details) {
         e.preventDefault();
         openFoldById(hash);
         history.pushState(null, '', '#' + hash);
@@ -960,7 +952,20 @@
     });
   });
 
-  // auto-open fold if URL has hash on load
+  // ✅ 3) bind close buttons
+  document.querySelectorAll('[data-close]').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      var d = btn.closest ? btn.closest('details') : null;
+      if (d) d.removeAttribute('open');
+
+      // 可选：收起后回到目录顶部（你不想跳就删掉下面两行）
+      var dir = document.getElementById('directory');
+      if (dir) dir.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // ✅ 4) auto-open fold if URL has hash on load
   window.addEventListener('load', function () {
     if (location.hash) {
       var id = location.hash.slice(1);
@@ -968,5 +973,7 @@
     }
   });
 </script>
+
+
 
 
