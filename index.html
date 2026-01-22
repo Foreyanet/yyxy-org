@@ -352,6 +352,83 @@
       details.fold-item > summary{padding:14px 14px}
       .fold-body{padding:14px 14px 16px}
     }
+
+    /* =========================
+   Enhancement Patch (A)
+   1) 导航 vs CTA 区分度
+   2) 阅读路径卡层级区分
+   3) 当前状态高亮
+========================= */
+
+/* 1) 顶部导航：hover 更明显 + active 高亮 */
+.nav a{
+  border:1px solid rgba(176,137,62,.25);
+  background:rgba(255,255,255,.85);
+  font-weight:800;
+  transition:all .15s ease;
+}
+.nav a:hover{
+  color:#b0893e;
+  border-color:rgba(176,137,62,.60);
+  box-shadow:0 10px 18px rgba(176,137,62,.14);
+  transform:translateY(-1px);
+}
+.nav a.active{
+  color:#b0893e;
+  border-color:rgba(176,137,62,.80);
+  background:rgba(176,137,62,.14);
+  box-shadow:0 10px 18px rgba(176,137,62,.18);
+}
+
+/* 1) CTA：更像“入口按钮”，和导航拉开差异 */
+.cta{
+  border:1px solid rgba(176,137,62,.60);
+  background:linear-gradient(180deg, rgba(176,137,62,.22), rgba(176,137,62,.10));
+  font-weight:900;
+  box-shadow:0 12px 20px rgba(176,137,62,.14);
+  transition:all .15s ease;
+}
+.cta:hover{
+  border-color:rgba(176,137,62,.90);
+  box-shadow:0 16px 26px rgba(176,137,62,.20);
+  transform:translateY(-1px);
+  color:#b0893e;
+}
+
+/* 2) “建议阅读路径”引导卡（需要配合插入 HTML） */
+.path-card{
+  margin:14px 18px 2px;
+  border:1px solid rgba(176,137,62,.28);
+  background:rgba(176,137,62,.10);
+  border-radius:14px;
+  padding:14px 14px;
+  position:relative;
+}
+.path-card:before{
+  content:"";
+  position:absolute;
+  left:0;top:0;bottom:0;
+  width:6px;
+  background:rgba(176,137,62,.65);
+  border-top-left-radius:14px;
+  border-bottom-left-radius:14px;
+}
+.path-card strong{
+  color:#b0893e;
+  font-weight:950;
+}
+
+/* 3) 状态反馈：当前展开折叠项高亮 summary（金色下划线/淡金底） */
+details.fold-item.active-fold > summary{
+  background:rgba(176,137,62,.10);
+  color:#b0893e;
+  box-shadow:inset 0 -3px 0 rgba(176,137,62,.75);
+}
+details.fold-item > summary:hover{
+  background:rgba(176,137,62,.06);
+  color:#b0893e;
+}
+
   </style>
 </head>
 
@@ -1045,6 +1122,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 </body>
 </html>
+
 
 
 
