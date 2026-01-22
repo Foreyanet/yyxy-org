@@ -494,6 +494,16 @@ details.fold-item > summary:hover{
         <div style="font-weight:900;color:var(--gold);">目录 / Index（Phase-1）</div>
         <div class="hint">点开任一条目即可阅读正文；每段末尾可一键“收起”。</div>
       </div>
+<div class="path-card">
+  <div><strong>建议阅读路径</strong>（先建立共同坐标，再进入细节）：</div>
+  <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:10px;">
+    <span class="pill" role="button" tabindex="0" data-open="fold-framing">① 框架界定</span>
+    <span class="pill" role="button" tabindex="0" data-open="fold-theory">② 理论基础</span>
+    <span class="pill" role="button" tabindex="0" data-open="fold-focus">③ 研究焦点</span>
+    <span class="pill" role="button" tabindex="0" data-open="fold-path">④ 实践路径</span>
+  </div>
+</div>
+
 
       <!-- 0) Reading guide (first row of screen 2) -->
       <details class="fold-item" id="fold-reading">
@@ -1122,6 +1132,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 </body>
 </html>
+
 
 
 
