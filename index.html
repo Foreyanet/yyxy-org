@@ -7,9 +7,8 @@
   <title>咿呀学语（Phase-1/首期）｜0–3岁语言起始机制的研究与实践框架</title>
 
   <style>
-
     /* =========================
-       Light Gold Scientific Premium theme (Stable)
+       Light Gold Scientific Premium theme (Stable / Frozen)
     ========================= */
     :root{
       --gold:#BE9646;
@@ -19,6 +18,7 @@
       --card:#ffffff;
       --line:#eee0c7;
       --soft:#faf7f2;
+      --shadow:0 8px 18px rgba(0,0,0,.06);
     }
 
     *{box-sizing:border-box}
@@ -31,6 +31,9 @@
       background:var(--bg);
       line-height:1.7;
       overflow-x:hidden;
+      /* iPhone 安全区（避免被系统 UI 挤压） */
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
     }
 
     a{color:var(--gold);text-decoration:none}
@@ -38,6 +41,9 @@
 
     .container{max-width:980px;margin:0 auto;padding:24px}
     section{scroll-margin-top:16px}
+    p{margin:10px 0}
+    ul{margin:8px 0 10px 20px}
+    li{margin:6px 0}
 
     /* =========================
        Header / Nav (desktop + mobile fold)
@@ -50,6 +56,7 @@
       padding:18px 0;
       border-bottom:1px solid var(--line);
     }
+
     .brand{
       font-weight:900;
       letter-spacing:0.4px;
@@ -59,28 +66,48 @@
       display:flex;
       align-items:center;
       gap:8px;
-      white-space:nowrap;
+      white-space:nowrap; /* 桌面保持一行 */
     }
     .brand .dot{font-size:18px;opacity:.95}
     .small{font-size:14px;color:var(--muted)}
-    .nav-wrap{display:flex;flex-direction:column;align-items:flex-end;gap:10px;min-width:280px}
+
+    .nav-wrap{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-end;
+      gap:10px;
+      min-width:280px
+    }
+
     .nav{
       display:flex;
       flex-wrap:wrap;
       justify-content:flex-end;
       gap:10px 12px;
     }
+
+    /* 顶部导航胶囊（最终统一版） */
     .nav a{
       font-size:14px;
       padding:6px 10px;
       border-radius:999px;
-      border:1px solid transparent;
-      color:var(--text);
+      color:#6b4a12;
+      background:#fff;
+      border:1px solid rgba(160,120,40,.45);
+      font-weight:800;
+      transition:all .18s ease;
+      user-select:none;
     }
     .nav a:hover{
       text-decoration:none;
-      background:#fff;
-      border-color:var(--line);
+      background:#fff7e3;
+      box-shadow:0 2px 6px rgba(160,120,40,.25);
+      transform:translateY(-1px);
+    }
+    .nav a.is-current{
+      background:#fff3cf;
+      border-color:var(--gold);
+      color:var(--gold);
     }
 
     .nav-toggle{
@@ -89,9 +116,10 @@
       font-size:14px;
       border:1px solid rgba(0,0,0,0.18);
       border-radius:10px;
-      background:rgba(255,255,255,0.75);
+      background:rgba(255,255,255,0.85);
       color:var(--text);
       cursor:pointer;
+      user-select:none;
     }
 
     /* =========================
@@ -110,21 +138,27 @@
       color:var(--muted);
       margin:10px 0 0;
     }
-    p{margin:10px 0}
 
-    /* Buttons */
+    /* CTA buttons（最终统一版：比导航更像入口） */
     .cta{
       display:inline-block;
-      background:var(--gold);
-      color:#fff;
+      background:linear-gradient(135deg,#d6a74a,#b88a2f);
+      color:#fff !important;
       padding:10px 16px;
       border-radius:10px;
       margin:8px 10px 0 0;
-      font-weight:800;
-      border:1px solid rgba(0,0,0,0);
+      font-weight:900;
+      border:none;
+      box-shadow:0 4px 12px rgba(184,138,47,.35);
       white-space:nowrap;
+      transition:all .16s ease;
+      user-select:none;
     }
-    .cta:hover{opacity:.92;text-decoration:none}
+    .cta:hover{
+      text-decoration:none;
+      filter:brightness(1.05);
+      transform:translateY(-1px);
+    }
 
     /* =========================
        Screen 2: Directory / Fold Catalogue
@@ -148,8 +182,6 @@
       color:var(--text);
       font-weight:900;
     }
-    ul{margin:8px 0 10px 20px}
-    li{margin:6px 0}
 
     .directory-screen{
       padding:0;
@@ -195,6 +227,13 @@
     }
     details.fold-item[open] > summary:after{content:"▾"}
 
+    /* 当前展开折叠项的轻高亮（更容易定位） */
+    details.fold-item.active-fold > summary{
+      background:rgba(190,150,70,.10);
+      color:#9a6f22;
+      box-shadow:inset 0 -3px 0 rgba(190,150,70,.70);
+    }
+
     .fold-body{
       padding:16px 18px 18px;
       border-top:1px solid var(--line);
@@ -217,10 +256,11 @@
       border-radius:10px;
       font-weight:900;
       cursor:pointer;
+      user-select:none;
     }
     .fold-close:hover{opacity:.9}
 
-    /* Inline links style for "三大基石" */
+    /* “三大基石”内联链接 */
     .coop-foundation a{
       color:inherit;
       text-decoration:underline;
@@ -228,6 +268,78 @@
       text-underline-offset:3px;
     }
     .coop-foundation a:hover{opacity:.85}
+
+    /* 阅读路径卡（Screen 2 顶部） */
+    .path-card{
+      margin:14px 18px 2px;
+      border:1px solid rgba(190,150,70,.28);
+      background:rgba(190,150,70,.10);
+      border-radius:14px;
+      padding:14px 14px;
+      position:relative;
+      box-shadow: var(--shadow);
+    }
+    .path-card:before{
+      content:"";
+      position:absolute;
+      left:0;top:0;bottom:0;
+      width:6px;
+      background:rgba(190,150,70,.65);
+      border-top-left-radius:14px;
+      border-bottom-left-radius:14px;
+    }
+    .path-card strong{
+      color:#9a6f22;
+      font-weight:950;
+    }
+
+    /* 阅读路径 pills（你 HTML 用了 .pill，这里补齐最终样式） */
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:8px 10px;
+      border-radius:999px;
+      background:#fff;
+      border:1px solid rgba(160,120,40,.45);
+      color:#6b4a12;
+      font-weight:900;
+      font-size:14px;
+      cursor:pointer;
+      user-select:none;
+      transition:all .18s ease;
+    }
+    .pill:hover{
+      background:#fff7e3;
+      transform:translateY(-1px);
+      box-shadow:0 2px 6px rgba(160,120,40,.25);
+    }
+
+    /* Reading guide links + read status */
+    .read-link{
+      color:#1f2328;
+      text-decoration:none;
+      font-weight:800;
+      padding:2px 4px;
+      border-radius:6px;
+    }
+    .read-link:hover{
+      color:#9a6f22;
+      background:rgba(190,150,70,.10);
+      text-decoration:none;
+    }
+    .read-link.is-read{
+      color:#9b8c6a;
+      text-decoration:line-through;
+      opacity:.65;
+    }
+    .read-link.is-current{
+      color:var(--gold) !important;
+      font-weight:900;
+      text-decoration:underline;
+      background:rgba(190,150,70,.12);
+      box-shadow: inset 0 -3px 0 rgba(190,150,70,.70);
+    }
 
     /* Email */
     .email{margin-top:6px}
@@ -241,7 +353,7 @@
     }
 
     /* =========================
-       Term Table (Phase-1) — keep your full table
+       Term Table (Phase-1)
     ========================= */
     .table-wrap{
       overflow-x:auto;
@@ -289,6 +401,7 @@
       color:var(--text);
       position:relative;
       background:var(--soft);
+      user-select:none;
     }
     details.inner-fold > summary::-webkit-details-marker{display:none}
     details.inner-fold > summary:after{
@@ -324,14 +437,20 @@
     }
 
     /* =========================
-       Mobile
+       Mobile (Final)
+       目标：标题不被挤压、导航两列整齐、首屏更“省高”
     ========================= */
     @media (max-width:768px){
-      .container{padding:18px}
+      .container{padding:18px; padding-top:12px;}   /* 轻微上移整页内容 */
       h1{font-size:28px}
       .header{
         flex-direction:column;
         align-items:flex-start;
+        padding:10px 0;                              /* 压缩 header 高度（关键） */
+      }
+      .brand{
+        white-space:normal;                          /* 允许换行（关键：解决标题被挤） */
+        line-height:1.15;
       }
       .nav-wrap{align-items:flex-start;min-width:auto;width:100%}
       .nav-toggle{display:inline-block}
@@ -344,334 +463,20 @@
       .nav a{
         width:100%;
         text-align:center;
-        border:1px solid rgba(0,0,0,0.14);
-        background:#fff;
       }
-      .cta{padding:10px 14px;margin:8px 8px 0 0}
+      .hero{padding:18px 0 12px}                     /* 首屏略变矮，底部更容易露出 */
+      .cta{padding:10px 14px;margin:8px 8px 0 0; white-space:normal;}
       .directory-head{padding:14px 14px}
       details.fold-item > summary{padding:14px 14px}
       .fold-body{padding:14px 14px 16px}
+      .path-card{margin:12px 14px 2px}
     }
 
-    /* =========================
-   Enhancement Patch (A)
-   1) 导航 vs CTA 区分度
-   2) 阅读路径卡层级区分
-   3) 当前状态高亮
-========================= */
-
-/* 1) 顶部导航：hover 更明显 + active 高亮 */
-.nav a{
-  border:1px solid rgba(176,137,62,.25);
-  background:rgba(255,255,255,.85);
-  font-weight:800;
-  transition:all .15s ease;
-}
-.nav a:hover{
-  color:#b0893e;
-  border-color:rgba(176,137,62,.60);
-  box-shadow:0 10px 18px rgba(176,137,62,.14);
-  transform:translateY(-1px);
-}
-.nav a.active{
-  color:#b0893e;
-  border-color:rgba(176,137,62,.80);
-  background:rgba(176,137,62,.14);
-  box-shadow:0 10px 18px rgba(176,137,62,.18);
-}
-
-/* 1) CTA：更像“入口按钮”，和导航拉开差异 */
-.cta{
-  border:1px solid rgba(176,137,62,.60);
-  background:linear-gradient(180deg, rgba(176,137,62,.22), rgba(176,137,62,.10));
-  font-weight:900;
-  box-shadow:0 12px 20px rgba(176,137,62,.14);
-  transition:all .15s ease;
-}
-.cta:hover{
-  border-color:rgba(176,137,62,.90);
-  box-shadow:0 16px 26px rgba(176,137,62,.20);
-  transform:translateY(-1px);
-  color:#b0893e;
-}
-
-/* 2) “建议阅读路径”引导卡（需要配合插入 HTML） */
-.path-card{
-  margin:14px 18px 2px;
-  border:1px solid rgba(176,137,62,.28);
-  background:rgba(176,137,62,.10);
-  border-radius:14px;
-  padding:14px 14px;
-  position:relative;
-}
-.path-card:before{
-  content:"";
-  position:absolute;
-  left:0;top:0;bottom:0;
-  width:6px;
-  background:rgba(176,137,62,.65);
-  border-top-left-radius:14px;
-  border-bottom-left-radius:14px;
-}
-.path-card strong{
-  color:#b0893e;
-  font-weight:950;
-}
-
-/* 3) 状态反馈：当前展开折叠项高亮 summary（金色下划线/淡金底） */
-details.fold-item.active-fold > summary{
-  background:rgba(176,137,62,.10);
-  color:#b0893e;
-  box-shadow:inset 0 -3px 0 rgba(176,137,62,.75);
-}
-details.fold-item > summary:hover{
-  background:rgba(176,137,62,.06);
-  color:#b0893e;
-}
-
-/* Reading guide links + read status */
-.read-link{
-  color:#1f2328;
-  text-decoration:none;
-  font-weight:700;
-  padding:2px 4px;
-  border-radius:6px;
-}
-.read-link:hover{
-  color:#b0893e;
-  background:rgba(176,137,62,.08);
-}
-.read-link.is-read{
-  color:#6b5b3b;
-  background:rgba(176,137,62,.06);
-}
-.read-link.is-current{
-  color:#b0893e;
-  background:rgba(176,137,62,.12);
-  box-shadow: inset 0 -3px 0 rgba(176,137,62,.75);
-}
-/* =================================================
-   FINAL PATCH — 导航区分 / 阅读路径层级 / 已读状态
-   ================================================= */
-
-/* ===== 1. 顶部导航 vs CTA 区分 ===== */
-
-/* 顶部导航胶囊 */
-.nav a{
-  background:#fff;
-  border:1px solid rgba(160,120,40,.45);
-  color:#6b4a12;
-  transition:all .2s ease;
-}
-.nav a:hover{
-  background:#fff7e3;
-  box-shadow:0 2px 6px rgba(160,120,40,.25);
-  transform:translateY(-1px);
-}
-
-/* 当前导航高亮 */
-.nav a.active,
-.nav a.is-current{
-  background:#fff3cf;
-  border-color:var(--gold);
-  color:var(--gold);
-  font-weight:700;
-}
-
-/* 核心 CTA 按钮更强 */
-.cta{
-  background:linear-gradient(135deg,#d6a74a,#b88a2f);
-  color:#fff !important;
-  border:none;
-  box-shadow:0 4px 12px rgba(184,138,47,.35);
-}
-.cta:hover{
-  filter:brightness(1.05);
-}
-
-
-/* ===== 2. 阅读路径：引导卡层级强化 ===== */
-.path-card{
-  background:#fffaf0;
-  border-left:6px solid var(--gold);
-  padding:14px 16px;
-  margin:12px 0 18px;
-  border-radius:8px;
-  box-shadow:0 3px 10px rgba(0,0,0,.06);
-}
-.path-card strong{
-  color:var(--gold);
-  font-size:16px;
-}
-
-
-/* ===== 3. 已读 / 正在读 状态反馈 ===== */
-
-/* 已读（历史） */
-.read-link.is-read{
-  color:#9b8c6a;
-  text-decoration:line-through;
-  opacity:.65;
-}
-
-/* 当前正在读（强调） */
-.read-link.is-current{
-  color:var(--gold) !important;
-  font-weight:700;
-  text-decoration:underline;
-  background:rgba(214,167,74,.12);
-  border-radius:4px;
-  padding:2px 4px;
-}
-
-   /* ===== Mobile hero fine-tuning (Phase-1) ===== */
-@media (max-width: 480px){
-
-  /* 1. 首屏整体略微上提，释放底部空间 */
-  .hero,
-  #hero,
-  .hero-section{
-    padding-top: 12px !important;
-    padding-bottom: 12px !important;
-  }
-
-  /* 2. 标题区域稍微压缩行距，减少垂直占用 */
-  .hero h1,
-  .hero-title{
-    line-height: 1.18 !important;
-    margin-bottom: 10px !important;
-  }
-
-  /* 3. 副标题与正文之间的间距略减 */
-  .hero p,
-  .hero-subtitle{
-    margin-bottom: 10px !important;
-  }
-
-  /* 4. 右侧“阶段/Phase”类胶囊或标签，防止被裁切 */
-  .phase-badge,
-  .stage-badge,
-  .phase-tag,
-  .pill,
-  .nav-pill{
-    max-width: 100% !important;
-    white-space: normal !important;
-    padding-right: 10px !important;
-  }
-
-}
-
-    /* =========================
-   Mobile Hero Fine-Tuning (v1)
-   Fix: title clipping ("阶段"), lift bottom content
-   ========================= */
-
-@media (max-width: 480px){
-
-  /* 0) iPhone 安全区：避免被系统 UI/圆角区域挤压 */
-  body{
-    padding-left: env(safe-area-inset-left);
-    padding-right: env(safe-area-inset-right);
-  }
-
-  /* 1) 首屏整体“变矮一点”：等效你说的“往上提两行” */
-  .hero, #hero, .hero-section,
-  main > section:first-of-type,
-  body > section:first-of-type{
-    padding-top: 10px;
-    padding-bottom: 8px;
-  }
-
-  /* 2) 关键：标题允许换行 + 不再被裁切（解决“阶段”被遮挡） */
-  h1, .hero h1,
-  .site-title, .brand-title, .page-title{
-    white-space: normal !important;   /* 允许换行 */
-    overflow: visible !important;     /* 不裁切 */
-    text-overflow: clip !important;   /* 不省略号 */
-    line-height: 1.15 !important;     /* 更紧凑 */
-    padding-right: 8px;               /* 右侧留一点喘息 */
-    word-break: break-word;           /* 极窄屏也能断行 */
-  }
-
-  /* 3) 标题略缩小一点，进一步防止右侧溢出 */
-  .hero h1, .hero-title,
-  .site-title, .brand-title, .page-title{
-    font-size: clamp(26px, 7.2vw, 34px);
-    margin-bottom: 10px !important;
-  }
-
-  /* 4) 副标题/首段间距缩小，释放垂直空间 */
-  .hero p, .hero-subtitle,
-  .hero .lead, .hero .intro{
-    margin-top: 6px;
-    margin-bottom: 10px;
-  }
-
-  /* 5) 如果标题所在容器曾设置 overflow:hidden，会导致右侧裁切；这里“松绑” */
-  header, .hero, #hero, .hero-section,
-  .brand, .masthead, .topbar{
-    overflow: visible;
-  }
-
-}
-
-/* 更窄屏（小号手机）再额外压一点 */
-@media (max-width: 360px){
-  .hero h1, .hero-title,
-  .site-title, .brand-title, .page-title{
-    font-size: 24px !important;
-  }
-}
-/* ===== Mobile: Screen-1 (hero) final fine-tune ===== */
-@media (max-width: 480px){
-
-  /* 1) 首屏整体略“变矮”：底部内容更容易露出（等效上提两行） */
-  #screen1{
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-
-  /* 2) 标题允许更自然换行，避免右侧被裁切（“阶段”不再缺字） */
-  #screen1 h1{
-    margin: 0 0 10px 0;
-    line-height: 1.15;
-    white-space: normal;
-    overflow: visible;
-    text-overflow: clip;
-    word-break: break-word;     /* 极窄屏也不断字丢失 */
-    padding-right: 8px;         /* 右侧留一点余量 */
-    font-size: clamp(26px, 7.2vw, 34px);
-  }
-
-  /* 3) 两段文字间距缩一点，释放高度 */
-  #screen1 .lead{
-    margin: 0 0 10px 0;
-    line-height: 1.55;
-  }
-  #screen1 p{
-    margin: 0 0 10px 0;
-  }
-
-  /* 4) 你的 4 个金色按钮那一行：上提一点 + 行距紧凑 */
-  #screen1 p[style*="margin-top:14px"]{
-    margin-top: 10px !important;
-    margin-bottom: 6px;
-  }
-}
-
-/* 小屏再压一点（iPhone SE 等） */
-@media (max-width: 360px){
-  #screen1{
-    padding-top: 8px;
-    padding-bottom: 8px;
-  }
-  #screen1 h1{
-    font-size: 24px;
-  }
-}
-    
+    @media (max-width:360px){
+      h1{font-size:24px}
+      .brand{font-size:20px}
+    }
   </style>
-  
 </head>
 
 <body>
@@ -687,10 +492,9 @@ details.fold-item > summary:hover{
       </div>
 
       <div class="nav-wrap">
-       <button id="menuToggle" class="menu-btn nav-toggle"  type="button">菜单 ≡</button>
+        <button id="menuToggle" class="menu-btn nav-toggle" type="button">菜单 ≡</button>
 
-
-        <!-- 头部导航：保持“目录化”逻辑（点击即滚到屏幕2并展开对应抽屉） -->
+        <!-- 头部导航：点击即打开对应折叠（由 JS 驱动） -->
         <nav class="nav" id="siteNav" aria-label="Site navigation">
           <a href="#directory" data-open="fold-framing">框架界定</a>
           <a href="#directory" data-open="fold-theory">理论基础</a>
@@ -707,29 +511,28 @@ details.fold-item > summary:hover{
     <!-- =========================
          Screen 1: Hero
     ========================= -->
-  <section class="hero" id="screen1">
-  <h1>语言的起始，远在“开口说话”之前。</h1>
+    <section class="hero" id="screen1">
+      <h1>语言的起始，远在“开口说话”之前。</h1>
 
-  <p class="lead">
-    在稳定的词义与可辨识的词汇出现以前，婴幼儿已通过大量的自发发声、尝试、组合与选择性稳定，逐步构建其最早的语音结构原型与节律模式。
-  </p>
+      <p class="lead">
+        在稳定的词义与可辨识的词汇出现以前，婴幼儿已通过大量的自发发声、尝试、组合与选择性稳定，逐步构建其最早的语音结构原型与节律模式。
+      </p>
 
-  <p>
-    本网站用于呈现“咿呀学语（Yi-Ya Framework）”在 <strong>Phase-1（首期）</strong> 阶段对
-    <strong>早期语音起始（early speech onset）</strong> 的理论视角、核心研究议题，
-    以及在家庭自然情境下开展的低负担实践路径。
-    所有内容将随研究进程持续更新与深化。
-  </p>
+      <p>
+        本网站用于呈现“咿呀学语（Yi-Ya Framework）”在 <strong>Phase-1（首期）</strong> 阶段对
+        <strong>早期语音起始（early speech onset）</strong> 的理论视角、核心研究议题，
+        以及在家庭自然情境下开展的低负担实践路径。
+        所有内容将随研究进程持续更新与深化。
+      </p>
 
-  <!-- 4 gold buttons (fixed order you requested) -->
-  <p style="margin-top:14px;">
-    <a class="cta" href="#directory" data-open="fold-framing">从“框架界定”开始</a>
-    <a class="cta" href="#directory" data-open="fold-path">查看“实践路径”</a>
-    <a class="cta" href="#directory" data-open="fold-coop">探讨合作模式</a>
-    <a class="cta" href="#directory" data-open="fold-reading">研究者 / 来访者 · 阅读路径</a>
-  </p>
-</section>
-
+      <!-- 4 gold buttons (fixed order you requested) -->
+      <p style="margin-top:14px;">
+        <a class="cta" href="#directory" data-open="fold-framing">从“框架界定”开始</a>
+        <a class="cta" href="#directory" data-open="fold-path">查看“实践路径”</a>
+        <a class="cta" href="#directory" data-open="fold-coop">探讨合作模式</a>
+        <a class="cta" href="#directory" data-open="fold-reading">研究者 / 来访者 · 阅读路径</a>
+      </p>
+    </section>
 
     <!-- =========================
          Screen 2: Directory (All content preserved, just folded)
@@ -739,97 +542,96 @@ details.fold-item > summary:hover{
         <div style="font-weight:900;color:var(--gold);">目录 / Index（Phase-1）</div>
         <div class="hint">点开任一条目即可阅读正文；每段末尾可一键“收起”。</div>
       </div>
-<div class="path-card">
-  <div><strong>建议阅读路径</strong>（先建立共同坐标，再进入细节）：</div>
-  <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:10px;">
-    <span class="pill" role="button" tabindex="0" data-open="fold-framing">① 框架界定</span>
-    <span class="pill" role="button" tabindex="0" data-open="fold-theory">② 理论基础</span>
-    <span class="pill" role="button" tabindex="0" data-open="fold-focus">③ 研究焦点</span>
-    <span class="pill" role="button" tabindex="0" data-open="fold-path">④ 实践路径</span>
-  </div>
-</div>
 
+      <div class="path-card">
+        <div><strong>建议阅读路径</strong>（先建立共同坐标，再进入细节）：</div>
+        <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:10px;">
+          <span class="pill" role="button" tabindex="0" data-open="fold-framing">① 框架界定</span>
+          <span class="pill" role="button" tabindex="0" data-open="fold-theory">② 理论基础</span>
+          <span class="pill" role="button" tabindex="0" data-open="fold-focus">③ 研究焦点</span>
+          <span class="pill" role="button" tabindex="0" data-open="fold-path">④ 实践路径</span>
+        </div>
+      </div>
 
-     <!-- 0) Reading guide (first row of screen 2) -->
-<details class="fold-item" id="fold-reading">
-  <summary>建议阅读路径（研究者 / 来访者）</summary>
-  <div class="fold-body">
-    <p class="small" style="margin-top:0;">
-      为方便不同研究目的的读者理解 Phase-1 内容，以下提供若干建议阅读路径。内容本身不变，仅推荐阅读顺序不同。
-    </p>
+      <!-- 0) Reading guide (first row of screen 2) -->
+      <details class="fold-item" id="fold-reading">
+        <summary>建议阅读路径（研究者 / 来访者）</summary>
+        <div class="fold-body">
+          <p class="small" style="margin-top:0;">
+            为方便不同研究目的的读者理解 Phase-1 内容，以下提供若干建议阅读路径。内容本身不变，仅推荐阅读顺序不同。
+          </p>
 
-    <h3 style="margin-top:10px;">🟢 快速了解（约 3 分钟）</h3>
-    <ul>
-      <li>
-        <a class="read-link" href="#screen1" data-scroll="screen1">
-          首页引言：语言的起始，远在“开口说话”之前
-        </a>
-      </li>
-      <li>
-        <a class="read-link" href="#fold-framing" data-open="fold-framing">
-          框架界定（研究对象与边界）
-        </a>
-      </li>
-      <li>
-        <a class="read-link" href="#fold-theory" data-open="fold-theory">
-          理论定位（重要边界）
-        </a>
-      </li>
-    </ul>
+          <h3 style="margin-top:10px;">🟢 快速了解（约 3 分钟）</h3>
+          <ul>
+            <li>
+              <a class="read-link" href="#screen1" data-scroll="screen1">
+                首页引言：语言的起始，远在“开口说话”之前
+              </a>
+            </li>
+            <li>
+              <a class="read-link" href="#fold-framing" data-open="fold-framing">
+                框架界定（研究对象与边界）
+              </a>
+            </li>
+            <li>
+              <a class="read-link" href="#fold-theory" data-open="fold-theory">
+                理论定位（重要边界）
+              </a>
+            </li>
+          </ul>
 
-    <h3>🟡 理论理解（约 10 分钟）</h3>
-    <ul>
-      <li>
-        <a class="read-link" href="#fold-theory" data-open="fold-theory">
-          理论基础：声韵母诱发律与潜在发音能力
-        </a>
-      </li>
-      <li>
-        <a class="read-link" href="#fold-theory" data-open="fold-theory">
-          潜在发音能力 / 潜在发音字（例证段）
-        </a>
-      </li>
-      <li>
-        <a class="read-link" href="#fold-focus" data-open="fold-focus">
-          研究焦点（Phase-1）
-        </a>
-      </li>
-    </ul>
+          <h3>🟡 理论理解（约 10 分钟）</h3>
+          <ul>
+            <li>
+              <a class="read-link" href="#fold-theory" data-open="fold-theory">
+                理论基础：声韵母诱发律与潜在发音能力
+              </a>
+            </li>
+            <li>
+              <a class="read-link" href="#fold-theory" data-open="fold-theory">
+                潜在发音能力 / 潜在发音字（例证段）
+              </a>
+            </li>
+            <li>
+              <a class="read-link" href="#fold-focus" data-open="fold-focus">
+                研究焦点（Phase-1）
+              </a>
+            </li>
+          </ul>
 
-    <h3>🔵 深度参考（约 30 分钟）</h3>
-    <ul>
-      <li>
-        <a class="read-link" href="#fold-theory" data-open="fold-theory">
-          理论共识背景（折叠模块）
-        </a>
-      </li>
-      <li>
-        <a class="read-link" href="#fold-terms" data-open="fold-terms">
-          术语与观察维度（对照表）
-        </a>
-      </li>
-      <li>
-        <a class="read-link" href="#fold-path" data-open="fold-path">
-          实践路径（非干预、家庭自然情境）
-        </a>
-      </li>
-      <li>
-        <a class="read-link" href="#fold-coop" data-open="fold-coop">
-          合作方式与研究边界
-        </a>
-      </li>
-    </ul>
+          <h3>🔵 深度参考（约 30 分钟）</h3>
+          <ul>
+            <li>
+              <a class="read-link" href="#fold-theory" data-open="fold-theory">
+                理论共识背景（折叠模块）
+              </a>
+            </li>
+            <li>
+              <a class="read-link" href="#fold-terms" data-open="fold-terms">
+                术语与观察维度（对照表）
+              </a>
+            </li>
+            <li>
+              <a class="read-link" href="#fold-path" data-open="fold-path">
+                实践路径（非干预、家庭自然情境）
+              </a>
+            </li>
+            <li>
+              <a class="read-link" href="#fold-coop" data-open="fold-coop">
+                合作方式与研究边界
+              </a>
+            </li>
+          </ul>
 
-    <p class="small" style="margin-bottom:0;">
-      注：理论共识背景用于说明学术语境，不构成统一立场、发展标准或教学承诺。
-    </p>
+          <p class="small" style="margin-bottom:0;">
+            注：理论共识背景用于说明学术语境，不构成统一立场、发展标准或教学承诺。
+          </p>
 
-    <div class="fold-actions">
-      <button type="button" class="fold-close" data-close>收起 ▲</button>
-    </div>
-  </div>
-</details>
-
+          <div class="fold-actions">
+            <button type="button" class="fold-close" data-close>收起 ▲</button>
+          </div>
+        </div>
+      </details>
 
       <!-- 1) Framing -->
       <details class="fold-item" id="fold-framing">
@@ -918,7 +720,6 @@ details.fold-item > summary:hover{
             而非设定普适标准，更不用于个体发展评价、诊断或教学承诺。
           </p>
 
-          <!-- Inner fold: theoretical consensus background -->
           <details class="inner-fold">
             <summary>理论共识背景（Background Assumptions）</summary>
             <div class="inner-body">
@@ -928,46 +729,14 @@ details.fold-item > summary:hover{
               </p>
 
               <ol>
-                <li>
-                  <strong>语言先于语义</strong><br>
-                  儿童的语言发展并非始于词义的理解，而是始于对可发声结构的逐步掌握。
-                  语言系统的形成首先体现为发声能力与结构的组织，而非意义的表达。
-                </li>
-                <li>
-                  <strong>前词汇阶段的发声具有结构性</strong><br>
-                  婴幼儿在前词汇阶段产生的大量发声，并非随机噪音，而呈现出可观察的结构性与选择性，
-                  反映出其发声系统正在经历组织与筛选过程。
-                </li>
-                <li>
-                  <strong>发音发展体现为组合性过程</strong><br>
-                  早期发声的发展，并非对完整词项的简单模仿，而是儿童逐步掌握并重组有限语音单位
-                  （如声母、韵母）的过程。
-                </li>
-                <li>
-                  <strong>潜在能力先于稳定输出</strong><br>
-                  儿童往往在能够稳定产出某些语音形式之前，已在其发声系统中具备生成这些形式的潜在能力；
-                  可观察到的输出通常是这一潜在能力逐步实现的结果。
-                </li>
-                <li>
-                  <strong>语音结构先于语义附着</strong><br>
-                  语音结构的形成通常先于稳定语义的附着，并为后续词汇与语法的发展提供必要的形式基础，
-                  是语言系统进一步展开的前提条件。
-                </li>
-                <li>
-                  <strong>语言发展体现为选择与稳定</strong><br>
-                  语言发展的关键不在于新形式的不断产生，而在于对已产生形式的选择、保留与稳定；
-                  这一过程具有明显的阶段性与渐进性。
-                </li>
-                <li>
-                  <strong>互动反馈具有环境性而非教学性作用</strong><br>
-                  成人语言输入的作用，并非直接“教会”儿童发音，而是通过互动反馈改变哪些发声形式
-                  更可能被注意、重复并逐渐稳定下来。
-                </li>
-                <li>
-                  <strong>描述性而非规范性立场</strong><br>
-                  发展语言学的核心任务在于描述语言如何形成，而非规定儿童应当如何发展。
-                  相关理论不应被用作个体发展评价、诊断或教学承诺的依据。
-                </li>
+                <li><strong>语言先于语义</strong><br>儿童的语言发展并非始于词义的理解，而是始于对可发声结构的逐步掌握。</li>
+                <li><strong>前词汇阶段的发声具有结构性</strong><br>婴幼儿前词汇阶段发声并非随机噪音，而呈现结构性与选择性。</li>
+                <li><strong>发音发展体现为组合性过程</strong><br>早期发声发展是逐步掌握并重组有限语音单位的过程。</li>
+                <li><strong>潜在能力先于稳定输出</strong><br>稳定产出之前，系统往往已具备生成形式的潜在能力。</li>
+                <li><strong>语音结构先于语义附着</strong><br>语音结构形成通常先于稳定语义附着，为后续系统展开提供基础。</li>
+                <li><strong>语言发展体现为选择与稳定</strong><br>关键在于对已产生形式的选择、保留与稳定。</li>
+                <li><strong>互动反馈具有环境性而非教学性作用</strong><br>成人输入并非直接“教会”，而是改变哪些形式更可能被重复并稳定。</li>
+                <li><strong>描述性而非规范性立场</strong><br>核心任务是描述语言如何形成，而非规定儿童应当如何发展。</li>
               </ol>
 
               <div class="assumption-note">
@@ -996,9 +765,9 @@ details.fold-item > summary:hover{
 
           <h3>Phase-1 核心研究焦点</h3>
           <ul>
-            <li><strong>语音结构的涌现：</strong>最早的声母、韵母及其组合模式，如何从偶然尝试发展为可重复的稳定模式？在不同个体与语言环境中，是否存在可比较的涌现路径或共同维度？</li>
-            <li><strong>模式的稳定与转换：</strong>哪些语音结构更易被个体选择并固化？阶段过渡期在行为、发音节律与组合复杂度上有哪些可观察的变化？</li>
-            <li><strong>互动与环境的影响：</strong>养育者的回应策略（如模仿、扩展）及家庭语言环境的韵律特征，如何影响婴幼儿对特定发音尝试的注意、选择与稳定化进程？</li>
+            <li><strong>语音结构的涌现：</strong>最早的声母、韵母及其组合模式，如何从偶然尝试发展为可重复的稳定模式？</li>
+            <li><strong>模式的稳定与转换：</strong>阶段过渡期在行为、发音节律与组合复杂度上有哪些可观察的变化？</li>
+            <li><strong>互动与环境的影响：</strong>回应策略与家庭韵律特征如何影响婴幼儿对特定尝试的注意、选择与稳定化进程？</li>
           </ul>
 
           <p class="small">
@@ -1025,8 +794,8 @@ details.fold-item > summary:hover{
           <h3>Phase-1 实践原则</h3>
           <ul>
             <li><strong>以自然发声为原点：</strong>关注婴幼儿内驱自发的发音行为，不设定外部强加的发音目标。</li>
-            <li><strong>生态化、无干扰：</strong>实践融入日常照料与互动，不改变原有家庭节奏，不为“记录”而刻意安排情境。</li>
-            <li><strong>回应优先于纠正：</strong>将及时、共情、富有语言营养的回应视为关键环境支持，避免“纠错训练”导向。</li>
+            <li><strong>生态化、无干扰：</strong>实践融入日常照料与互动，不改变原有家庭节奏。</li>
+            <li><strong>回应优先于纠正：</strong>将及时、共情、富有语言营养的回应视为关键环境支持，避免“纠错训练”。</li>
             <li><strong>长期、连续记录：</strong>强调发展轨迹与变化模式，而非单次评估的“漂亮样本”。</li>
           </ul>
 
@@ -1070,81 +839,75 @@ details.fold-item > summary:hover{
                   <td>婴幼儿在无外部指令、无模仿要求的情况下主动产生的发声行为。</td>
                   <td>
                     <ul>
-                      <li>是否由儿童主动发起（非指令/非要求）</li>
-                      <li>出现情境（喂养、游戏、独处、亲子互动等）</li>
-                      <li>是否伴随交流意图或明显情绪状态（愉快/抗拒/好奇等）</li>
+                      <li>是否由儿童主动发起</li>
+                      <li>出现情境（喂养、游戏、独处、互动等）</li>
+                      <li>是否伴随交流意图或明显情绪状态</li>
                     </ul>
                   </td>
                 </tr>
-
                 <tr>
                   <td><strong>声母 / 韵母单元</strong></td>
-                  <td>在前词汇阶段逐渐出现并可被区分的发音构成单元与其可复现性。</td>
+                  <td>前词汇阶段逐渐出现并可被区分的发音构成单元与其可复现性。</td>
                   <td>
                     <ul>
-                      <li>出现的声母/韵母类型（可粗标记，不必“标准拼音化”）</li>
+                      <li>出现的声母/韵母类型</li>
                       <li>重复出现的稳定性（同日/跨日）</li>
-                      <li>是否在不同组合中复现（同一声母或韵母迁移到新组合）</li>
+                      <li>是否在不同组合中复现</li>
                     </ul>
                   </td>
                 </tr>
-
                 <tr>
                   <td><strong>声韵母诱发律</strong></td>
-                  <td>当个体能够稳定掌握某些声母或韵母后，其系统具备对这些单元进行迁移与重组的潜在能力。</td>
+                  <td>当个体稳定掌握某些声母或韵母后，系统具备迁移与重组的潜在能力。</td>
                   <td>
                     <ul>
-                      <li>新组合是否基于已出现单元（“旧单元→新组合”）</li>
-                      <li>新组合出现前是否存在准备性尝试（不稳定但反复）</li>
-                      <li>从“尝试”到“复现”是否呈现渐进趋势</li>
+                      <li>新组合是否基于已出现单元（旧→新）</li>
+                      <li>新组合出现前是否有准备性尝试</li>
+                      <li>从尝试到复现是否渐进</li>
                     </ul>
                   </td>
                 </tr>
-
                 <tr>
                   <td><strong>潜在发音能力</strong><br><span class="small">potential vocal ability</span></td>
-                  <td>在已掌握若干声母/韵母单元后，个体对新组合形式在发声层面的“可达性”与可生成空间。</td>
+                  <td>已掌握若干单元后，对新组合形式在发声层面的可达性与可生成空间。</td>
                   <td>
                     <ul>
-                      <li>组合尝试的多样性是否上升（同一时期出现更多不同组合）</li>
-                      <li>“可达但不稳”的发声是否增多（短时反复但未定型）</li>
-                      <li>是否出现“由旧到新”的组合迁移痕迹</li>
+                      <li>组合尝试多样性是否上升</li>
+                      <li>“可达但不稳”的发声是否增多</li>
+                      <li>是否出现由旧到新的迁移痕迹</li>
                     </ul>
                   </td>
                 </tr>
-
                 <tr>
                   <td><strong>潜在发音字</strong><br><span class="small">potential vocal character</span></td>
-                  <td>由已掌握的声母/韵母单元重组而成，在发声层面具备生成条件但尚未成为稳定输出的组合单位。</td>
+                  <td>由已掌握单元重组而成，具备生成条件但尚未成为稳定输出的组合单位。</td>
                   <td>
                     <ul>
-                      <li>出现但尚未持续（偶发→间歇性复现）</li>
-                      <li>不同情境下是否复现（跨场景更可能走向稳定）</li>
-                      <li>是否逐渐减少波动、趋向一致形式</li>
+                      <li>偶发→间歇性复现</li>
+                      <li>不同情境下是否复现</li>
+                      <li>形式波动是否下降</li>
                     </ul>
                   </td>
                 </tr>
-
                 <tr>
                   <td><strong>互动反馈</strong></td>
-                  <td>养育者对婴幼儿发声作出的情感性、回应性或扩展性反应（非纠错训练）。</td>
+                  <td>养育者对发声作出的情感性、回应性或扩展性反应（非纠错训练）。</td>
                   <td>
                     <ul>
-                      <li>回应是否及时（当下/延迟）</li>
-                      <li>回应类型：情感回应 / 模仿 / 扩展（加词、加语调、加意义）</li>
-                      <li>回应后该发声是否更可能再次出现或被延长</li>
+                      <li>回应是否及时</li>
+                      <li>类型：情感回应 / 模仿 / 扩展</li>
+                      <li>回应后该发声是否更可能复现</li>
                     </ul>
                   </td>
                 </tr>
-
                 <tr>
                   <td><strong>稳定化趋势</strong></td>
-                  <td>某一发声或组合由偶发走向重复、由不稳定走向相对固定的过程（过程指标，不是结果评价）。</td>
+                  <td>发声或组合由偶发走向重复、由不稳定走向相对固定的过程。</td>
                   <td>
                     <ul>
-                      <li>重复频率的变化（更常见、更连续）</li>
-                      <li>跨日/跨情境的保留情况</li>
-                      <li>形式波动是否下降（更接近“同一个”模式）</li>
+                      <li>重复频率变化</li>
+                      <li>跨日/跨情境保留情况</li>
+                      <li>形式波动是否下降</li>
                     </ul>
                   </td>
                 </tr>
@@ -1267,181 +1030,195 @@ details.fold-item > summary:hover{
 
   </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
 
-  /* ===== 手机菜单：按钮控制 #siteNav ===== */
-  var menuBtn = document.getElementById('menuToggle');
-  var siteNav = document.getElementById('siteNav');
+    /* ===== 年份 ===== */
+    var y = document.getElementById('y');
+    if (y) y.textContent = String(new Date().getFullYear());
 
-  if (menuBtn && siteNav) {
-    menuBtn.addEventListener('click', function () {
-      siteNav.classList.toggle('is-open');
-    });
-  }
-  function closeMobileNavIfOpen() {
-    if (siteNav && siteNav.classList.contains('is-open')) {
-      siteNav.classList.remove('is-open');
+    /* ===== 手机菜单：按钮控制 #siteNav ===== */
+    var menuBtn = document.getElementById('menuToggle');
+    var siteNav = document.getElementById('siteNav');
+
+    if (menuBtn && siteNav) {
+      menuBtn.addEventListener('click', function () {
+        siteNav.classList.toggle('is-open');
+      });
     }
-  }
+    function closeMobileNavIfOpen() {
+      if (siteNav && siteNav.classList.contains('is-open')) {
+        siteNav.classList.remove('is-open');
+      }
+    }
 
-  /* ===== 已读/正在读：localStorage ===== */
-  var READ_KEY = 'yyxy_read_ids_v1';
-  function loadReadSet(){
-    try { return new Set(JSON.parse(localStorage.getItem(READ_KEY) || '[]')); }
-    catch(e){ return new Set(); }
-  }
-  function saveReadSet(set){
-    localStorage.setItem(READ_KEY, JSON.stringify(Array.from(set)));
-  }
-  var readSet = loadReadSet();
+    /* ===== 已读/正在读：localStorage ===== */
+    var READ_KEY = 'yyxy_read_ids_v1';
+    function loadReadSet(){
+      try { return new Set(JSON.parse(localStorage.getItem(READ_KEY) || '[]')); }
+      catch(e){ return new Set(); }
+    }
+    function saveReadSet(set){
+      localStorage.setItem(READ_KEY, JSON.stringify(Array.from(set)));
+    }
+    var readSet = loadReadSet();
 
-  function applyReadStyles(){
-    document.querySelectorAll('.read-link[data-open]').forEach(function(a){
-      var id = a.getAttribute('data-open');
-      if (readSet.has(id)) a.classList.add('is-read');
-    });
-  }
-  function setCurrent(id){
-    document.querySelectorAll('.read-link').forEach(function(a){
-      a.classList.remove('is-current');
-    });
-    if (!id) return;
-    document.querySelectorAll('.read-link[data-open="' + id + '"]').forEach(function(a){
-      a.classList.add('is-current');
-    });
-  }
-  function markRead(id){
-    if (!id) return;
-    readSet.add(id);
-    saveReadSet(readSet);
-    applyReadStyles();
-    setCurrent(id);
-  }
+    function applyReadStyles(){
+      document.querySelectorAll('.read-link[data-open]').forEach(function(a){
+        var id = a.getAttribute('data-open');
+        if (readSet.has(id)) a.classList.add('is-read');
+      });
+    }
+    function setCurrent(id){
+      document.querySelectorAll('.read-link').forEach(function(a){
+        a.classList.remove('is-current');
+      });
+      if (!id) return;
+      document.querySelectorAll('.read-link[data-open="' + id + '"]').forEach(function(a){
+        a.classList.add('is-current');
+      });
+    }
+    function markRead(id){
+      if (!id) return;
+      readSet.add(id);
+      saveReadSet(readSet);
+      applyReadStyles();
+      setCurrent(id);
+    }
 
-  /* ===== 打开折叠：关闭兄弟 + 打开目标 + 滚动 + 标记阅读 ===== */
-  function openFoldById(id) {
-    if (!id) return;
+    /* ===== 顶部导航“当前项”高亮 ===== */
+    function setNavCurrent(id){
+      document.querySelectorAll('#siteNav a[data-open]').forEach(function(a){
+        a.classList.remove('is-current');
+      });
+      if (!id) return;
+      document.querySelectorAll('#siteNav a[data-open="' + id + '"]').forEach(function(a){
+        a.classList.add('is-current');
+      });
+    }
 
-    var el = document.getElementById(id);
-    if (!el) return;
+    /* ===== 打开折叠：关闭兄弟 + 打开目标 + 滚动 + 标记阅读 ===== */
+    function openFoldById(id) {
+      if (!id) return;
 
-    var target = (el.tagName && el.tagName.toLowerCase() === 'details')
-      ? el
-      : (el.closest ? el.closest('details') : null);
+      var el = document.getElementById(id);
+      if (!el) return;
 
-    if (!target) return;
+      var target = (el.tagName && el.tagName.toLowerCase() === 'details')
+        ? el
+        : (el.closest ? el.closest('details') : null);
 
-    document.querySelectorAll('#directory details.fold-item[open]').forEach(function (d) {
-      if (d !== target) d.removeAttribute('open');
-    });
+      if (!target) return;
 
-    target.setAttribute('open', 'open');
+      /* 关闭其它折叠 */
+      document.querySelectorAll('#directory details.fold-item[open]').forEach(function (d) {
+        if (d !== target) d.removeAttribute('open');
+      });
 
-    // ✅ 阅读状态
-    markRead(target.id);
+      /* 移除 active-fold，再给当前加 */
+      document.querySelectorAll('#directory details.fold-item').forEach(function(d){
+        d.classList.remove('active-fold');
+      });
+      target.classList.add('active-fold');
 
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
+      target.setAttribute('open', 'open');
 
-  /* ===== 让 a[data-open] 的 href 显示为 #fold-xxx（可复制）===== */
-  document.querySelectorAll('a[data-open]').forEach(function(a){
-    var id = a.getAttribute('data-open');
-    if (id) a.setAttribute('href', '#' + id);
-  });
+      /* 阅读状态 + 导航高亮 */
+      markRead(target.id);
+      setNavCurrent(target.id);
 
-  /* ===== 绑定：data-open（导航/CTA/阅读路径）===== */
-  document.querySelectorAll('[data-open]').forEach(function (btn) {
-    btn.addEventListener('click', function (e) {
-      e.preventDefault();
-      var id = btn.getAttribute('data-open');
-      openFoldById(id);
+      /* 滚动到目标 */
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 
-      // ✅ 用 hash 驱动，前进/后退最稳
-      location.hash = id;
+    /* ===== 统一绑定：click 打开（用于 a / button / span.pill 等）===== */
+    function bindOpen(el){
+      el.addEventListener('click', function (e) {
+        e.preventDefault();
+        var id = el.getAttribute('data-open');
+        openFoldById(id);
 
-      closeMobileNavIfOpen();
-    });
-  });
+        /* 用 hash 驱动历史：前进/后退最稳 */
+        if (id) location.hash = id;
 
-  /* ===== 支持 data-scroll（首页引言）===== */
-  document.querySelectorAll('[data-scroll]').forEach(function(btn){
-    btn.addEventListener('click', function(e){
-      e.preventDefault();
-      var sid = btn.getAttribute('data-scroll');
-      var sec = document.getElementById(sid);
-      if (sec) sec.scrollIntoView({behavior:'smooth', block:'start'});
-    });
-  });
+        closeMobileNavIfOpen();
+      });
+    }
 
-  /* ===== 绑定：关闭按钮 ===== */
-  document.querySelectorAll('[data-close]').forEach(function (btn) {
-    btn.addEventListener('click', function (e) {
-      e.preventDefault();
-      var d = btn.closest ? btn.closest('details') : null;
-      if (d) d.removeAttribute('open');
-    });
-  });
+    /* a[data-open]、span.pill[data-open] 等都绑定 */
+    document.querySelectorAll('[data-open]').forEach(function (el) {
+      bindOpen(el);
 
-  /* ===== 用户手动点 summary 展开，也要标记“正在读”===== */
-  document.querySelectorAll('details.fold-item').forEach(function(d){
-    d.addEventListener('toggle', function(){
-      if (d.open) {
-        document.querySelectorAll('#directory details.fold-item[open]').forEach(function (x) {
-          if (x !== d) x.removeAttribute('open');
+      /* 让非链接元素也支持键盘 Enter/Space */
+      var tag = (el.tagName || '').toLowerCase();
+      if (tag !== 'a' && tag !== 'button') {
+        el.addEventListener('keydown', function(ev){
+          if (ev.key === 'Enter' || ev.key === ' ') {
+            ev.preventDefault();
+            el.click();
+          }
         });
-        markRead(d.id);
-        location.hash = d.id;
       }
     });
+
+    /* ===== 支持 data-scroll（首页引言）===== */
+    document.querySelectorAll('[data-scroll]').forEach(function(btn){
+      btn.addEventListener('click', function(e){
+        e.preventDefault();
+        var sid = btn.getAttribute('data-scroll');
+        var sec = document.getElementById(sid);
+        if (sec) sec.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    });
+
+    /* ===== 关闭按钮 ===== */
+    document.querySelectorAll('[data-close]').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        var d = btn.closest ? btn.closest('details') : null;
+        if (d) {
+          d.removeAttribute('open');
+          d.classList.remove('active-fold');
+        }
+      });
+    });
+
+    /* ===== 用户手动点 summary 展开：也要同步状态 ===== */
+    document.querySelectorAll('details.fold-item').forEach(function(d){
+      d.addEventListener('toggle', function(){
+        if (d.open) {
+          document.querySelectorAll('#directory details.fold-item[open]').forEach(function (x) {
+            if (x !== d) x.removeAttribute('open');
+          });
+
+          document.querySelectorAll('#directory details.fold-item').forEach(function(x){
+            x.classList.remove('active-fold');
+          });
+          d.classList.add('active-fold');
+
+          markRead(d.id);
+          setNavCurrent(d.id);
+          location.hash = d.id;
+        }
+      });
+    });
+
+    /* ===== 初次加载：恢复已读；若带 hash 则打开对应折叠 ===== */
+    applyReadStyles();
+    if (location.hash) {
+      var idOnLoad = location.hash.slice(1);
+      openFoldById(idOnLoad);
+    }
+
+    /* ===== 前进/后退：hashchange 恢复 ===== */
+    window.addEventListener('hashchange', function () {
+      var id = location.hash ? location.hash.slice(1) : '';
+      if (!id) return;
+      openFoldById(id);
+    });
+
   });
-
-  /* ===== 初次加载：恢复已读样式；若带 hash 则打开 ===== */
-  applyReadStyles();
-  if (location.hash) {
-    var idOnLoad = location.hash.slice(1);
-    openFoldById(idOnLoad);
-  }
-
-  /* ===== 前进/后退：hashchange 恢复 ===== */
-  window.addEventListener('hashchange', function () {
-    var id = location.hash ? location.hash.slice(1) : '';
-    if (!id) return;
-    openFoldById(id);
-  });
-
-});
-</script>
-
+  </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
