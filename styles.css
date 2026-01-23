@@ -40,6 +40,12 @@ li{margin:6px 0}
   .brand{font-size:20px}
 }
 
+/* 手机端：把页头整体上移（影响“咿呀学语（Phase-1/首期）”这一行） */
+@media (max-width: 768px) {
+  .container { padding-top: 10px !important; }  /* 原来 24px */
+  .header { padding: 6px 0 !important; }       /* 原来 22px 0 */
+}
+
 
 
 
