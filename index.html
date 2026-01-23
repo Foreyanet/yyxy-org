@@ -450,6 +450,79 @@ details.fold-item > summary:hover{
   background:rgba(176,137,62,.12);
   box-shadow: inset 0 -3px 0 rgba(176,137,62,.75);
 }
+/* =================================================
+   FINAL PATCH — 导航区分 / 阅读路径层级 / 已读状态
+   ================================================= */
+
+/* ===== 1. 顶部导航 vs CTA 区分 ===== */
+
+/* 顶部导航胶囊 */
+.nav a{
+  background:#fff;
+  border:1px solid rgba(160,120,40,.45);
+  color:#6b4a12;
+  transition:all .2s ease;
+}
+.nav a:hover{
+  background:#fff7e3;
+  box-shadow:0 2px 6px rgba(160,120,40,.25);
+  transform:translateY(-1px);
+}
+
+/* 当前导航高亮 */
+.nav a.active,
+.nav a.is-current{
+  background:#fff3cf;
+  border-color:var(--gold);
+  color:var(--gold);
+  font-weight:700;
+}
+
+/* 核心 CTA 按钮更强 */
+.cta{
+  background:linear-gradient(135deg,#d6a74a,#b88a2f);
+  color:#fff !important;
+  border:none;
+  box-shadow:0 4px 12px rgba(184,138,47,.35);
+}
+.cta:hover{
+  filter:brightness(1.05);
+}
+
+
+/* ===== 2. 阅读路径：引导卡层级强化 ===== */
+.path-card{
+  background:#fffaf0;
+  border-left:6px solid var(--gold);
+  padding:14px 16px;
+  margin:12px 0 18px;
+  border-radius:8px;
+  box-shadow:0 3px 10px rgba(0,0,0,.06);
+}
+.path-card strong{
+  color:var(--gold);
+  font-size:16px;
+}
+
+
+/* ===== 3. 已读 / 正在读 状态反馈 ===== */
+
+/* 已读（历史） */
+.read-link.is-read{
+  color:#9b8c6a;
+  text-decoration:line-through;
+  opacity:.65;
+}
+
+/* 当前正在读（强调） */
+.read-link.is-current{
+  color:var(--gold) !important;
+  font-weight:700;
+  text-decoration:underline;
+  background:rgba(214,167,74,.12);
+  border-radius:4px;
+  padding:2px 4px;
+}
 
     
   </style>
@@ -1194,6 +1267,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 </body>
 </html>
+
 
 
 
