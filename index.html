@@ -524,8 +524,45 @@ details.fold-item > summary:hover{
   padding:2px 4px;
 }
 
-    
+   /* ===== Mobile hero fine-tuning (Phase-1) ===== */
+@media (max-width: 480px){
+
+  /* 1. 首屏整体略微上提，释放底部空间 */
+  .hero,
+  #hero,
+  .hero-section{
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+  }
+
+  /* 2. 标题区域稍微压缩行距，减少垂直占用 */
+  .hero h1,
+  .hero-title{
+    line-height: 1.18 !important;
+    margin-bottom: 10px !important;
+  }
+
+  /* 3. 副标题与正文之间的间距略减 */
+  .hero p,
+  .hero-subtitle{
+    margin-bottom: 10px !important;
+  }
+
+  /* 4. 右侧“阶段/Phase”类胶囊或标签，防止被裁切 */
+  .phase-badge,
+  .stage-badge,
+  .phase-tag,
+  .pill,
+  .nav-pill{
+    max-width: 100% !important;
+    white-space: normal !important;
+    padding-right: 10px !important;
+  }
+
+}
+ 
   </style>
+  
 </head>
 
 <body>
@@ -1267,6 +1304,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 </body>
 </html>
+
 
 
 
