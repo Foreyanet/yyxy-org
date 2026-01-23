@@ -17,6 +17,13 @@ a:hover{text-decoration:underline}
 .brand{font-weight:700;letter-spacing:0.5px;color:var(--gold);font-size:22px}
 .nav a{margin-left:16px;font-size:15px}
 .hero{padding:48px 0 24px}
+/* 手机端：首屏 Hero 上移，避免内容被顶栏吃掉 */
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 16px !important;
+  }
+}
+
 h1{font-size:34px;line-height:1.2;margin:0 0 12px;color:var(--gold)}
 h2{font-size:22px;margin:28px 0 8px;color:var(--gold)}
 p{font-size:16px;line-height:1.7;color:var(--text);margin:6px 0 10px}
@@ -32,3 +39,4 @@ li{margin:6px 0}
   h1{font-size:28px}
   .brand{font-size:20px}
 }
+
