@@ -622,6 +622,53 @@ details.fold-item > summary:hover{
     font-size: 24px !important;
   }
 }
+/* ===== Mobile: Screen-1 (hero) final fine-tune ===== */
+@media (max-width: 480px){
+
+  /* 1) 首屏整体略“变矮”：底部内容更容易露出（等效上提两行） */
+  #screen1{
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  /* 2) 标题允许更自然换行，避免右侧被裁切（“阶段”不再缺字） */
+  #screen1 h1{
+    margin: 0 0 10px 0;
+    line-height: 1.15;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    word-break: break-word;     /* 极窄屏也不断字丢失 */
+    padding-right: 8px;         /* 右侧留一点余量 */
+    font-size: clamp(26px, 7.2vw, 34px);
+  }
+
+  /* 3) 两段文字间距缩一点，释放高度 */
+  #screen1 .lead{
+    margin: 0 0 10px 0;
+    line-height: 1.55;
+  }
+  #screen1 p{
+    margin: 0 0 10px 0;
+  }
+
+  /* 4) 你的 4 个金色按钮那一行：上提一点 + 行距紧凑 */
+  #screen1 p[style*="margin-top:14px"]{
+    margin-top: 10px !important;
+    margin-bottom: 6px;
+  }
+}
+
+/* 小屏再压一点（iPhone SE 等） */
+@media (max-width: 360px){
+  #screen1{
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+  #screen1 h1{
+    font-size: 24px;
+  }
+}
 
   </style>
   
@@ -1366,6 +1413,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 </body>
 </html>
+
 
 
 
