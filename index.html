@@ -560,7 +560,69 @@ details.fold-item > summary:hover{
   }
 
 }
- 
+
+    /* =========================
+   Mobile Hero Fine-Tuning (v1)
+   Fix: title clipping ("阶段"), lift bottom content
+   ========================= */
+
+@media (max-width: 480px){
+
+  /* 0) iPhone 安全区：避免被系统 UI/圆角区域挤压 */
+  body{
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  /* 1) 首屏整体“变矮一点”：等效你说的“往上提两行” */
+  .hero, #hero, .hero-section,
+  main > section:first-of-type,
+  body > section:first-of-type{
+    padding-top: 10px;
+    padding-bottom: 8px;
+  }
+
+  /* 2) 关键：标题允许换行 + 不再被裁切（解决“阶段”被遮挡） */
+  h1, .hero h1,
+  .site-title, .brand-title, .page-title{
+    white-space: normal !important;   /* 允许换行 */
+    overflow: visible !important;     /* 不裁切 */
+    text-overflow: clip !important;   /* 不省略号 */
+    line-height: 1.15 !important;     /* 更紧凑 */
+    padding-right: 8px;               /* 右侧留一点喘息 */
+    word-break: break-word;           /* 极窄屏也能断行 */
+  }
+
+  /* 3) 标题略缩小一点，进一步防止右侧溢出 */
+  .hero h1, .hero-title,
+  .site-title, .brand-title, .page-title{
+    font-size: clamp(26px, 7.2vw, 34px);
+    margin-bottom: 10px !important;
+  }
+
+  /* 4) 副标题/首段间距缩小，释放垂直空间 */
+  .hero p, .hero-subtitle,
+  .hero .lead, .hero .intro{
+    margin-top: 6px;
+    margin-bottom: 10px;
+  }
+
+  /* 5) 如果标题所在容器曾设置 overflow:hidden，会导致右侧裁切；这里“松绑” */
+  header, .hero, #hero, .hero-section,
+  .brand, .masthead, .topbar{
+    overflow: visible;
+  }
+
+}
+
+/* 更窄屏（小号手机）再额外压一点 */
+@media (max-width: 360px){
+  .hero h1, .hero-title,
+  .site-title, .brand-title, .page-title{
+    font-size: 24px !important;
+  }
+}
+
   </style>
   
 </head>
@@ -1304,6 +1366,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 </body>
 </html>
+
 
 
 
