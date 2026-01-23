@@ -429,6 +429,29 @@ details.fold-item > summary:hover{
   color:#b0893e;
 }
 
+/* Reading guide links + read status */
+.read-link{
+  color:#1f2328;
+  text-decoration:none;
+  font-weight:700;
+  padding:2px 4px;
+  border-radius:6px;
+}
+.read-link:hover{
+  color:#b0893e;
+  background:rgba(176,137,62,.08);
+}
+.read-link.is-read{
+  color:#6b5b3b;
+  background:rgba(176,137,62,.06);
+}
+.read-link.is-current{
+  color:#b0893e;
+  background:rgba(176,137,62,.12);
+  box-shadow: inset 0 -3px 0 rgba(176,137,62,.75);
+}
+
+    
   </style>
 </head>
 
@@ -505,45 +528,86 @@ details.fold-item > summary:hover{
 </div>
 
 
-      <!-- 0) Reading guide (first row of screen 2) -->
-      <details class="fold-item" id="fold-reading">
-        <summary>建议阅读路径（研究者 / 来访者）</summary>
-        <div class="fold-body">
-          <p class="small" style="margin-top:0;">
-            为方便不同研究目的的读者理解 Phase-1 内容，以下提供若干建议阅读路径。内容本身不变，仅推荐阅读顺序不同。
-          </p>
+     <!-- 0) Reading guide (first row of screen 2) -->
+<details class="fold-item" id="fold-reading">
+  <summary>建议阅读路径（研究者 / 来访者）</summary>
+  <div class="fold-body">
+    <p class="small" style="margin-top:0;">
+      为方便不同研究目的的读者理解 Phase-1 内容，以下提供若干建议阅读路径。内容本身不变，仅推荐阅读顺序不同。
+    </p>
 
-          <h3 style="margin-top:10px;">🟢 快速了解（约 3 分钟）</h3>
-          <ul>
-            <li>首页引言：语言的起始，远在“开口说话”之前</li>
-            <li>框架界定（研究对象与边界）</li>
-            <li>理论定位（重要边界）</li>
-          </ul>
+    <h3 style="margin-top:10px;">🟢 快速了解（约 3 分钟）</h3>
+    <ul>
+      <li>
+        <a class="read-link" href="#screen1" data-scroll="screen1">
+          首页引言：语言的起始，远在“开口说话”之前
+        </a>
+      </li>
+      <li>
+        <a class="read-link" href="#fold-framing" data-open="fold-framing">
+          框架界定（研究对象与边界）
+        </a>
+      </li>
+      <li>
+        <a class="read-link" href="#fold-theory" data-open="fold-theory">
+          理论定位（重要边界）
+        </a>
+      </li>
+    </ul>
 
-          <h3>🟡 理论理解（约 10 分钟）</h3>
-          <ul>
-            <li>理论基础：声韵母诱发律与潜在发音能力</li>
-            <li>潜在发音能力 / 潜在发音字（例证段）</li>
-            <li>研究焦点（Phase-1）</li>
-          </ul>
+    <h3>🟡 理论理解（约 10 分钟）</h3>
+    <ul>
+      <li>
+        <a class="read-link" href="#fold-theory" data-open="fold-theory">
+          理论基础：声韵母诱发律与潜在发音能力
+        </a>
+      </li>
+      <li>
+        <a class="read-link" href="#fold-theory" data-open="fold-theory">
+          潜在发音能力 / 潜在发音字（例证段）
+        </a>
+      </li>
+      <li>
+        <a class="read-link" href="#fold-focus" data-open="fold-focus">
+          研究焦点（Phase-1）
+        </a>
+      </li>
+    </ul>
 
-          <h3>🔵 深度参考（约 30 分钟）</h3>
-          <ul>
-            <li>理论共识背景（折叠模块）</li>
-            <li>术语与观察维度（对照表）</li>
-            <li>实践路径（非干预、家庭自然情境）</li>
-            <li>合作方式与研究边界</li>
-          </ul>
+    <h3>🔵 深度参考（约 30 分钟）</h3>
+    <ul>
+      <li>
+        <a class="read-link" href="#fold-theory" data-open="fold-theory">
+          理论共识背景（折叠模块）
+        </a>
+      </li>
+      <li>
+        <a class="read-link" href="#fold-terms" data-open="fold-terms">
+          术语与观察维度（对照表）
+        </a>
+      </li>
+      <li>
+        <a class="read-link" href="#fold-path" data-open="fold-path">
+          实践路径（非干预、家庭自然情境）
+        </a>
+      </li>
+      <li>
+        <a class="read-link" href="#fold-coop" data-open="fold-coop">
+          合作方式与研究边界
+        </a>
+      </li>
+    </ul>
 
-          <p class="small" style="margin-bottom:0;">
-            注：理论共识背景用于说明学术语境，不构成统一立场、发展标准或教学承诺。
-          </p>
+    <p class="small" style="margin-bottom:0;">
+      注：理论共识背景用于说明学术语境，不构成统一立场、发展标准或教学承诺。
+    </p>
 
-          <div class="fold-actions">
-            <button type="button" class="fold-close" data-close>收起 ▲</button>
-          </div>
-        </div>
-      </details>
+    <div class="fold-actions">
+      <button type="button" class="fold-close" data-close>收起 ▲</button>
+    </div>
+  </div>
+</details>
+
 
       <!-- 1) Framing -->
       <details class="fold-item" id="fold-framing">
@@ -984,143 +1048,140 @@ details.fold-item > summary:hover{
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
-  /* =========================
-     A) 手机菜单：按钮控制 #siteNav
-  ========================= */
+  /* ===== 手机菜单：按钮控制 #siteNav ===== */
   var menuBtn = document.getElementById('menuToggle');
   var siteNav = document.getElementById('siteNav');
 
   if (menuBtn && siteNav) {
     menuBtn.addEventListener('click', function () {
       siteNav.classList.toggle('is-open');
-      // console.log('nav is-open:', siteNav.classList.contains('is-open'));
     });
   }
-
-  // 手机端：点任意菜单项后自动收起
   function closeMobileNavIfOpen() {
     if (siteNav && siteNav.classList.contains('is-open')) {
       siteNav.classList.remove('is-open');
     }
   }
 
+  /* ===== 已读/正在读：localStorage ===== */
+  var READ_KEY = 'yyxy_read_ids_v1';
+  function loadReadSet(){
+    try { return new Set(JSON.parse(localStorage.getItem(READ_KEY) || '[]')); }
+    catch(e){ return new Set(); }
+  }
+  function saveReadSet(set){
+    localStorage.setItem(READ_KEY, JSON.stringify(Array.from(set)));
+  }
+  var readSet = loadReadSet();
 
-  /* =========================
-     B) 折叠菜单：核心函数
-  ========================= */
+  function applyReadStyles(){
+    document.querySelectorAll('.read-link[data-open]').forEach(function(a){
+      var id = a.getAttribute('data-open');
+      if (readSet.has(id)) a.classList.add('is-read');
+    });
+  }
+  function setCurrent(id){
+    document.querySelectorAll('.read-link').forEach(function(a){
+      a.classList.remove('is-current');
+    });
+    if (!id) return;
+    document.querySelectorAll('.read-link[data-open="' + id + '"]').forEach(function(a){
+      a.classList.add('is-current');
+    });
+  }
+  function markRead(id){
+    if (!id) return;
+    readSet.add(id);
+    saveReadSet(readSet);
+    applyReadStyles();
+    setCurrent(id);
+  }
+
+  /* ===== 打开折叠：关闭兄弟 + 打开目标 + 滚动 + 标记阅读 ===== */
   function openFoldById(id) {
     if (!id) return;
 
     var el = document.getElementById(id);
     if (!el) return;
 
-    // if id is on inner element, climb to nearest <details>
     var target = (el.tagName && el.tagName.toLowerCase() === 'details')
       ? el
       : (el.closest ? el.closest('details') : null);
 
     if (!target) return;
 
-    // close sibling folds inside #directory
     document.querySelectorAll('#directory details.fold-item[open]').forEach(function (d) {
       if (d !== target) d.removeAttribute('open');
     });
 
-    // open target
     target.setAttribute('open', 'open');
 
-    // scroll into view
+    // ✅ 阅读状态
+    markRead(target.id);
+
     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-
-  /* =========================
-     C) 让悬停/地址栏显示 fold id（把 a[data-open] 的 href 改为 #fold-xxx）
-     注意：下面的 hash-link 监听器会跳过 data-open，避免重复拦截
-  ========================= */
+  /* ===== 让 a[data-open] 的 href 显示为 #fold-xxx（可复制）===== */
   document.querySelectorAll('a[data-open]').forEach(function(a){
     var id = a.getAttribute('data-open');
     if (id) a.setAttribute('href', '#' + id);
   });
 
-
-  /* =========================
-     D) 1) bind any element with data-open (hero buttons / menu links)
-  ========================= */
+  /* ===== 绑定：data-open（导航/CTA/阅读路径）===== */
   document.querySelectorAll('[data-open]').forEach(function (btn) {
     btn.addEventListener('click', function (e) {
       e.preventDefault();
       var id = btn.getAttribute('data-open');
       openFoldById(id);
 
-      // 地址栏显示对应折叠（不再全是 #directory）
-      history.pushState(null, '', '#' + id);
+      // ✅ 用 hash 驱动，前进/后退最稳
+      location.hash = id;
 
-      // 手机端：点完菜单项收起菜单
       closeMobileNavIfOpen();
     });
   });
 
-
-  /* =========================
-     E) 2) bind normal hash links (跳过 data-open 的链接，避免重复触发)
-  ========================= */
-  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
-
-    // ✅ 关键：如果它本身有 data-open，就交给上面的 data-open 逻辑处理
-    if (link.hasAttribute('data-open')) return;
-
-    link.addEventListener('click', function (e) {
-      var hash = link.getAttribute('href').slice(1);
-      if (!hash) return;
-
-      var el = document.getElementById(hash);
-      if (!el) return;
-
-      var details = (el.tagName && el.tagName.toLowerCase() === 'details')
-        ? el
-        : (el.closest ? el.closest('details') : null);
-
-      if (details) {
-        e.preventDefault();
-        openFoldById(hash);
-        history.pushState(null, '', '#' + hash);
-
-        // 手机端：点完链接收起菜单（以防你将来还有别的锚点）
-        closeMobileNavIfOpen();
-      }
+  /* ===== 支持 data-scroll（首页引言）===== */
+  document.querySelectorAll('[data-scroll]').forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      var sid = btn.getAttribute('data-scroll');
+      var sec = document.getElementById(sid);
+      if (sec) sec.scrollIntoView({behavior:'smooth', block:'start'});
     });
   });
 
-
-  /* =========================
-     F) 3) bind close buttons
-  ========================= */
+  /* ===== 绑定：关闭按钮 ===== */
   document.querySelectorAll('[data-close]').forEach(function (btn) {
     btn.addEventListener('click', function (e) {
       e.preventDefault();
       var d = btn.closest ? btn.closest('details') : null;
       if (d) d.removeAttribute('open');
-
-      // 可选：收起后回到目录顶部（你不想跳就删掉下面两行）
-      var dir = document.getElementById('directory');
-      if (dir) dir.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
 
+  /* ===== 用户手动点 summary 展开，也要标记“正在读”===== */
+  document.querySelectorAll('details.fold-item').forEach(function(d){
+    d.addEventListener('toggle', function(){
+      if (d.open) {
+        document.querySelectorAll('#directory details.fold-item[open]').forEach(function (x) {
+          if (x !== d) x.removeAttribute('open');
+        });
+        markRead(d.id);
+        location.hash = d.id;
+      }
+    });
+  });
 
-  /* =========================
-     G) 4) auto-open fold if URL has hash on load
-  ========================= */
+  /* ===== 初次加载：恢复已读样式；若带 hash 则打开 ===== */
+  applyReadStyles();
   if (location.hash) {
     var idOnLoad = location.hash.slice(1);
     openFoldById(idOnLoad);
   }
 
-
-  /* =========================
-     H) 5) open fold when Back/Forward (hash changes)
-  ========================= */
+  /* ===== 前进/后退：hashchange 恢复 ===== */
   window.addEventListener('hashchange', function () {
     var id = location.hash ? location.hash.slice(1) : '';
     if (!id) return;
@@ -1130,8 +1191,10 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
+
 </body>
 </html>
+
 
 
 
