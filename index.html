@@ -669,33 +669,6 @@ details.fold-item > summary:hover{
     font-size: 24px;
   }
 }
-
-  /* ===== Mobile: fix header brand clipping (“阶段”露出） ===== */
-@media (max-width: 480px){
-
-  /* 1) 先松绑：不要裁切 */
-  .header, .header *{
-    overflow: visible;
-  }
-
-  /* 2) 关键：品牌标题允许换行，不省略，不截断 */
-  .header .brand{
-    white-space: normal;       /* 允许换行 */
-    overflow: visible;         /* 不裁切 */
-    text-overflow: clip;       /* 不用省略号 */
-    word-break: break-word;    /* 极窄屏也能断行 */
-    line-height: 1.15;
-    padding-right: 10px;       /* 右侧留一点空，避免贴边被遮 */
-    font-size: clamp(18px, 5.6vw, 24px);
-  }
-
-  /* 3) 副标题也稍微紧凑一点（顺便释放高度） */
-  .header .small{
-    margin-top: 6px;
-    line-height: 1.35;
-  }
-}
-
     
   </style>
   
@@ -1440,6 +1413,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 </body>
 </html>
+
 
 
 
