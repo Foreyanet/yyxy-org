@@ -20,7 +20,7 @@ a:hover{text-decoration:underline}
 /* 手机端：首屏 Hero 上移，避免内容被顶栏吃掉 */
 @media (max-width: 768px) {
   .hero {
-    padding-top: 16px !important;
+    padding-top: 8px !important;
   }
 }
 
@@ -39,4 +39,5 @@ li{margin:6px 0}
   h1{font-size:28px}
   .brand{font-size:20px}
 }
+
 
