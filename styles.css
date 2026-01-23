@@ -47,5 +47,17 @@ li{margin:6px 0}
 }
 
 
+/* 手机端：把页头整体上移（针对“咿呀学语（Phase-1/首期）”） */
+@media (max-width: 768px) {
+  /* 1) 减小页面整体顶部内边距（很多布局是 container 顶部把内容顶下去） */
+  .container { padding-top: 6px !important; }
+
+  /* 2) 直接减小 header 的上下 padding（你现在 header 很可能是 22px 0） */
+  header.header { padding: 6px 0 !important; }
+
+  /* 3) 再把标题行轻微上提一点（解决“还差半行”的情况） */
+  header.header .brand { margin-top: -10px !important; }
+}
+
 
 
