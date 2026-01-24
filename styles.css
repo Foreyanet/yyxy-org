@@ -42,22 +42,27 @@ li{margin:6px 0}
 
 /* 手机端：把页头整体上移（影响“咿呀学语（Phase-1/首期）”这一行） */
 @media (max-width: 768px) {
-  .container { padding-top: 10px !important; }  /* 原来 24px */
-  .header { padding: 6px 0 !important; }       /* 原来 22px 0 */
+
+  /* 1. 容器整体内边距调整，右侧预留空间 */
+  .container{
+    padding:18px;
+    padding-top:12px;
+    padding-right:26px;
+  }
+
+  /* 2. 标题行（.brand）优化，解决换行与截断 */
+  .brand{
+    white-space:normal;
+    line-height:1.15;
+    max-width:100%;
+    padding-right:12px;
+    overflow-wrap:anywhere;
+    word-break:break-word;
+  }
+
+  /* 3. 导航栏（header）高度优化 */
+  header.header { 
+    padding: 6px 0 !important; 
+  }
+
 }
-
-
-/* 手机端：把页头整体上移（针对“咿呀学语（Phase-1/首期）”） */
-@media (max-width: 768px) {
-  /* 1) 减小页面整体顶部内边距（很多布局是 container 顶部把内容顶下去） */
-  .container { padding-top: 6px !important; }
-
-  /* 2) 直接减小 header 的上下 padding（你现在 header 很可能是 22px 0） */
-  header.header { padding: 6px 0 !important; }
-
-  /* 3) 再把标题行轻微上提一点（解决“还差半行”的情况） */
-  header.header .brand { margin-top: -10px !important; }
-}
-
-
-
