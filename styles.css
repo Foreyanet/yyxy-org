@@ -17,12 +17,6 @@ a:hover{text-decoration:underline}
 .brand{font-weight:700;letter-spacing:0.5px;color:var(--gold);font-size:22px}
 .nav a{margin-left:16px;font-size:15px}
 .hero{padding:48px 0 24px}
-/* 手机端：首屏 Hero 上移，避免内容被顶栏吃掉 */
-@media (max-width: 768px) {
-  .hero {
-    padding-top: 0px !important;
-  }
-}
 
 h1{font-size:34px;line-height:1.2;margin:0 0 12px;color:var(--gold)}
 h2{font-size:22px;margin:28px 0 8px;color:var(--gold)}
@@ -40,15 +34,38 @@ li{margin:6px 0}
   .brand{font-size:20px}
 }
 
-/* 手机端：把页头整体上移（影响“咿呀学语（Phase-1/首期）”这一行） */
+/* 手机端：综合修复（页头 + 首屏 Hero） */
 @media (max-width: 768px) {
 
-  /* 1. 容器整体内边距调整，右侧预留空间 */
+  /* 0) 首屏 Hero 上移，避免内容被顶栏吃掉 */
+  .hero{
+    padding-top: 0 !important;
+  }
+
+  /* 1) 容器整体内边距调整，右侧预留空间 */
   .container{
     padding:18px;
     padding-top:12px;
     padding-right:26px;
   }
+
+  /* 2) 标题行（.brand）优化，解决换行与截断 */
+  .brand{
+    white-space:normal;
+    line-height:1.15;
+    max-width:100%;
+    padding-right:12px;
+    overflow-wrap:anywhere;
+    word-break:break-word;
+  }
+
+  /* 3) 页头高度优化（统一用 .header，更稳） */
+  .header{
+    padding: 6px 0 !important;
+  }
+
+}
+
 
   /* 2. 标题行（.brand）优化，解决换行与截断 */
   .brand{
@@ -66,6 +83,7 @@ li{margin:6px 0}
   }
 
 }
+
 
 
 
